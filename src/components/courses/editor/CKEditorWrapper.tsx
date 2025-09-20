@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/text-area";
 import React, { useEffect, useRef, useState } from "react";
+import ThisCustomUploadAdapterPlugin from "@/components/courses/editor/UploadImageAdaptor";
 
 interface CKEditorWrapperProps {
   value: string;
@@ -40,7 +41,7 @@ const CKEditorWrapper: React.FC<CKEditorWrapperProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
   const editorRef = useRef<any>(null);
-  const CKEditorRef = useRef<CKEditorComponent | null>(null);
+  const CKEditorRef = useRef<any | null>(null);
   const ClassicEditorRef = useRef<any>(null);
 
   console.log("CKEditorWrapper disabled ", disabled);
@@ -176,6 +177,9 @@ const CKEditorWrapper: React.FC<CKEditorWrapperProps> = ({
           toolbar: [
             "heading",
             "|",
+            "insertImage",
+            "codeBlock",
+            "|",
             "bold",
             "italic",
             "link",
@@ -189,10 +193,23 @@ const CKEditorWrapper: React.FC<CKEditorWrapperProps> = ({
             "undo",
             "redo",
           ],
+          shouldNotGroupWhenFull: true,
+          codeBlock: {
+            languages: [
+              { language: 'plaintext', label: 'Plain text' },
+              { language: 'javascript', label: 'JavaScript' },
+              { language: 'typescript', label: 'TypeScript' },
+              { language: 'python', label: 'Python' },
+              { language: 'java', label: 'Java' },
+              { language: 'cpp', label: 'C++' },
+            ]
+          },
           placeholder: placeholder,
+          extraPlugins: [ThisCustomUploadAdapterPlugin],
         }}
         onReady={(editor: any) => {
-          console.log("Editor is ready!", editor);
+          console.log("Editor is ready!", editor.ui.componentFactory);
+          console.log("Has codeBlock?", editor.ui.componentFactory.has("codeBlock")); // true
           editorRef.current = editor;
         }}
         onChange={(event: any, editor: { getData: () => string }) => {
