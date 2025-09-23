@@ -58,14 +58,14 @@ function ProfilePage() {
             <div className="space-y-2">
               <label className="block text-gray-500">Số điện thoại</label>
               <div className="text-gray-800 font-medium">
-                {teacherData?.data.mobilePhone ?? data?.data?.mobilePhone ?? "Chưa có thông tin"}
+                {teacherData?.data.phoneNumber ?? data?.data?.phoneNumber ?? "Chưa có thông tin"}
               </div>
             </div>
 
             <div className="space-y-2">
               <label className="block text-gray-500">Kỹ năng/Nghề nghiệp</label>
               <div className="text-gray-800 font-medium">
-                {user?.type === "learner" ? "Học viên" : "Giáo viên"}
+                {teacherData?.data.skill ?? data?.data?.skill ?? "Chưa có thông tin"}
               </div>
             </div>
 
