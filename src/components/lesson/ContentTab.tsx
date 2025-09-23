@@ -17,6 +17,7 @@ import {
   useDeleteNote,
 } from "@/hooks/queries/course/useCourses";
 import toast from "react-hot-toast";
+import he from "he";
 
 export interface ContentTabProps {
   courseTitle: string;
@@ -301,9 +302,9 @@ export default function ContentTab(props: ContentTabProps) {
       case "overview":
         return (
           <>
-            <p className="text-secondary mb-3">
-              {currentLesson?.shortDescription}
-            </p>
+            <p className="text-secondary mb-3"
+               dangerouslySetInnerHTML={{ __html: he.decode(currentLesson?.shortDescription) }}
+            />
             <div className="flex gap-2 items-center mb-3">
               <IconWarning />
               <div className="text-secondary">
