@@ -89,7 +89,7 @@ function ContactPage() {
           </div>
           <form onSubmit={form.handleSubmit(onSubmit)} className="w-full lg:w-1/2 box-shadow-component rounded-2xl p-12 flex flex-col gap-6 lg:gap-0 justify-between">
             <div>
-              <div className="bg-gradient-to-r from-primary-main to-secondary-main bg-clip-text text-transparent w-fit text-lg font-semibold">
+              <div className="bg-[#48DB94] bg-clip-text text-transparent w-fit text-lg font-semibold">
                 Giáo dục cho mọi người
               </div>
               <div className="font-bold text-3xl leading-12 mt-2">

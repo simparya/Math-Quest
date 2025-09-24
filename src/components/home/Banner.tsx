@@ -1,18 +1,15 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "iconsax-react";
 import Image from "next/image";
-import { CircleTextAnimation } from "@/components/home/CircleTextAnimation";
-import EffectCardSwiper from "@/components/home/EffectCardSwiper";
+import { Row, Col } from "antd";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Routes } from "@/lib/routes/routes";
-import { useAuthStore } from "@/store/slices/auth.slice";
+import { Play } from "iconsax-react";
 
 export function Banner() {
   const router = useRouter();
-  const { user } = useAuthStore.getState();
 
   const handleNavigateToCourse = () => {
     router.push(Routes.courses);
@@ -23,105 +20,81 @@ export function Banner() {
   };
 
   return (
-    <div className="home-selection lg:h-[900px] mt-20 lg:mt-0">
-      <div className="md:max-w-3xl max-w-sm lg:max-w-5xl xl:max-w-7xl mx-auto w-full h-full flex items-end gap-16 px-4">
-        <div className="lg:w-1/2 w-full">
-          <div className="flex flex-col gap-6 items-center lg:items-start">
-            <div className="text-secondary-dark rounded-[500px] bg-[#FFB1451F] px-3 py-1 inline-block w-fit">
-              Giảm 20% cho lần đăng ký đầu tiên
-            </div>
-            <div className="text-text-primary font-black text-5xl leading-16 text-center lg:text-start lg:text-[5rem] lg:leading-[6rem] relative w-fit">
-              KHÓA HỌC
-              <br />
-              TRỰC TUYẾN
-              <div className="lg:block hidden absolute bottom-0 right-[-70px] bg-secondary-main rounded-[500px] px-2 py-1.5 text-base rotate-[12deg]">
-                <span className="font-bold">299k</span>
-                <span className="font-normal">/tháng</span>
-              </div>
-            </div>
-            <div className="text-secondary text-xl">
-              Tiếp cận thế giới tri thức trong tầm tay và thay đổi hành trình
-              học tập của bạn
-            </div>
-          </div>
-          <div className="flex lg:flex-row flex-col gap-4 pt-8 lg:pt-16 items-center lg:items-start">
-            {!user && (
+    <section
+      className="pt-10 md:pt-18 mt-16"
+      style={{
+        background: "linear-gradient(269.63deg, #EAFBF3 0.07%, #FFFCF0 99.68%)",
+      }}
+    >
+      <div className="md:max-w-3xl max-w-sm lg:max-w-5xl xl:max-w-7xl mx-auto w-full px-6 lg:px-20">
+        <Row gutter={[32, 32]} align="middle">
+          <Col xs={24} xl={13} className="relative">
+            <Image
+                src="/images/home/star-bold.png"
+                alt="Star"
+                width={80}
+                height={80}
+                className="absolute -top-6 right-6 hidden md:block"
+            />
+            <h1 className="font-bold text-4xl md:text-7xl text-left mb-6">
+              Chinh Phục <br />
+              Mọi Thử Thách <br />
+              Toán Học!
+            </h1>
+
+            <p className="text-base md:text-xl text-left mb-12">
+              Từ những bài toán cơ bản đến các dạng bài nâng cao, chúng tôi cung
+              cấp tất cả những gì bạn cần để nắm vững kiến thức.
+            </p>
+
+            <div className="flex mx-auto md:mx-0 justify-start gap-4 flex-wrap mb-12">
               <Button
                 onClick={handleNavigateToLogin}
-                style={{ padding: "11px 22px" }}
-                variant="default"
-                className="bg-primary-main h-12 w-fit shadow-md hover:shadow-xl font-bold hover:shadow-primary-main/20 transition-shadow duration-300 text-white px-4 py-1.5 rounded-[10px]"
+                className="text-white bg-[#212B36] px-6 py-4 rounded-full"
               >
-                Tham gia miễn phí <ArrowRight size="16" color="white" />
+                Bắt đầu ngay
               </Button>
-            )}
+              <Button
+                onClick={handleNavigateToCourse}
+                className="rounded-full bg-transparent text-base font-semibold p-1 hover:bg-transparent transition-all flex items-center gap-2"
+              >
+                <Image
+                  src="/images/home/play-icon.png"
+                  alt="Play"
+                  width={48}
+                  height={48}
+                />
+                Xem khóa học
+              </Button>
+            </div>
 
-            <Button
-              style={{ padding: "11px 22px" }}
-              onClick={handleNavigateToCourse}
-              variant="outline"
-              className="h-12 border-[1px] w-fit font-bold border-primary-main rounded-[10px]"
-            >
-              Xem khoá học <ArrowRight size="16" color="#2F57EF" />
-            </Button>
-          </div>
-          <div className="lg:pt-32 lg:pb-20 py-8 flex justify-between">
-            <div className="lg:w-52 flex-1 lg:text-left text-center">
-              <div className="font-bold text-3xl text-primary-main">26K+</div>
-              <div className="text-text-primary text-sm">Tổng khóa học</div>
-            </div>
-            <div className="lg:w-52 flex-1 lg:text-left text-center">
-              <div className="font-bold text-3xl text-error-main">150+</div>
-              <div className="text-text-primary text-sm">Giảng viên</div>
-            </div>
-            <div className="lg:w-52 flex-1 lg:text-left text-center">
-              <div className="font-bold text-3xl text-infor">120K+</div>
-              <div className="text-text-primary text-sm">Học viên đăng ký</div>
-            </div>
-          </div>
-
-          {/*Mobile*/}
-          <div className="py-8 lg:hidden w-[80%] mx-auto">
-            <EffectCardSwiper />
-          </div>
-        </div>
-        <div className="w-1/2 lg:block hidden">
-          <div className="flex gap-8 items-center">
-            <div className="basis-1/2">
-              Chương trình đào tạo và phát triển đẳng cấp thế giới được phát
-              triển bởi các giáo viên hàng đầu
-            </div>
-            <div className="basis-1/2 flex gap-3">
+            <div className="flex items-center gap-3 justify-center md:justify-start">
               <Image
                 src="/images/home/img_1.png"
-                alt="Counter"
-                className=""
-                width="136"
-                height="56"
+                alt="300k+ Học viên"
+                width={136}
+                height={36}
+                className="object-contain"
               />
-              <div>
-                <h3 className="text-primary-main font-bold">60K+</h3>
-                <div className="text-sm">Học viên được chứng nhận</div>
-              </div>
+              <h2 className="text-xl">
+                <span className="font-bold">300+</span> Học viên
+              </h2>
             </div>
-          </div>
-          <div className="pt-8 relative">
-            <Image
-              className=""
-              src="/images/home/img_2.png"
-              alt="Sinh_Vien"
-              height={600}
-              width={420}
-            />
-            <div className="absolute bottom-[13%] left-[-5%]">
-              <CircleTextAnimation />
+          </Col>
+
+          <Col xs={24} xl={11}>
+            <div className="flex justify-center xl:justify-end">
+              <Image
+                src="/images/home/banner-math.png"
+                alt="Banner Toán Học"
+                width={607}
+                height={750}
+                className="object-contain"
+              />
             </div>
-            <div className="absolute w-[330px] top-[80px] right-0">
-              <EffectCardSwiper />
-            </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
-    </div>
+    </section>
   );
 }

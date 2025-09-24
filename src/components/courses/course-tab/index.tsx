@@ -29,7 +29,7 @@ const listTab = [
   },
   {
     id: 3,
-    name: "Phổ biến", 
+    name: "Phổ biến",
     numberLesson: 0,
     label: CourseLabel.BEST_SELLER,
   },
@@ -47,23 +47,30 @@ const listTab = [
   },
 ];
 
-export function CourseTab({ courses = [], isLoading = false, error = null, onCourseClick, onLabelChange, activeLabel }: CourseTabProps) {
+export function CourseTab({
+  courses = [],
+  isLoading = false,
+  error = null,
+  onCourseClick,
+  onLabelChange,
+  activeLabel,
+}: CourseTabProps) {
   // Get active tab ID based on activeLabel
   const getActiveTabId = () => {
-    const matchingTab = listTab.find(tab => tab.label === activeLabel);
+    const matchingTab = listTab.find((tab) => tab.label === activeLabel);
     return matchingTab?.id || 1; // Default to "Tất cả" if no match
   };
 
   // Update tabs with actual course counts
-  const updatedTabs = listTab.map(tab => {
+  const updatedTabs = listTab.map((tab) => {
     if (tab.id === 1) {
       // "Tất cả" tab shows total courses available
       return { ...tab, numberLesson: courses.length };
     } else {
       // Other tabs show estimated counts (you can make these dynamic based on actual filters if needed)
-      return { 
-        ...tab, 
-        numberLesson: Math.floor(courses.length * 0.7) // Estimated 70% for other categories
+      return {
+        ...tab,
+        numberLesson: Math.floor(courses.length * 0.7), // Estimated 70% for other categories
       };
     }
   });
@@ -93,8 +100,8 @@ export function CourseTab({ courses = [], isLoading = false, error = null, onCou
             onClick={() => handleTabClick(tab)}
             className={`cursor-pointer relative flex flex-col items-center justify-center min-w-[120px] px-8 py-4 rounded-full transition-all ${
               getActiveTabId() === tab.id
-                ? "bg-[#2F57EF] text-white"
-                : "bg-white text-[#637381] border border-gray-200 hover:bg-gray-50"
+                ? "bg-[#48DB94] text-white"
+                : "text-[#48DB94] bg-white border-[#48DB94] hover:bg-[#48DB94] hover:text-white"
             }`}
           >
             {/*<span className="text-[10px] right-2.5 top-2 absolute text-[#919EABCC]">*/}
@@ -120,7 +127,9 @@ export function CourseTab({ courses = [], isLoading = false, error = null, onCou
           <div className="col-span-3 flex justify-center items-center py-20">
             <div className="text-center">
               <p className="text-red-500 mb-2">Có lỗi xảy ra khi tải dữ liệu</p>
-              <p className="text-gray-500 text-sm">{error?.message || "Vui lòng thử lại sau"}</p>
+              <p className="text-gray-500 text-sm">
+                {error?.message || "Vui lòng thử lại sau"}
+              </p>
             </div>
           </div>
         ) : displayCourses.length > 0 ? (
@@ -140,8 +149,16 @@ export function CourseTab({ courses = [], isLoading = false, error = null, onCou
                 instructor={`Giảng viên: ${course?.owner.fullName}`}
                 lessonCount={course.totalLesson}
                 studentCount={course.enrollmentCnt}
-                currentPrice={course.pricing.discounted ? course.pricing.discounted.toLocaleString() : course.pricing.regular.toLocaleString()}
-                originalPrice={course.pricing.discounted ? course.pricing.regular.toLocaleString() : ""}
+                currentPrice={
+                  course.pricing.discounted
+                    ? course.pricing.discounted.toLocaleString()
+                    : course.pricing.regular.toLocaleString()
+                }
+                originalPrice={
+                  course.pricing.discounted
+                    ? course.pricing.regular.toLocaleString()
+                    : ""
+                }
               />
             </div>
           ))
@@ -152,5 +169,5 @@ export function CourseTab({ courses = [], isLoading = false, error = null, onCou
         )}
       </div>
     </div>
-  )
+  );
 }

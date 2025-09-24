@@ -7,7 +7,8 @@ export const CONTACT = [
     subTitle: '+84 3456226268',
     icon: <CallCalling
       size="40"
-      color="#FFB145"
+      color="#48DB94"
+      variant="Bold"
     />
   },
   {
@@ -15,7 +16,8 @@ export const CONTACT = [
     subTitle: 'admin@gmail.com',
     icon: <Sms
       size="40"
-      color="#FFB145"
+      color="#48DB94"
+      variant="Bold"
     />
   },
   {
@@ -23,7 +25,8 @@ export const CONTACT = [
     subTitle: '9 Vũ Phạm Hàm, Yên Hòa, Cầu Giấy, Hà Nội',
     icon: <Location
       size="40"
-      color="#FFB145"
+      color="#48DB94"
+      variant="Bold"
     />
   }
 ]

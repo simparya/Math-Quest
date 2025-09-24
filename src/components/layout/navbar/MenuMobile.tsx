@@ -221,7 +221,7 @@ export const MenuMobile = () => {
                     Chris Hemsworth
                   </span>
                   <span className="text-secondary text-xs leading-[18px]">
-                    demo@americanstudy.cc
+                    demo@mathsolver.cc
                   </span>
                 </div>
                 <div>
@@ -263,7 +263,7 @@ export const MenuMobile = () => {
               variant="default"
               className="bg-primary-main h-10  shadow-md hover:shadow-xl hover:shadow-primary-main/20 transition-shadow duration-300 text-white px-4 py-1.5 rounded-[10px]"
             >
-              <Link href={Routes.login}>Bắt đầu miễn phí</Link>
+              <Link href={Routes.login}>Đăng ký</Link>
             </Button>
           </DrawerFooter>
         )}

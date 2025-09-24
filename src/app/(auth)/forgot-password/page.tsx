@@ -46,23 +46,14 @@ function ForgotPasswordPage() {
 
   return (
     <div className="flex w-full min-h-screen flex-col lg:flex-row">
-      {/* Banner Image - Hidden on mobile, visible on large screens */}
-      <div className="hidden lg:block lg:w-[70%] xl:w-[75%]">
-        <Image
-          src={bannerSignIn}
-          alt="banner"
-          className="h-screen w-full object-cover"
-        />
-      </div>
-
       {/* Forgot Password Form Section */}
-      <div className="flex flex-col justify-center items-center w-full lg:w-[30%] xl:w-[25%] px-4 sm:px-6 md:px-8 lg:px-6 xl:px-8 py-8 lg:py-0 min-h-screen">
+      <div className="flex flex-col justify-center items-center w-full lg:w-[50%] xl:w-[35%] px-4 sm:px-6 md:px-8 lg:px-6 xl:px-8 py-8 lg:py-0 min-h-screen">
         {/* Content Container */}
         <div className="w-full max-w-md mx-auto">
           <Image
             src={logoMini}
             alt="logmini"
-            className="mx-auto mb-8 sm:mb-10 md:mb-12 h-12 w-auto sm:h-14 md:h-16 lg:h-14 xl:h-16"
+            className="mx-auto mb-8 sm:mb-10 md:mb-12 h-10 w-auto"
           />
           
           {/* Title and Description */}
@@ -113,7 +104,7 @@ function ForgotPasswordPage() {
               <Button
                 type="submit"
                 disabled={isPending}
-                className="font-semibold text-white bg-[#2F57EF] hover:bg-[#254bdc] disabled:bg-gray-400 disabled:cursor-not-allowed rounded-xl w-full h-11 sm:h-12 text-sm sm:text-base transition-colors"
+                className="font-semibold text-white disabled:bg-gray-400 disabled:cursor-not-allowed rounded-xl w-full h-11 sm:h-12 text-sm sm:text-base transition-colors"
               >
                 {isPending ? (
                   <>
@@ -130,13 +121,22 @@ function ForgotPasswordPage() {
           {/* Back to Login Button */}
           <button
             onClick={() => router.push("/login")}
-            className="mt-6 sm:mt-8 text-sm sm:text-base text-[#637381] hover:text-[#2F57EF] cursor-pointer flex items-center justify-center gap-2 w-full transition-colors"
+            className="mt-6 sm:mt-8 text-sm sm:text-base text-[#637381] hover:text-[#48DB94] cursor-pointer flex items-center justify-center gap-2 w-full transition-colors"
             disabled={isPending}
           >
             <span>←</span>
             Quay lại đăng nhập
           </button>
         </div>
+      </div>
+
+      {/* Banner Image - Hidden on mobile, visible on large screens */}
+      <div className="hidden lg:block lg:w-[50%] xl:w-[65%]">
+        <Image
+            src={bannerSignIn}
+            alt="banner"
+            className="h-screen w-full object-cover"
+        />
       </div>
     </div>
   );

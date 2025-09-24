@@ -46,7 +46,7 @@ export const CourseSidebar: React.FC<CourseSidebarProps> = ({
             style={{ objectFit: "cover" }}
           />
         </div>
-        <div className="text-[#2F57EF] font-semibold mb-1">
+        <div className="text-[#48DB94] font-semibold mb-1">
           {courseDetail.category.title}
         </div>
         <h2 className="text-xl font-bold mb-4">{courseDetail.title}</h2>
@@ -68,10 +68,10 @@ export const CourseSidebar: React.FC<CourseSidebarProps> = ({
         </div>
         {courseDetail.discountedPrice === 0 &&
         courseDetail.regularPrice === 0 ? (
-          <div className="text-2xl font-bold text-[#2F57EF] mb-6">Miễn phí</div>
+          <div className="text-2xl font-bold text-[#48DB94] mb-6">Miễn phí</div>
         ) : (
           <div className="flex items-center mb-6">
-            <div className="text-2xl font-bold text-[#2F57EF]">
+            <div className="text-2xl font-bold text-[#48DB94]">
               {(
                 courseDetail.discountedPrice || courseDetail.regularPrice
               ).toLocaleString()}
@@ -89,7 +89,7 @@ export const CourseSidebar: React.FC<CourseSidebarProps> = ({
           <>
             <button
               onClick={handleLearn}
-              className="bg-[#2F57EF] text-white w-full py-3 rounded-lg font-medium hover:bg-blue-700 transition cursor-pointer"
+              className="bg-[#48DB94] text-white w-full py-3 rounded-lg font-medium hover:bg-primary-main/90 transition cursor-pointer"
             >
               Vào học ngay
             </button>
@@ -98,13 +98,13 @@ export const CourseSidebar: React.FC<CourseSidebarProps> = ({
           <>
             <button
               onClick={handlePushToCart}
-              className="bg-[#2F57EF] text-white w-full py-3 rounded-lg font-medium hover:bg-blue-700 transition cursor-pointer"
+              className="bg-[#48DB94] text-white w-full py-3 rounded-lg font-medium hover:bg-primary-main/90 transition cursor-pointer"
             >
               Thêm vào giỏ hàng
             </button>
             <button
               onClick={onCheckoutCourse}
-              className="bg-white border border-[#919EAB52] mt-2 text-primary w-full py-3 rounded-lg font-bold hover:bg-blue-700 hover:text-white transition cursor-pointer"
+              className="bg-white border border-[#919EAB52] mt-2 text-primary w-full py-3 rounded-lg font-bold hover:bg-primary-main/90 hover:text-white transition cursor-pointer"
             >
               Mua ngay
             </button>
@@ -187,13 +187,13 @@ export const CourseSidebar: React.FC<CourseSidebarProps> = ({
           )}
           <button
             onClick={() => setShowMoreCardProduct(!showMoreCardProduct)}
-            className="text-[#2F57EF] flex items-center gap-2 mt-4 font-medium"
+            className="text-[#48DB94] flex items-center gap-2 mt-4 font-medium"
           >
             {!showMoreCardProduct ? "Hiển thị thêm" : "Ẩn bớt"}
             {!showMoreCardProduct ? (
-              <ArrowDown2 size="20" color="#2F57EF" />
+              <ArrowDown2 size="20" color="#48DB94" />
             ) : (
-              <ArrowUp2 size="20" color="#2F57EF" />
+              <ArrowUp2 size="20" color="#48DB94" />
             )}
           </button>
         </div>

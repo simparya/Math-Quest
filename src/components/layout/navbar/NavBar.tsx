@@ -206,10 +206,10 @@ function Navbar() {
               <MenuMobile />
 
               <Image
-                src="/images/logo.png"
+                src="/images/logo-mini.png"
                 alt="Logo"
-                width={127}
-                height={33}
+                width={40}
+                height={40}
                 onClick={handleNavigateToHome}
                 className="cursor-pointer block lg:hidden"
               />
@@ -217,8 +217,8 @@ function Navbar() {
               <Image
                 src="/images/logo.png"
                 alt="Logo"
-                width={182}
-                height={48}
+                width={192}
+                height={40}
                 onClick={handleNavigateToHome}
                 className="cursor-pointer hidden lg:block"
               />
@@ -326,7 +326,7 @@ function Navbar() {
                       className="bg-primary-main h-10  shadow-md hover:shadow-xl hover:shadow-primary-main/20 transition-shadow duration-300 text-white px-4 py-1.5 rounded-[10px]"
                     >
                       <Link href={Routes.login} className="text-white">
-                        Bắt đầu miễn phí
+                        Đăng ký
                       </Link>
                     </Button>
                   </div>

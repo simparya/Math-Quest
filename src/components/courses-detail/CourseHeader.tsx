@@ -22,9 +22,9 @@ interface CourseHeaderProps {
 
 export const CourseHeader: React.FC<CourseHeaderProps> = ({ courseDetail, reviewSummaryData }) => {
   return (
-    <div className="bg-[linear-gradient(92.2deg,rgba(47,87,239,0.2)_0%,rgba(255,177,69,0.2)_100.43%)] w-full py-12 md:py-20 md:mt-20 h-max">
+    <div className="bg-gradient-to-r from-[#E6FAF2] to-[#FFF6E7] w-full py-12 md:py-20 md:mt-20 h-max">
       <div className="container mx-auto px-4 py-8 h-full flex flex-col justify-end w-full">
-        <div className="text-[#2F57EF] mb-2 md:w-[50%] w-full">
+        <div className="text-[#48DB94] mb-2 md:w-[50%] w-full">
           {courseDetail.category.title}
         </div>
         <div className="text-4xl font-bold text-[#212B36] mb-4 md:w-[50%] w-full">
@@ -38,7 +38,7 @@ export const CourseHeader: React.FC<CourseHeaderProps> = ({ courseDetail, review
           )}
         </p>
         <div className="my-4 flex flex-wrap items-center gap-4">
-          <div className="mt-2 w-max flex items-center gap-2 md:mt-0 font-light text-[#2F57EF] border bg-[#D14EA81F] border-white px-4 py-2 rounded-full">
+          <div className="mt-2 w-max flex items-center gap-2 md:mt-0 text-[#48DB94] border bg-[#D14EA81F] border-white px-4 py-2 rounded-full">
             <IconPrize /> {courseDetail.label || "Bestseller"}
           </div>
           <div className="flex flex-wrap items-center gap-2">

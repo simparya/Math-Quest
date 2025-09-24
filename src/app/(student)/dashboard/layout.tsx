@@ -78,7 +78,7 @@ export default function DashboardLayout({
   return (
     <div className="mb-20">
       {/* Colorful Banner/Header */}
-      <div className="bg-[linear-gradient(92.2deg,rgba(47,87,239,0.2)_0%,rgba(255,177,69,0.2)_100.43%)] w-full h-[300px] relative"></div>
+      <div className="bg-gradient-to-r from-[#E6FAF2] to-[#FFF6E7] w-full h-[300px] relative"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-[160px] relative z-10">
         {/* Profile Info Section */}
@@ -170,17 +170,17 @@ export default function DashboardLayout({
                 href="/dashboard"
                 className={`flex items-center px-3 py-3 ${
                   isActive("/dashboard")
-                    ? "text-blue-600 bg-[#2F57EF14]"
+                    ? "text-[#48DB94] bg-[#48DB9414]"
                     : "text-gray-700 hover:bg-gray-50"
                 } rounded-lg`}
               >
                 <Home
                   className="w-5 h-5 mr-3"
-                  color={isActive("/dashboard") ? "#155dfc" : "#364153"}
+                  color={isActive("/dashboard") ? "#48DB94" : "#364153"}
                 />
                 <span
                   className={
-                    isActive("/dashboard") ? "font-medium text-blue-600" : ""
+                    isActive("/dashboard") ? "font-medium text-[#48DB94]" : ""
                   }
                 >
                   Tổng quan
@@ -191,18 +191,18 @@ export default function DashboardLayout({
                 href="/dashboard/profile"
                 className={`flex items-center px-3 py-3 ${
                   isActive("/dashboard/profile")
-                    ? "text-blue-600 bg-[#2F57EF14]"
+                    ? "text-[#48DB94] bg-[#48DB9414]"
                     : "text-gray-700 hover:bg-gray-50"
                 } rounded-lg`}
               >
                 <User
                   className="w-5 h-5 mr-3"
-                  color={isActive("/dashboard/profile") ? "#155dfc" : "#364153"}
+                  color={isActive("/dashboard/profile") ? "#48DB94" : "#364153"}
                 />
                 <span
                   className={
                     isActive("/dashboard/profile")
-                      ? "font-medium text-blue-600"
+                      ? "font-medium text-[#48DB94]"
                       : ""
                   }
                 >
@@ -215,20 +215,20 @@ export default function DashboardLayout({
                   href="/dashboard/courses"
                   className={`flex items-center px-3 py-3 ${
                     isActive("/dashboard/courses")
-                      ? "text-blue-600 bg-[#2F57EF14]"
+                      ? "text-[#48DB94] bg-[#48DB9414]"
                       : "text-gray-700 hover:bg-gray-50"
                   } rounded-lg`}
                 >
                   <Book
                     className="w-5 h-5 mr-3"
                     color={
-                      isActive("/dashboard/courses") ? "#155dfc" : "#364153"
+                      isActive("/dashboard/courses") ? "#48DB94" : "#364153"
                     }
                   />
                   <span
                     className={
                       isActive("/dashboard/courses")
-                        ? "font-medium text-blue-600"
+                        ? "font-medium text-[#48DB94]"
                         : ""
                     }
                   >
@@ -242,20 +242,20 @@ export default function DashboardLayout({
                   href="/dashboard/favorites"
                   className={`flex items-center px-3 py-3 ${
                     isActive("/dashboard/favorites")
-                      ? "text-blue-600 bg-[#2F57EF14]"
+                      ? "text-[#48DB94] bg-[#48DB9414]"
                       : "text-gray-700 hover:bg-gray-50"
                   } rounded-lg`}
                 >
                   <Heart
                     className="w-5 h-5 mr-3"
                     color={
-                      isActive("/dashboard/favorites") ? "#155dfc" : "#364153"
+                      isActive("/dashboard/favorites") ? "#48DB94" : "#364153"
                     }
                   />
                   <span
                     className={
                       isActive("/dashboard/favorites")
-                        ? "font-medium text-blue-600"
+                        ? "font-medium text-[#48DB94]"
                         : ""
                     }
                   >
@@ -268,18 +268,18 @@ export default function DashboardLayout({
                 href="/dashboard/reviews"
                 className={`flex items-center px-3 py-3 ${
                   isActive("/dashboard/reviews")
-                    ? "text-blue-600 bg-[#2F57EF14]"
+                    ? "text-[#48DB94] bg-[#48DB9414]"
                     : "text-gray-700 hover:bg-gray-50"
                 } rounded-lg`}
               >
                 <Star
                   className="w-5 h-5 mr-3"
-                  color={isActive("/dashboard/reviews") ? "#155dfc" : "#364153"}
+                  color={isActive("/dashboard/reviews") ? "#48DB94" : "#364153"}
                 />
                 <span
                   className={
                     isActive("/dashboard/reviews")
-                      ? "font-medium text-blue-600"
+                      ? "font-medium text-[#48DB94]"
                       : ""
                   }
                 >
@@ -292,20 +292,20 @@ export default function DashboardLayout({
                   href="/dashboard/test-scores"
                   className={`flex items-center px-3 py-3 ${
                     isActive("/dashboard/test-scores")
-                      ? "text-blue-600 bg-[#2F57EF14]"
+                      ? "text-[#48DB94] bg-[#48DB9414]"
                       : "text-gray-700 hover:bg-gray-50"
                   } rounded-lg`}
                 >
                   <FileText
                     className="w-5 h-5 mr-3"
                     color={
-                      isActive("/dashboard/test-scores") ? "#155dfc" : "#364153"
+                      isActive("/dashboard/test-scores") ? "#48DB94" : "#364153"
                     }
                   />
                   <span
                     className={
                       isActive("/dashboard/test-scores")
-                        ? "font-medium text-blue-600"
+                        ? "font-medium text-[#48DB94]"
                         : ""
                     }
                   >
@@ -319,7 +319,7 @@ export default function DashboardLayout({
                   href="/dashboard/purchase-history"
                   className={`flex items-center px-3 py-3 ${
                     isActive("/dashboard/purchase-history")
-                      ? "text-blue-600 bg-[#2F57EF14]"
+                      ? "text-[#48DB94] bg-[#48DB9414]"
                       : "text-gray-700 hover:bg-gray-50"
                   } rounded-lg`}
                 >
@@ -327,14 +327,14 @@ export default function DashboardLayout({
                     className="w-5 h-5 mr-3"
                     color={
                       isActive("/dashboard/purchase-history")
-                        ? "#155dfc"
+                        ? "#48DB94"
                         : "#364153"
                     }
                   />
                   <span
                     className={
                       isActive("/dashboard/purchase-history")
-                        ? "font-medium text-blue-600"
+                        ? "font-medium text-[#48DB94]"
                         : ""
                     }
                   >
@@ -354,20 +354,20 @@ export default function DashboardLayout({
                   href="/dashboard/my-courses"
                   className={`flex items-center px-3 py-3 ${
                     isActive("/dashboard/my-courses")
-                      ? "text-blue-600 bg-[#2F57EF14]"
+                      ? "text-[#48DB94] bg-[#48DB9414]"
                       : "text-gray-700 hover:bg-gray-50"
                   } rounded-lg`}
                 >
                   <Book
                     className="w-5 h-5 mr-3"
                     color={
-                      isActive("/dashboard/my-courses") ? "#155dfc" : "#364153"
+                      isActive("/dashboard/my-courses") ? "#48DB94" : "#364153"
                     }
                   />
                   <span
                     className={
                       isActive("/dashboard/my-courses")
-                        ? "font-medium text-blue-600"
+                        ? "font-medium text-[#48DB94]"
                         : ""
                     }
                   >
@@ -379,7 +379,7 @@ export default function DashboardLayout({
                   href="/dashboard/category"
                   className={`flex items-center px-3 py-3 ${
                     isActive("/dashboard/category")
-                      ? "text-blue-600 bg-[#2F57EF14]"
+                      ? "text-[#48DB94] bg-[#48DB9414]"
                       : "text-gray-700 hover:bg-gray-50"
                   } rounded-lg`}
                 >
@@ -387,14 +387,14 @@ export default function DashboardLayout({
                     className="w-5 h-5 mr-3"
                     color={
                       isActive("/dashboard/category")
-                        ? "#155dfc"
+                        ? "#48DB94"
                         : "#364153"
                     }
                   />
                   <span
                     className={
                       isActive("/dashboard/category")
-                        ? "font-medium text-blue-600"
+                        ? "font-medium text-[#48DB94]"
                         : ""
                     }
                   >
@@ -406,7 +406,7 @@ export default function DashboardLayout({
                   href="/dashboard/notification"
                   className={`flex items-center px-3 py-3 ${
                     isActive("/dashboard/notification")
-                      ? "text-blue-600 bg-[#2F57EF14]"
+                      ? "text-[#48DB94] bg-[#48DB9414]"
                       : "text-gray-700 hover:bg-gray-50"
                   } rounded-lg`}
                 >
@@ -414,14 +414,14 @@ export default function DashboardLayout({
                     className="w-5 h-5 mr-3"
                     color={
                       isActive("/dashboard/notification")
-                        ? "#155dfc"
+                        ? "#48DB94"
                         : "#364153"
                     }
                   />
                   <span
                     className={
                       isActive("/dashboard/notification")
-                        ? "font-medium text-blue-600"
+                        ? "font-medium text-[#48DB94]"
                         : ""
                     }
                   >
@@ -433,18 +433,18 @@ export default function DashboardLayout({
                   href="/dashboard/test"
                   className={`flex items-center px-3 py-3 ${
                     isActive("/dashboard/test")
-                      ? "text-blue-600 bg-[#2F57EF14]"
+                      ? "text-[#48DB94] bg-[#48DB9414]"
                       : "text-gray-700 hover:bg-gray-50"
                   } rounded-lg`}
                 >
                   <DocumentText
                     className="w-5 h-5 mr-3"
-                    color={isActive("/dashboard/test") ? "#155dfc" : "#364153"}
+                    color={isActive("/dashboard/test") ? "#48DB94" : "#364153"}
                   />
                   <span
                     className={
                       isActive("/dashboard/test")
-                        ? "font-medium text-blue-600"
+                        ? "font-medium text-[#48DB94]"
                         : ""
                     }
                   >
@@ -456,20 +456,20 @@ export default function DashboardLayout({
                   href="/dashboard/exercise"
                   className={`flex items-center px-3 py-3 ${
                     isActive("/dashboard/exercise")
-                      ? "text-blue-600 bg-[#2F57EF14]"
+                      ? "text-[#48DB94] bg-[#48DB9414]"
                       : "text-gray-700 hover:bg-gray-50"
                   } rounded-lg`}
                 >
                   <MessageText
                     className="w-5 h-5 mr-3"
                     color={
-                      isActive("/dashboard/exercise") ? "#155dfc" : "#364153"
+                      isActive("/dashboard/exercise") ? "#48DB94" : "#364153"
                     }
                   />
                   <span
                     className={
                       isActive("/dashboard/exercise")
-                        ? "font-medium text-blue-600"
+                        ? "font-medium text-[#48DB94]"
                         : ""
                     }
                   >
@@ -480,7 +480,7 @@ export default function DashboardLayout({
                   href="/dashboard/purchase-approve"
                   className={`flex items-center px-3 py-3 ${
                     isActive("/dashboard/purchase-approve")
-                      ? "text-blue-600 bg-[#2F57EF14]"
+                      ? "text-[#48DB94] bg-[#48DB9414]"
                       : "text-gray-700 hover:bg-gray-50"
                   } rounded-lg`}
                 >
@@ -488,14 +488,14 @@ export default function DashboardLayout({
                     className="w-5 h-5 mr-3"
                     color={
                       isActive("/dashboard/purchase-approve")
-                        ? "#155dfc"
+                        ? "#48DB94"
                         : "#364153"
                     }
                   />
                   <span
                     className={
                       isActive("/dashboard/purchase-approve")
-                        ? "font-medium text-blue-600"
+                        ? "font-medium text-[#48DB94]"
                         : ""
                     }
                   >
@@ -515,20 +515,20 @@ export default function DashboardLayout({
                   href="/dashboard/settings"
                   className={`flex items-center px-3 py-3 ${
                     isActive("/dashboard/settings")
-                      ? "text-blue-600 bg-[#2F57EF14]"
+                      ? "text-[#48DB94] bg-[#48DB9414]"
                       : "text-gray-700 hover:bg-gray-50"
                   } rounded-lg`}
                 >
                   <Settings
                     className="w-5 h-5 mr-3"
                     color={
-                      isActive("/dashboard/settings") ? "#155dfc" : "#364153"
+                      isActive("/dashboard/settings") ? "#48DB94" : "#364153"
                     }
                   />
                   <span
                     className={
                       isActive("/dashboard/settings")
-                        ? "font-medium text-blue-600"
+                        ? "font-medium text-[#48DB94]"
                         : ""
                     }
                   >

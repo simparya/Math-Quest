@@ -169,13 +169,13 @@ function CoursePage() {
   return (
     <div>
       {/*header*/}
-      <div className="bg-[linear-gradient(92.2deg,rgba(47,87,239,0.2)_0%,rgba(255,177,69,0.2)_100.43%)] h-[300px] w-full">
+      <div className="bg-gradient-to-r from-[#E6FAF2] to-[#FFF6E7] h-[300px] w-full">
         <div className="flex flex-col items-center justify-center h-full">
           <div className="flex flex-col md:flex-row items-center md:gap-8">
             <div className="text-5xl font-bold text-[#212B36]">
               Tất cả khoá học
             </div>
-            <div className="mt-2 md:mt-0 font-light text-[#2F57EF] border bg-[#D14EA81F] border-white px-4 py-2 rounded-full">
+            <div className="mt-2 md:mt-0 font-light text-[#48DB94] border bg-[#D14EA81F] border-white px-4 py-2 rounded-full">
               🎉 {coursesData?.data?.length || 0} Khóa học
             </div>
           </div>

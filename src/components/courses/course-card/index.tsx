@@ -90,7 +90,7 @@ function CourseCard({
 
       {/* Card Content */}
       <div className="p-4 bg-white">
-        <div className="text-blue-600 text-sm mb-2">{category}</div>
+        <div className="text-[#48DB94] text-sm mb-2">{category}</div>
         <h4 className="font-semibold text-lg mb-2 truncate w-full">
           {courseName}
         </h4>

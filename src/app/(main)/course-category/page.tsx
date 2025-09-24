@@ -153,7 +153,7 @@ function CourseCategoryPageContent() {
   return (
     <div>
       {/*header*/}
-      <div className="bg-[linear-gradient(92.2deg,rgba(47,87,239,0.2)_0%,rgba(255,177,69,0.2)_100.43%)] h-[300px] w-full">
+      <div className="bg-gradient-to-r from-[#E6FAF2] to-[#FFF6E7] h-[300px] w-full">
         <div className="flex flex-col items-center justify-center h-full">
           <div className="flex flex-col md:flex-row items-center md:gap-8">
             <div className="text-5xl font-bold text-[#212B36]">
