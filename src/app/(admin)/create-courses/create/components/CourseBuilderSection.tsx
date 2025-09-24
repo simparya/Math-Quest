@@ -26,11 +26,6 @@ export default function CourseBuilderSection() {
   const [chapters, setChapters] = useState<IModule[]>([]);
   const { courseData, setModuleSelected, setLessonSelected } =
     useCreateCourseContext();
-  const [publishLessonParams, setPublishLessonParams] = useState<{
-    courseId: string;
-    moduleId: string;
-    lessonId: string;
-  } | null>(null);
 
   const publishLessonMutation = usePublishLesson(() => {
     refetchChapters();
