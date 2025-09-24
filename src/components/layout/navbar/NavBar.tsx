@@ -225,7 +225,7 @@ function Navbar() {
 
               <DropdownMenu>
                 <DropdownMenuTrigger className="hidden lg:block focus-visible:outline-none">
-                  <div className="flex gap-2 items-center cursor-pointer">
+                  <div className="flex gap-2 items-center cursor-pointer border rounded-full px-4 py-1.5">
                     <div>
                       {selectedCategory ? selectedCategory.title : "Khám phá"}
                     </div>
@@ -318,12 +318,12 @@ function Navbar() {
                   />
                 ) : (
                   <div className="lg:flex gap-2 items-center hidden">
-                    <Button variant="ghost" className="h-10">
+                    <Button variant="ghost" className="h-10 rounded-full">
                       <Link href={Routes.login}>Đăng nhập</Link>
                     </Button>
                     <Button
                       variant="default"
-                      className="bg-primary-main h-10  shadow-md hover:shadow-xl hover:shadow-primary-main/20 transition-shadow duration-300 text-white px-4 py-1.5 rounded-[10px]"
+                      className="bg-primary-main h-10 rounded-full  shadow-md hover:shadow-xl hover:shadow-primary-main/20 transition-shadow duration-300 text-white px-4 py-1.5"
                     >
                       <Link href={Routes.login} className="text-white">
                         Đăng ký

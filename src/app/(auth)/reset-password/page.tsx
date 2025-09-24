@@ -19,20 +19,24 @@ import { Button } from "@/components/ui/button";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useConfirmResetPassword } from "@/hooks/queries/auth/useConfirmResetPassword";
+import { Routes } from "@/lib/routes/routes";
 
 // Schema validation for Set Password
-const setPasswordSchema = z.object({
-  password: z
-    .string()
-    .min(6, "Mật khẩu phải có ít nhất 6 ký tự")
-    .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, "Mật khẩu phải có ít nhất 1 chữ hoa, 1 chữ thường và 1 số"),
-  confirmPassword: z
-    .string()
-    .min(1, "Vui lòng xác nhận mật khẩu"),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Mật khẩu xác nhận không khớp",
-  path: ["confirmPassword"],
-});
+const setPasswordSchema = z
+  .object({
+    password: z
+      .string()
+      .min(6, "Mật khẩu phải có ít nhất 6 ký tự")
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+        "Mật khẩu phải có ít nhất 1 chữ hoa, 1 chữ thường và 1 số",
+      ),
+    confirmPassword: z.string().min(1, "Vui lòng xác nhận mật khẩu"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Mật khẩu xác nhận không khớp",
+    path: ["confirmPassword"],
+  });
 
 type SetPasswordFormData = z.infer<typeof setPasswordSchema>;
 
@@ -45,7 +49,7 @@ function SetPasswordPage() {
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       setToken(params.get("token"));
     }
@@ -82,12 +86,17 @@ function SetPasswordPage() {
       <div className="flex flex-col justify-center items-center w-full lg:w-[50%] xl:w-[35%] px-4 sm:px-6 md:px-8 lg:px-6 xl:px-8 py-8 lg:py-0 min-h-screen">
         {/* Content Container */}
         <div className="w-full max-w-md mx-auto">
-          <Image
-            src={logoMini}
-            alt="logmini"
-            className="mx-auto mb-8 sm:mb-10 md:mb-12 h-10 w-auto"
-          />
-          
+          <div
+            onClick={() => router.push(Routes.home)}
+            className="cursor-pointer w-fit mx-auto"
+          >
+            <Image
+              src={logoMini}
+              alt="logmini"
+              className="mx-auto mb-8 sm:mb-10 md:mb-12 h-10 w-auto hover:opacity-80 transition-opacity"
+            />
+          </div>
+
           {/* Title and Description */}
           <div className="text-center mb-8 sm:mb-10">
             <h1 className="text-[#212B36] font-semibold text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl mb-4 sm:mb-6">
@@ -198,7 +207,6 @@ function SetPasswordPage() {
             </form>
           </Form>
 
-
           {/* Back to Login Button */}
           <button
             onClick={() => router.push("/login")}
@@ -214,9 +222,9 @@ function SetPasswordPage() {
       {/* Banner Image - Hidden on mobile, visible on large screens */}
       <div className="hidden lg:block lg:w-[50%] xl:w-[65%]">
         <Image
-            src={bannerSignIn}
-            alt="banner"
-            className="h-screen w-full object-cover"
+          src={bannerSignIn}
+          alt="banner"
+          className="h-screen w-full object-cover"
         />
       </div>
     </div>

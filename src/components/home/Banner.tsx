@@ -6,7 +6,6 @@ import { Row, Col } from "antd";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { Routes } from "@/lib/routes/routes";
-import { Play } from "iconsax-react";
 
 export function Banner() {
   const router = useRouter();
@@ -26,7 +25,7 @@ export function Banner() {
         background: "linear-gradient(269.63deg, #EAFBF3 0.07%, #FFFCF0 99.68%)",
       }}
     >
-      <div className="md:max-w-3xl max-w-sm lg:max-w-5xl xl:max-w-7xl mx-auto w-full px-6 lg:px-20">
+      <div className="w-full mx-auto px-4 md:px-8 max-w-[1536px]">
         <Row gutter={[32, 32]} align="middle">
           <Col xs={24} xl={13} className="relative">
             <Image

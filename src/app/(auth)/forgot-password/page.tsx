@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { bannerSignIn, logoMini } from "@/contants/images";
+import { Routes } from "@/lib/routes/routes";
 import {
   Form,
   FormControl,
@@ -50,19 +51,25 @@ function ForgotPasswordPage() {
       <div className="flex flex-col justify-center items-center w-full lg:w-[50%] xl:w-[35%] px-4 sm:px-6 md:px-8 lg:px-6 xl:px-8 py-8 lg:py-0 min-h-screen">
         {/* Content Container */}
         <div className="w-full max-w-md mx-auto">
-          <Image
-            src={logoMini}
-            alt="logmini"
-            className="mx-auto mb-8 sm:mb-10 md:mb-12 h-10 w-auto"
-          />
-          
+          <div
+            onClick={() => router.push(Routes.home)}
+            className="cursor-pointer w-fit mx-auto"
+          >
+            <Image
+              src={logoMini}
+              alt="logmini"
+              className="mx-auto mb-8 sm:mb-10 md:mb-12 h-10 w-auto hover:opacity-80 transition-opacity"
+            />
+          </div>
+
           {/* Title and Description */}
           <div className="text-center mb-8 sm:mb-10">
             <h1 className="text-[#212B36] font-semibold text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl mb-4 sm:mb-6">
               Quên mật khẩu
             </h1>
             <p className="text-[#637381] text-sm sm:text-base leading-relaxed">
-              Vui lòng nhập địa chỉ email được liên kết với tài khoản của bạn và chúng tôi sẽ gửi cho bạn liên kết để đặt lại mật khẩu.
+              Vui lòng nhập địa chỉ email được liên kết với tài khoản của bạn và
+              chúng tôi sẽ gửi cho bạn liên kết để đặt lại mật khẩu.
             </p>
           </div>
 
@@ -133,9 +140,9 @@ function ForgotPasswordPage() {
       {/* Banner Image - Hidden on mobile, visible on large screens */}
       <div className="hidden lg:block lg:w-[50%] xl:w-[65%]">
         <Image
-            src={bannerSignIn}
-            alt="banner"
-            className="h-screen w-full object-cover"
+          src={bannerSignIn}
+          alt="banner"
+          className="h-screen w-full object-cover"
         />
       </div>
     </div>

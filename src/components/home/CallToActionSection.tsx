@@ -12,7 +12,7 @@ export default function CallToActionSection() {
   };
 
   return (
-    <section className="md:max-w-3xl max-w-sm lg:max-w-5xl xl:max-w-7xl mx-auto w-ful flex items-center justify-center text-center my-10 md:my-20">
+    <section className="w-full mx-auto px-4 md:px-8 max-w-[1280px] text-center my-10 md:my-20">
       <div className="relative w-full rounded-3xl px-6 py-16 md:px-20 md:py-24 bg-[url('/images/home/bg-cta.png')] bg-cover bg-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
           Bạn đã sẵn sàng để bứt phá <br className="hidden md:block" />

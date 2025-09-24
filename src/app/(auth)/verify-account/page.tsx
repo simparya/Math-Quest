@@ -10,11 +10,12 @@ import { useRouter } from "next/navigation";
 import { useVerify } from "@/hooks/queries/auth/useVerify";
 import { useGetOtp } from "@/hooks/queries/auth/useGetOtp";
 import { useAuthStore } from "@/store/slices/auth.slice";
+import { Routes } from "@/lib/routes/routes";
 
 function VerifyAccountPage() {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const router = useRouter();
-  const user = useAuthStore.getState().user
+  const user = useAuthStore.getState().user;
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   console.log(user, "----user");
 
@@ -62,16 +63,20 @@ function VerifyAccountPage() {
 
   return (
     <div className="flex w-full min-h-screen flex-col lg:flex-row">
-
       {/* Verify Account Form Section */}
       <div className="flex flex-col justify-center items-center w-full lg:w-[50%] xl:w-[35%] px-4 sm:px-6 md:px-8 lg:px-6 xl:px-8 py-8 lg:py-0 min-h-screen">
         {/* Content Container */}
         <div className="w-full max-w-md mx-auto">
-          <Image
-            src={logoMini}
-            alt="logmini"
-            className="mx-auto mb-8 sm:mb-10 md:mb-12 h-10 w-auto"
-          />
+          <div
+            onClick={() => router.push(Routes.home)}
+            className="cursor-pointer w-fit mx-auto"
+          >
+            <Image
+              src={logoMini}
+              alt="logmini"
+              className="mx-auto mb-8 sm:mb-10 md:mb-12 h-10 w-auto hover:opacity-80 transition-opacity"
+            />
+          </div>
 
           {/* Title and Description */}
           <div className="text-center mb-8 sm:mb-10">
@@ -79,8 +84,8 @@ function VerifyAccountPage() {
               Xác thực tài khoản
             </h1>
             <p className="text-[#637381] text-sm sm:text-base leading-relaxed">
-              Chúng tôi đã gửi mã xác nhận gồm 6 chữ số qua email. Vui lòng nhập mã
-              vào ô bên dưới để xác minh email của bạn.
+              Chúng tôi đã gửi mã xác nhận gồm 6 chữ số qua email. Vui lòng nhập
+              mã vào ô bên dưới để xác minh email của bạn.
             </p>
           </div>
 
@@ -153,9 +158,9 @@ function VerifyAccountPage() {
       {/* Banner Image - Hidden on mobile, visible on large screens */}
       <div className="hidden lg:block lg:w-[50%] xl:w-[65%]">
         <Image
-            src={bannerSignIn}
-            alt="banner"
-            className="h-screen w-full object-cover"
+          src={bannerSignIn}
+          alt="banner"
+          className="h-screen w-full object-cover"
         />
       </div>
     </div>

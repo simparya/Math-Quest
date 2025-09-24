@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { bannerSignIn, logoGoogle, logoMini } from "@/contants/images";
 import { useLogin, useLoginGoogleMain } from "@/hooks/queries/auth/useLogin";
+import { Routes } from "@/lib/routes/routes";
 import {
   Form,
   FormControl,
@@ -90,11 +91,16 @@ function LoginPage() {
       <div className="flex flex-col justify-center items-center w-full lg:w-[50%] xl:w-[35%] px-4 sm:px-6 md:px-8 lg:px-6 xl:px-8 py-8 lg:py-0 min-h-screen">
         {/* Logo */}
         <div className="w-full max-w-md mx-auto">
-          <Image
-            src={logoMini}
-            alt="logmini"
-            className="mx-auto mb-8 sm:mb-10 md:mb-12 h-10 w-auto"
-          />
+          <div
+            onClick={() => router.push(Routes.home)}
+            className="cursor-pointer w-fit mx-auto"
+          >
+            <Image
+              src={logoMini}
+              alt="logmini"
+              className="mx-auto mb-8 sm:mb-10 md:mb-12 h-10 w-auto hover:opacity-80 transition-opacity"
+            />
+          </div>
 
           {/* Welcome Text */}
           <div className="text-center mb-6 sm:mb-8">
@@ -237,9 +243,9 @@ function LoginPage() {
       {/* Banner Image - Hidden on mobile, visible on large screens */}
       <div className="hidden lg:block lg:w-[50%] xl:w-[65%]">
         <Image
-            src={bannerSignIn}
-            alt="banner"
-            className="h-screen w-full object-cover"
+          src={bannerSignIn}
+          alt="banner"
+          className="h-screen w-full object-cover"
         />
       </div>
     </div>

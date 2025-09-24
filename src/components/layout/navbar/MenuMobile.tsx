@@ -256,12 +256,12 @@ export const MenuMobile = () => {
           </Button>
         ) : (
           <DrawerFooter className="mb-6">
-            <Button variant="ghost" className="h-10">
+            <Button variant="ghost" className="h-10 rounded-full">
               <Link href={Routes.login}>Đăng nhập</Link>
             </Button>
             <Button
               variant="default"
-              className="bg-primary-main h-10  shadow-md hover:shadow-xl hover:shadow-primary-main/20 transition-shadow duration-300 text-white px-4 py-1.5 rounded-[10px]"
+              className="bg-primary-main h-10 rounded-full shadow-md hover:shadow-xl hover:shadow-primary-main/20 transition-shadow duration-300 text-white px-4 py-1.5"
             >
               <Link href={Routes.login}>Đăng ký</Link>
             </Button>

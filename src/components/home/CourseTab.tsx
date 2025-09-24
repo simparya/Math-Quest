@@ -104,7 +104,7 @@ export function CourseTab({
           "linear-gradient(268.9deg, #E6F3EB 1.92%, #E7F4E6 26.97%, #FEFBF0 92.72%)",
       }}
     >
-      <div className="md:max-w-3xl max-w-sm lg:max-w-5xl xl:max-w-7xl mx-auto w-full">
+      <div className="w-full mx-auto px-4 md:px-8 max-w-[1280px]">
         <div className="text-center mb-16 space-y-4">
           <span className="inline-block px-4 py-2 rounded-full bg-[#48DB9429] text-[#03200E] text-sm font-medium">
             Khóa học
