@@ -17,6 +17,7 @@ export interface IModule {
   title: string
   shortDescription: string
   order?: number
+  status?: string
   lessons: any[]
   isExpanded?: boolean;
 }

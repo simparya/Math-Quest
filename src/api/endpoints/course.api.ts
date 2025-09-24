@@ -195,6 +195,16 @@ export const courseAPI = {
     return data;
   },
 
+  publishModule: async (courseId: string, moduleId: string): Promise<any> => {
+    const { data } = await api.post(`/cms/courses/${courseId}/modules/${moduleId}/publish`);
+    return data;
+  },
+
+  archiveModule: async (courseId: string, moduleId: string): Promise<any> => {
+    const { data } = await api.post(`/cms/courses/${courseId}/modules/${moduleId}/archive`);
+    return data;
+  },
+
   // LESSONS API
 
   getLesson: async (courseId: string, moduleId: string): Promise<any> => {

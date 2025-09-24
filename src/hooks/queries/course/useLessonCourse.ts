@@ -333,3 +333,45 @@ export const useArchiveLesson = (
     },
   });
 };
+
+export const usePublishModule = (onSuccessCallback?: (data: any) => void) => {
+  return useMutation({
+    mutationFn: ({
+      courseId,
+      moduleId,
+    }: {
+      courseId: string;
+      moduleId: string;
+    }) => courseAPI.publishModule(courseId, moduleId),
+    onSuccess: (data) => {
+      toast.success("Đã xuất bản module thành công!");
+      onSuccessCallback?.(data);
+    },
+    onError: (error: any) => {
+      toast.error(
+        error.response?.data?.message || "Đã xảy ra lỗi khi xuất bản module.",
+      );
+    },
+  });
+};
+
+export const useArchiveModule = (onSuccessCallback?: (data: any) => void) => {
+  return useMutation({
+    mutationFn: ({
+      courseId,
+      moduleId,
+    }: {
+      courseId: string;
+      moduleId: string;
+    }) => courseAPI.archiveModule(courseId, moduleId),
+    onSuccess: (data) => {
+      toast.success("Đã lưu trữ module thành công!");
+      onSuccessCallback?.(data);
+    },
+    onError: (error: any) => {
+      toast.error(
+        error.response?.data?.message || "Đã xảy ra lỗi khi lưu trữ module.",
+      );
+    },
+  });
+};
