@@ -4,7 +4,7 @@ build
 1
 First, run the development server:
 
-```bash
+```bash1
 npm run dev
 # or
 yarn dev
