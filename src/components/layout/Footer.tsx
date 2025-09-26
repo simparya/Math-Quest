@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Routes } from "@/lib/routes/routes";
 import { Input } from "antd";
-import { Facebook, Instagram } from "iconsax-reactjs";
+import { Facebook, Instagram } from "iconsax-react";
 
 function Footer() {
   return (
