@@ -41,7 +41,7 @@ export function Banner() {
               Toán Học!
             </h1>
 
-            <p className="text-base md:text-xl text-left mb-12">
+            <p className="text-base md:text-xl max-w-150 text-left mb-12">
               Từ những bài toán cơ bản đến các dạng bài nâng cao, chúng tôi cung
               cấp tất cả những gì bạn cần để nắm vững kiến thức.
             </p>
@@ -55,7 +55,7 @@ export function Banner() {
               </Button>
               <Button
                 onClick={handleNavigateToCourse}
-                className="rounded-full bg-transparent text-base font-semibold p-1 hover:bg-transparent transition-all flex items-center gap-2"
+                className="rounded-full bg-transparent text-base font-semibold p-1 hover:bg-transparent transition-all flex items-center gap-2 shadow-none"
               >
                 <Image
                   src="/images/home/play-icon.png"
@@ -67,7 +67,7 @@ export function Banner() {
               </Button>
             </div>
 
-            <div className="flex items-center gap-3 justify-center md:justify-start">
+            <div className="flex items-center gap-3 justify-start">
               <Image
                 src="/images/home/img_1.png"
                 alt="300k+ Học viên"

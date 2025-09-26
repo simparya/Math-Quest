@@ -21,7 +21,7 @@ export default function IntroSection() {
             vấn.
           </p>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center md:justify-end">
           <Image
             src="/images/home/intro.png"
             alt="Học toán không còn áp lực"

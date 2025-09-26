@@ -57,7 +57,7 @@ export default function WhyChooseUsSection() {
           {features.map((item, index) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-center bg-[#F4F6F8] rounded-3xl p-8 shadow-sm"
+              className="flex flex-col items-center justify-center bg-[#F4F6F8] rounded-3xl p-8"
             >
               {item.icon}
               <h3 className="text-3xl font-bold mt-8 mb-1">{item.value}</h3>
