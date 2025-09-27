@@ -20,7 +20,7 @@ export function Banner() {
 
   return (
     <section
-      className="pt-10 md:pt-18 mt-16"
+      className="pt-20 md:pt-40 mt-0"
       style={{
         background: "linear-gradient(269.63deg, #EAFBF3 0.07%, #FFFCF0 99.68%)",
       }}
