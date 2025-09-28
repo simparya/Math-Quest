@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
+import "ckeditor5/ckeditor5.css";
 import "@smastrom/react-rating/style.css";
 import QueryProvider from "@/context/QueryBuilder";
 import { AuthProvider } from "@/context/AuthProvider";

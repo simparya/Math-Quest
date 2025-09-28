@@ -33,6 +33,7 @@ import {
 } from "@/hooks/queries/cart/useCartApi";
 import { useAuthStore } from "@/store/slices/auth.slice";
 import toast from "react-hot-toast";
+import { UserType } from "@/models/user.model";
 
 // interface PageProps {
 //   params: {
@@ -223,6 +224,10 @@ export default function CourseDetailPage() {
   };
 
   const handleLearn = () => {
+    if (user?.type === UserType.INSTRUCTOR) {
+      toast.error("Không dành cho giáo viên!");
+      return;
+    }
     if (moduleData?.data && moduleData?.data?.length > 0) {
       router.push(
         `/lesson?course=${slug}&module=${moduleData?.data?.[0]?.id}&lesson=${moduleData?.data?.[0]?.lessons?.[0]?.id}`,

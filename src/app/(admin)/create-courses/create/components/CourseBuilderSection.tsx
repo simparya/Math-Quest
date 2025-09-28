@@ -12,8 +12,10 @@ import { UploadCodeAssignment } from "./modal/CreateAssignment/UploadCodeAssignm
 import { useCreateCourseContext } from "@/context/CreateCourseProvider";
 import { IModule, useModules } from "@/hooks/queries/course/useModuleCourse";
 import {
+  useArchiveModule,
   useDraftLesson,
   usePublishLesson,
+  usePublishModule,
 } from "@/hooks/queries/course/useLessonCourse";
 
 export default function CourseBuilderSection() {
@@ -35,6 +37,14 @@ export default function CourseBuilderSection() {
     refetchChapters();
   });
 
+  const publishModuleMutation = usePublishModule(() => {
+    refetchChapters();
+  });
+
+  const archiveModuleMutation = useArchiveModule(() => {
+    refetchChapters();
+  });
+
   const { data: initialChapters, refetch: refetchChapters } = useModules(
     courseData?.id as string,
   );
@@ -48,6 +58,7 @@ export default function CourseBuilderSection() {
             (item) => item.id === c.id,
           );
           return {
+            ...c,
             id: c.id,
             title: c.title,
             shortDescription: c.shortDescription,
@@ -69,6 +80,23 @@ export default function CourseBuilderSection() {
     );
   };
 
+  const handlePublishModule = (chapter: IModule) => {
+    if (!courseData?.id || !chapter?.id) return;
+
+    if (chapter.status === "PUBLISHED") {
+      archiveModuleMutation.mutate({
+        courseId: courseData.id,
+        moduleId: chapter.id,
+      });
+      return;
+    }
+
+    publishModuleMutation.mutate({
+      courseId: courseData.id,
+      moduleId: chapter.id,
+    });
+  };
+
   const handlePublishLesson = (chapter: IModule, lesson: any) => {
     if (!courseData?.id || !chapter?.id || !lesson?.id) return;
 
@@ -88,9 +116,9 @@ export default function CourseBuilderSection() {
     });
   };
 
-  const deleteChapter = (chapterId: string) => {
-    setChapters(chapters.filter((chapter) => chapter.id !== chapterId));
-  };
+  // const deleteChapter = (chapterId: string) => {
+  //   setChapters(chapters.filter((chapter) => chapter.id !== chapterId));
+  // };
 
   const handleEditModule = (module: IModule) => {
     setModuleSelected(module);
@@ -162,14 +190,21 @@ export default function CourseBuilderSection() {
                   <Button
                     type="button"
                     variant="ghost"
-                    size="icon"
+                    title={
+                      chapter?.status === "PUBLISHED" ? "Archive" : "Pulished"
+                    }
                     onClick={(e) => {
                       e.stopPropagation();
-                      deleteChapter(chapter.id);
+                      handlePublishModule(chapter);
                     }}
-                    className="h-8 w-8 text-red-600 hover:text-red-700"
+                    size="icon"
+                    className="h-8 w-8"
                   >
-                    <Trash size={16} color="#637381" />
+                    {chapter?.status === "PUBLISHED" ? (
+                      <Import size={16} color="#637381" className="h-4 w-4" />
+                    ) : (
+                      <Upload size={16} color="#637381" className="h-4 w-4" />
+                    )}{" "}
                   </Button>
                   <ChevronDown
                     className={`w-4 h-4 text-gray-600 transition-transform duration-200 ${

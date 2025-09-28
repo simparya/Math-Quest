@@ -36,7 +36,8 @@ export interface LearnerProfile {
     totalCoursesInProgress: number;
     totalCoursesCompleted: number;
     auditInfo: AuditInfo;
-    mobilePhone: string;
+    phoneNumber: string;
+    skill: string
   };
 }
 
@@ -55,7 +56,8 @@ export interface InstructorProfile {
     auditInfo: AuditInfoInstructor
     totalMoney: number
     totalPrices: number
-    mobilePhone: string
+    phoneNumber: string
+    skill: string
   }
 }
 

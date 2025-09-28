@@ -84,7 +84,11 @@ function Navbar() {
   const navigateToFlashSale = () => {};
 
   const navigateToCheckout = () => {
-    router.push(Routes.checkout);
+    if (isAuthenticated) {
+      router.push(Routes.checkout);
+    } else {
+      router.push(Routes.login);
+    }
   };
 
   const { refetch } = useGetCart(!isAuthenticated);

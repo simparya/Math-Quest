@@ -12,11 +12,12 @@ import { useTeacher } from "@/hooks/queries/dashboard/useTeacher";
 import { MoneyRecive, Profile2User } from "iconsax-react";
 import { Book } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
+import ChartRevenue from "@/components/dashboard/ChartRevenue";
 
 function DashboardPage() {
   const { isTeacher, user } = useAuthStore();
-  const { data: learnerProfileData } = useStudent(user?.id || "", !isTeacher);
-  const { data: teacherData } = useTeacher(user?.id || "", isTeacher);
+  const { data: learnerProfileData, isLoading: isLoadingStudent } = useStudent(user?.id || "", !isTeacher);
+  const { data: teacherData, isLoading: isLoadingTeacher } = useTeacher(user?.id || "", isTeacher);
 
   return (
     <>
@@ -28,6 +29,21 @@ function DashboardPage() {
         {/* Statistics Cards */}
         {isTeacher ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 pb-4 pt-6">
+            {isLoadingTeacher ? (
+              // Loading skeleton for teacher cards
+              <>
+                {[1, 2, 3].map((index) => (
+                  <Card key={index} className="bg-[#919EAB14] border-0">
+                    <CardContent className="flex flex-col items-center pt-6">
+                      <div className="w-24 h-24 bg-gray-200 rounded-xl mb-4 animate-pulse"></div>
+                      <div className="w-16 h-12 bg-gray-200 rounded mb-2 animate-pulse"></div>
+                      <div className="w-24 h-4 bg-gray-200 rounded animate-pulse"></div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </>
+            ) : (
+              <>
             {/* Card 1 */}
             <Card className="bg-[#919EAB14] border-0">
               <CardContent className="flex flex-col items-center pt-6">
@@ -70,9 +86,26 @@ function DashboardPage() {
                 </p>
               </CardContent>
             </Card>
+              </>
+            )}
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 pb-4 pt-6">
+            {isLoadingStudent ? (
+              // Loading skeleton for student cards
+              <>
+                {[1, 2, 3].map((index) => (
+                  <Card key={index} className="bg-gray-50 border-0">
+                    <CardContent className="flex flex-col items-center pt-6">
+                      <div className="w-24 h-24 bg-gray-200 rounded-xl mb-4 animate-pulse"></div>
+                      <div className="w-16 h-12 bg-gray-200 rounded mb-2 animate-pulse"></div>
+                      <div className="w-24 h-4 bg-gray-200 rounded animate-pulse"></div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </>
+            ) : (
+              <>
             {/* Card 1 */}
             <Card className="bg-blue-50 border-0">
               <CardContent className="flex flex-col items-center pt-6">
@@ -111,16 +144,22 @@ function DashboardPage() {
                 <p className="mt-2 text-sm text-center">Khóa học Hoàn thành</p>
               </CardContent>
             </Card>
+              </>
+            )}
           </div>
         )}
       </div>
 
-      {/*<div className="bg-white shadow h-max rounded-2xl mt-10">*/}
-      {/*  <div className="p-4 border-b border-gray-200">*/}
-      {/*    <h2 className="text-xl font-semibold mb-6">Khoá học của tôi</h2>*/}
-      {/*  </div>*/}
-      {/*  <TableMyCourse />*/}
-      {/*</div>*/}
+      {isTeacher && (
+        <div className="bg-white shadow h-max rounded-2xl mt-10">
+          <div className="p-4 border-b border-gray-200">
+            <h2 className="text-xl font-semibold mb-6">Thống kê doanh thu</h2>
+          </div>
+          <ChartRevenue />
+
+        </div>
+      )}
+
     </>
   );
 }

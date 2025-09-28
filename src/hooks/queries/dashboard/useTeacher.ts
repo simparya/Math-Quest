@@ -10,6 +10,19 @@ export const useTeacher = (teacherId: string, enabled?: boolean) => {
   });
 };
 
+export const useTeacherChart = (
+  teacherId: string,
+  year: number,
+  enabled?: boolean,
+) => {
+  return useQuery({
+    queryKey: ["teacherId", teacherId, year],
+    queryFn: () => teacherAPI.getTeacherChart(teacherId, year),
+    enabled: enabled ?? !!teacherId,
+    staleTime: 5 * 60 * 1000,
+  });
+};
+
 export const useWishList = (teacherId: string) => {
   return useQuery({
     queryKey: ["useWishList", teacherId],
