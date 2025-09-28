@@ -29,6 +29,7 @@ import { Button } from "@/components/ui/button";
 import { useTeacher } from "@/hooks/queries/dashboard/useTeacher";
 import { InstructorProfile, LearnerProfile } from "@/api/types/intructor.type";
 import { useCartStore } from "@/store/slices/cart.slice";
+import { Routes } from "@/lib/routes/routes";
 
 export default function DashboardLayout({
   children,
@@ -36,7 +37,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const { logout, isTeacher } = useAuthStore();
+  const { logout, isTeacher, isAuthenticated } = useAuthStore();
   const router = useRouter();
   const user = useAuthStore.getState().user;
   const { clearCart } = useCartStore();
@@ -46,6 +47,12 @@ export default function DashboardLayout({
 
   const { data: teacherData } = useTeacher(user?.id || "", isTeacher);
   const { data: studentData } = useStudent(user?.id || "", !isTeacher);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push(Routes.login);
+    }
+  }, []);
 
   useEffect(() => {
     if (isTeacher) {
