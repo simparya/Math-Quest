@@ -28,6 +28,7 @@ import { UserType } from "@/models/user.model";
 import { Button } from "@/components/ui/button";
 import { useTeacher } from "@/hooks/queries/dashboard/useTeacher";
 import { InstructorProfile, LearnerProfile } from "@/api/types/intructor.type";
+import { useCartStore } from "@/store/slices/cart.slice";
 
 export default function DashboardLayout({
   children,
@@ -38,6 +39,7 @@ export default function DashboardLayout({
   const { logout, isTeacher } = useAuthStore();
   const router = useRouter();
   const user = useAuthStore.getState().user;
+  const { clearCart } = useCartStore();
   const [learnerProfileData, setLearnerProfileData] = React.useState<
     LearnerProfile | InstructorProfile | undefined
   >(undefined);
@@ -539,6 +541,7 @@ export default function DashboardLayout({
                 <div
                   role="presentation"
                   onClick={() => {
+                    clearCart()
                     logout();
                     router.push("/");
                   }}
