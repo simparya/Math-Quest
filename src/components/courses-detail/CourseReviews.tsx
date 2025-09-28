@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Edit } from "lucide-react";
 import { ArrowDown2, ArrowUp2 } from "iconsax-react";
 import { ReviewDialog } from "@/components/courses/components/ReviewDialog";
+import Image from "next/image";
 
 interface Review {
   id: string;
@@ -31,6 +32,24 @@ interface CourseReviewsProps {
   isCreatingReview: boolean;
   onUpdateReview: (rating: number, comment: string, title?: string) => void;
   reviewSummaryData?: any;
+}
+
+const imageRandom = [
+  '/images/student/img.png',
+  '/images/student/img_1.png',
+  '/images/student/img_2.png',
+  '/images/student/img_3.png',
+  '/images/student/img_4.png',
+  '/images/student/img_5.png',
+  '/images/student/img_6.png',
+  '/images/student/img_7.png',
+  '/images/student/img_8.png',
+  '/images/student/img_9.png',
+]
+
+function getRandomImage() {
+  const randomIndex = Math.floor(Math.random() * imageRandom.length);
+  return imageRandom[randomIndex];
 }
 
 export const CourseReviews: React.FC<CourseReviewsProps> = ({
@@ -182,10 +201,12 @@ export const CourseReviews: React.FC<CourseReviewsProps> = ({
                   >
                     <div className="flex items-start gap-3 mb-3">
                       <div className="w-24 h-24 rounded-lg overflow-hidden relative flex-shrink-0 bg-gray-200">
-                        {/* Placeholder for user avatar - you may need to fetch user data separately */}
-                        <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm">
-                          User
-                        </div>
+                        <Image
+                          src={getRandomImage()}
+                          alt='đhdhd'
+                          fill
+                          style={{ objectFit: "cover" }}
+                        />
                       </div>
                       <div className="flex-1">
                         <h4 className="font-semibold text-[#212B36]">

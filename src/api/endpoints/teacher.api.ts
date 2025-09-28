@@ -11,6 +11,15 @@ export const teacherAPI = {
     return data;
   },
 
+  getTeacherChart: async (userId: string, year: number): Promise<InstructorProfile> => {
+    const { data } = await api.get(`/instructors/${userId}/monthly-revenue`, {
+      params: {
+        year,
+      },
+    });
+    return data;
+  },
+
   getWishList: async (userId: string): Promise<any> => {
     const { data } = await api.get(`/wishlists`, {
       params: {

@@ -15,13 +15,17 @@ interface CourseInstructorProps {
       totalReviews?: string;
       ratingAverage?: string;
       bio?: string;
+      skill?: string;
+      totalCourses?: number;
+      totalStudents?: number;
+      avatarUrl?: string;
     };
   };
 }
 
-export const CourseInstructor: React.FC<CourseInstructorProps> = ({ 
-  courseDetail, 
-  instructorProfileData 
+export const CourseInstructor: React.FC<CourseInstructorProps> = ({
+  courseDetail,
+  instructorProfileData,
 }) => {
   const [showFullBio, setShowFullBio] = useState(false);
 
@@ -32,7 +36,7 @@ export const CourseInstructor: React.FC<CourseInstructorProps> = ({
         <div className="flex gap-4 mb-4">
           <div className="w-20 h-20 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden relative">
             <Image
-              src="/images/banner-sign-in.png"
+              src={instructorProfileData?.data?.avatarUrl || "/images/banner-sign-in.png"}
               alt={courseDetail.owner.fullName}
               fill
               style={{ objectFit: "cover" }}
@@ -44,7 +48,7 @@ export const CourseInstructor: React.FC<CourseInstructorProps> = ({
               {courseDetail?.owner?.fullName}
             </h4>
             <p className="text-gray-600 mb-2">
-              Nhà thiết kế và Giảng viên chính
+              {instructorProfileData?.data?.skill || "Giảng viên"}
             </p>
             <div className="flex flex-wrap gap-4 items-center mt-2">
               <div className="flex items-center gap-1">
@@ -62,13 +66,13 @@ export const CourseInstructor: React.FC<CourseInstructorProps> = ({
               <div className="flex items-center gap-1">
                 <IconUser />
                 <span className="text-sm text-gray-600">
-                  768 Người học
+                  {instructorProfileData?.data?.totalStudents} Người học
                 </span>
               </div>
               <div className="flex items-center gap-1">
                 <IconVideo />
                 <span className="text-sm text-gray-600">
-                  15 Khóa học
+                  {instructorProfileData?.data?.totalCourses} Khóa học
                 </span>
               </div>
             </div>
@@ -76,9 +80,7 @@ export const CourseInstructor: React.FC<CourseInstructorProps> = ({
         </div>
 
         <div className={`mt-4 ${!showFullBio ? "line-clamp-3" : ""}`}>
-          <p className="text-gray-600">
-            {instructorProfileData?.data?.bio}
-          </p>
+          <p className="text-gray-600">{instructorProfileData?.data?.bio}</p>
         </div>
 
         {instructorProfileData?.data?.bio && (
@@ -97,4 +99,4 @@ export const CourseInstructor: React.FC<CourseInstructorProps> = ({
       </div>
     </div>
   );
-}; 
+};
