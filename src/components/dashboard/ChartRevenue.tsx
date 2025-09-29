@@ -3,8 +3,6 @@ import {
   useTeacherChart,
 } from "@/hooks/queries/dashboard/useTeacher";
 import {
-  LineChart,
-  Line,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -49,24 +47,6 @@ export default function ChartRevenue() {
     formattedRevenue: formatCurrency(item.revenue),
   })) || [];
 
-  // Custom tooltip
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="bg-white p-4 border border-gray-200 rounded-lg shadow-lg">
-          <p className="font-semibold text-gray-800">{`Tháng ${label}`}</p>
-          <p className="text-blue-600">
-            {`Doanh thu: ${payload[0].value ? formatCurrency(payload[0].value) : '0'}`}
-          </p>
-          <p className="text-green-600">
-            {`Số đơn hàng: ${payload[1]?.value || 0}`}
-          </p>
-        </div>
-      );
-    }
-    return null;
-  };
-
   if (isLoadingTeacher) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -102,34 +82,30 @@ export default function ChartRevenue() {
         </div>
       </div>
 
-      {/* Revenue Chart */}
+      {/* Revenue Chart (Bar) */}
       <div className="mb-8">
         <h3 className="text-lg font-semibold mb-4">Biểu đồ doanh thu theo tháng</h3>
         <div className="h-80">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData}>
+            <BarChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis 
-                dataKey="monthName" 
+              <XAxis
+                dataKey="monthName"
                 tick={{ fontSize: 12 }}
                 angle={-45}
                 textAnchor="end"
                 height={60}
               />
-              <YAxis 
+              <YAxis
                 tick={{ fontSize: 12 }}
                 tickFormatter={(value) => `${(value / 1000000).toFixed(0)}M`}
               />
-              <Tooltip content={<CustomTooltip />} />
-              <Line 
-                type="monotone" 
-                dataKey="revenue" 
-                stroke="#2F57EF" 
-                strokeWidth={3}
-                dot={{ fill: "#2F57EF", strokeWidth: 2, r: 4 }}
-                activeDot={{ r: 6, stroke: "#2F57EF", strokeWidth: 2 }}
+              <Tooltip
+                formatter={(value) => [formatCurrency(value as number), "Doanh thu"]}
+                labelFormatter={(label) => `Tháng ${label}`}
               />
-            </LineChart>
+              <Bar dataKey="revenue" fill="#2F57EF" radius={[4, 4, 0, 0]} />
+            </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
