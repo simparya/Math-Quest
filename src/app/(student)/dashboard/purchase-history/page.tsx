@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 // import { Button } from "@/components/ui/button";
 // import { Eye } from "iconsax-react";
 import dayjs from "dayjs";
 import { useGetOrders } from "@/hooks/queries/order/useOrder";
 import { formatCurrency } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
+import { Pagination } from "antd";
 
 // interface PurchaseOrder {
 //   id: string;
@@ -18,6 +19,23 @@ import { Loader2 } from "lucide-react";
 
 function PurchaseHistoryPage() {
   const { data, isLoading, error } = useGetOrders();
+
+  // Frontend pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
+  // Reset to first page when data changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [data]);
+
+  const totalItems = data?.length ?? 0;
+  const paginatedData = useMemo(() => {
+    if (!data || data.length === 0) return [];
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    return data.slice(startIndex, endIndex);
+  }, [data, currentPage, pageSize]);
 
   // const totalPrice = (orderDetail: OrderPayment) => {
   //   return orderDetail?.items?.reduce((total, item) => {
@@ -111,7 +129,7 @@ function PurchaseHistoryPage() {
             </tr>
           </thead>
           <tbody>
-            {data?.map((order) => (
+            {paginatedData?.map((order) => (
               <tr key={order.id} className="border-b border-gray-100">
                 <td className="py-6 px-2">
                   <span className="text-gray-900 font-medium">
@@ -177,6 +195,24 @@ function PurchaseHistoryPage() {
       {data?.length === 0 && (
         <div className="text-center py-12">
           <p className="text-gray-500">Bạn chưa đăng ký khóa học nào.</p>
+        </div>
+      )}
+
+      {/* Pagination */}
+      {totalItems > 0 && (
+        <div className="mt-6 flex justify-end">
+          <Pagination
+            total={totalItems}
+            current={currentPage}
+            pageSize={pageSize}
+            showSizeChanger
+            pageSizeOptions={[5, 10, 20, 50]}
+            onChange={(page, size) => {
+              setCurrentPage(page);
+              setPageSize(size);
+            }}
+            showTotal={(total, range) => `${range[0]}-${range[1]} của ${total}`}
+          />
         </div>
       )}
     </div>
