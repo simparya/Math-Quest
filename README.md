@@ -5,7 +5,7 @@ build214
 First, run the development server:
 
 ```bash
-npm run dev
+npm run dev1
 # or
 yarn dev
 # or
