@@ -33,7 +33,7 @@ function EnrolledCourseCard({
 }: EnrolledCourseCardProps) {
   const router = useRouter();
   const { data: courseDetail } = useCourseBySlug(slug);
-  const { data: moduleData } = useModule(courseDetail?.id || "");
+  const { data: moduleData, isLoading, error } = useModule(courseDetail?.id || "");
 
   const handleLearn = () => {
     if (moduleData?.data && moduleData?.data?.length > 0) {
@@ -44,6 +44,10 @@ function EnrolledCourseCard({
       toast.error("Hiện chưa có bài học nào!");
     }
   };
+
+  if(isLoading || error) {
+    return null;
+  }
 
   return (
     <div
