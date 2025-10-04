@@ -21,5 +21,24 @@ export const useSendMessageChatbot = () => {
     mutationFn: (mess: FormData) => chatbotAPI.sendMessageBasic(mess)
   })
 
-  return { sendMessageSuggest, sendMessageBasic }
+  // New chat APIs
+  const createChat = useMutation({
+    mutationFn: (payload: { title: string; forceCreate?: boolean }) =>
+        chatbotAPI.createChat(payload),
+  });
+
+  const sendMessageToChat = useMutation({
+    mutationFn: (params: { chatId: number; message_text: string; user_id: string }) =>
+        chatbotAPI.sendMessageToChat(params.chatId, { message_text: params.message_text, user_id: params.user_id }),
+  });
+
+  const getChatDetail = useMutation({
+    mutationFn: (chatId: string) => chatbotAPI.getChatDetail(chatId),
+  });
+
+  const getChatMessages = useMutation({
+    mutationFn: (chatId: string) => chatbotAPI.getChatMessages(chatId),
+  });
+
+  return { sendMessageSuggest, sendMessageBasic, createChat, sendMessageToChat, getChatDetail, getChatMessages }
 }

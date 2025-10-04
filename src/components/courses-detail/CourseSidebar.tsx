@@ -185,6 +185,7 @@ export const CourseSidebar: React.FC<CourseSidebarProps> = ({
               </div>
             </>
           )}
+
           <button
             onClick={() => setShowMoreCardProduct(!showMoreCardProduct)}
             className="text-[#48DB94] flex items-center gap-2 mt-4 font-medium"
