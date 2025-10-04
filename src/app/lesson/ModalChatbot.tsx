@@ -120,7 +120,7 @@ export default function AIHelperModal({
               <div className="text-left font-bold">
                 Bạn có thắc mắc gì về khóa học này không?
               </div>
-              <div className="text-left text-sm text-[#416346]">
+              <div className="text-left text-sm text-primary-main">
                 Trợ lý AI của chúng tôi có thể mách lối.
               </div>
             </DialogDescription>
