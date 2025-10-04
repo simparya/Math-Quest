@@ -49,6 +49,7 @@ function EnrolledCourseCard({
     return null;
   }
 
+
   return (
     <div
       role="presentation"
