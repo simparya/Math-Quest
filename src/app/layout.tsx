@@ -22,6 +22,7 @@ export default function RootLayout({
     return;
   }
 
+
   return (
     <html>
       <body className="flex flex-col min-h-screen">
