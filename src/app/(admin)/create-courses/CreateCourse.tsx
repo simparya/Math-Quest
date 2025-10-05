@@ -29,9 +29,13 @@ import {
 import { CourseDetail } from "@/api/types/course.type";
 import { useCreateCourseContext } from "@/context/CreateCourseProvider";
 import CourseFAQ from "@/app/(admin)/create-courses/create/components/CourseFAQ";
-import { useCourseCMSBySlug } from "@/hooks/queries/course/useCourses";
+import {
+  courseKeys,
+  useCourseCMSBySlug,
+} from "@/hooks/queries/course/useCourses";
 import { useUpdateCourse } from "@/hooks/queries/course/useCreateCourse";
 import { useSearchParams } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 const STEP_SUBMIT_CREATE_COURSE = 5;
 
@@ -47,6 +51,7 @@ function CreateCourse() {
   const { courseData, setCourseData } = useCreateCourseContext();
   const [formData, setFormData] = useState<Partial<fullCourseFormData>>();
   const isEdit = Boolean(courseSlug);
+  const queryClient = useQueryClient();
 
   const { data: initialCourseData } = useCourseCMSBySlug(courseSlug as string);
 
@@ -110,6 +115,10 @@ function CreateCourse() {
       updateCourse.mutate(request, {
         onSuccess: (data) => {
           setCourseData(data);
+          queryClient.invalidateQueries({
+            queryKey: [courseKeys.list()], // Match tất cả queries bắt đầu với key này
+            exact: false
+          })
         },
       });
       return;
@@ -118,6 +127,10 @@ function CreateCourse() {
       onSuccess: (data) => {
         setCourseData(data);
         setCurrentStep((prev) => prev + 1);
+        queryClient.invalidateQueries({
+          queryKey: [courseKeys.list()], // Match tất cả queries bắt đầu với key này
+          exact: false
+        })
       },
       onError: (error) => {
         console.error("Error creating course:", error);

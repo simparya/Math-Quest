@@ -6,6 +6,7 @@ import CourseCard from "@/components/courses/course-card";
 import { useCoursesCMS } from "@/hooks/queries/course/useCourses";
 import { CourseFilters } from "@/api/types/course.type";
 import { EStatusCourse } from "@/hooks/queries/course/useStatusCourse";
+import Pagination from "@/components/ui/pagination";
 
 const TABS = [
   { label: "Xuất bản", value: EStatusCourse.PUBLISHED },
@@ -14,7 +15,7 @@ const TABS = [
 ];
 
 function MyCoursePage() {
-  const [currentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [tabActive, setTabActive] = useState(EStatusCourse.PUBLISHED);
 
   const apiFilters: CourseFilters = useMemo(() => {
@@ -49,6 +50,7 @@ function MyCoursePage() {
           defaultValue={EStatusCourse.PUBLISHED}
           onValueChange={(value) => {
             setTabActive(value as EStatusCourse);
+            setCurrentPage(1);
           }}
           className="w-full"
         >
@@ -90,6 +92,13 @@ function MyCoursePage() {
                     </div>
                   ))}
               </div>
+              {!isLoading && coursesData?.meta?.totalPages ? (
+                <Pagination
+                  currentPage={coursesData.meta.page || currentPage}
+                  totalPages={coursesData.meta.totalPages}
+                  onPageChange={(page) => setCurrentPage(page)}
+                />
+              ) : null}
             </TabsContent>
           ))}
         </Tabs>

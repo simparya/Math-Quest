@@ -6,10 +6,7 @@ import IconTrashLesson from "../../../public/icons/lessson/IconTrashLesson";
 import IconDownload from "../../../public/icons/lessson/IconDownload";
 import React, { useState, useMemo } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  formatToHourUnit,
-  formatToVietnameseMonthYear,
-} from "@/until";
+import { formatToHourUnit, formatToVietnameseMonthYear } from "@/until";
 import {
   useNote,
   useCreateNote,
@@ -18,6 +15,7 @@ import {
 } from "@/hooks/queries/course/useCourses";
 import toast from "react-hot-toast";
 import he from "he";
+import { DIFFICULTY_LEVEL } from "@/api/utils/course";
 
 export interface ContentTabProps {
   courseTitle: string;
@@ -50,54 +48,60 @@ export default function ContentTab(props: ContentTabProps) {
 
   async function autoDownload(url: string, filename?: string) {
     const loadingToastId = toast.loading("Đang tải file...");
-    
+
     try {
-      const token = localStorage.getItem('access_token') || sessionStorage.getItem('access_token');
-      
+      const token =
+        localStorage.getItem("access_token") ||
+        sessionStorage.getItem("access_token");
+
       // Method 1: Try using our proxy API first (Best for CORS + Auth)
       try {
-        const proxyResponse = await fetch('/api/download-proxy', {
-          method: 'POST',
+        const proxyResponse = await fetch("/api/download-proxy", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
-            ...(token && { 'Authorization': `Bearer ${token}` })
+            "Content-Type": "application/json",
+            ...(token && { Authorization: `Bearer ${token}` }),
           },
-          body: JSON.stringify({ url, filename })
+          body: JSON.stringify({ url, filename }),
         });
 
         if (proxyResponse.ok) {
           const blob = await proxyResponse.blob();
-          
+
           // Force download using blob URL
           const blobUrl = window.URL.createObjectURL(blob);
           const a = document.createElement("a");
           a.href = blobUrl;
           a.style.display = "none";
-          
+
           // Get filename from response headers or use provided
           let downloadFilename = filename;
-          const contentDisposition = proxyResponse.headers.get('content-disposition');
+          const contentDisposition = proxyResponse.headers.get(
+            "content-disposition",
+          );
           if (contentDisposition) {
-            const filenameMatch = contentDisposition.match(/filename="([^"]+)"/);
+            const filenameMatch =
+              contentDisposition.match(/filename="([^"]+)"/);
             if (filenameMatch && filenameMatch[1]) {
               downloadFilename = filenameMatch[1];
             }
           }
-          
+
           if (!downloadFilename) {
-            downloadFilename = url.split("/").pop()?.split("?")[0] || "download";
+            downloadFilename =
+              url.split("/").pop()?.split("?")[0] || "download";
           }
-          
+
           a.download = decodeURIComponent(downloadFilename);
           document.body.appendChild(a);
           a.click();
-          
+
           // Cleanup
           setTimeout(() => {
             document.body.removeChild(a);
             window.URL.revokeObjectURL(blobUrl);
           }, 100);
-          
+
           toast.dismiss(loadingToastId);
           toast.success(`Đã tải xuống: ${downloadFilename}`);
           return;
@@ -109,30 +113,31 @@ export default function ContentTab(props: ContentTabProps) {
       // Method 2: Direct fetch with CORS (if allowed)
       try {
         const directResponse = await fetch(url, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            ...(token && { 'Authorization': `Bearer ${token}` })
+            ...(token && { Authorization: `Bearer ${token}` }),
           },
-          mode: 'cors'
+          mode: "cors",
         });
-        
+
         if (directResponse.ok) {
           const blob = await directResponse.blob();
           const blobUrl = window.URL.createObjectURL(blob);
-          
+
           const a = document.createElement("a");
           a.href = blobUrl;
           a.style.display = "none";
-          a.download = filename || url.split("/").pop()?.split("?")[0] || "download";
-          
+          a.download =
+            filename || url.split("/").pop()?.split("?")[0] || "download";
+
           document.body.appendChild(a);
           a.click();
-          
+
           setTimeout(() => {
             document.body.removeChild(a);
             window.URL.revokeObjectURL(blobUrl);
           }, 100);
-          
+
           toast.dismiss(loadingToastId);
           toast.success(`Đã tải xuống: ${a.download}`);
           return;
@@ -143,15 +148,15 @@ export default function ContentTab(props: ContentTabProps) {
 
       // Method 3: Force download using iframe trick
       try {
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
+        const iframe = document.createElement("iframe");
+        iframe.style.display = "none";
         iframe.src = url;
         document.body.appendChild(iframe);
-        
+
         setTimeout(() => {
           document.body.removeChild(iframe);
         }, 5000);
-        
+
         toast.dismiss(loadingToastId);
         toast.success("Đã khởi tạo tải file!");
         return;
@@ -162,20 +167,20 @@ export default function ContentTab(props: ContentTabProps) {
       // Method 4: Final fallback with forced download attribute
       const link = document.createElement("a");
       link.href = url;
-      link.download = filename || url.split("/").pop()?.split("?")[0] || "download";
+      link.download =
+        filename || url.split("/").pop()?.split("?")[0] || "download";
       link.style.display = "none";
-      
+
       // Force download instead of opening
-      link.setAttribute('target', '_self');
-      link.setAttribute('rel', 'noopener');
-      
+      link.setAttribute("target", "_self");
+      link.setAttribute("rel", "noopener");
+
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      
+
       toast.dismiss(loadingToastId);
       toast.success("Đã khởi tạo tải file!");
-      
     } catch (error) {
       console.error("Lỗi khi tải file:", error);
       toast.dismiss(loadingToastId);
@@ -183,37 +188,56 @@ export default function ContentTab(props: ContentTabProps) {
     }
   }
 
-
   // Helper to get file extension from content type or URL
   const getFileExtension = (url: string, contentType?: string): string => {
     // Try to get extension from URL first
-    const urlExt = url.split('.').pop()?.toLowerCase();
-    if (urlExt && ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'zip', 'rar', 'mp4', 'mp3', 'jpg', 'jpeg', 'png', 'gif'].includes(urlExt)) {
+    const urlExt = url.split(".").pop()?.toLowerCase();
+    if (
+      urlExt &&
+      [
+        "pdf",
+        "doc",
+        "docx",
+        "xls",
+        "xlsx",
+        "ppt",
+        "pptx",
+        "zip",
+        "rar",
+        "mp4",
+        "mp3",
+        "jpg",
+        "jpeg",
+        "png",
+        "gif",
+      ].includes(urlExt)
+    ) {
       return urlExt;
     }
-    
+
     // Fallback to content type mapping
     const typeMap: Record<string, string> = {
-      'application/pdf': 'pdf',
-      'application/msword': 'doc',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'docx',
-      'application/vnd.ms-excel': 'xls',
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'xlsx',
-      'application/vnd.ms-powerpoint': 'ppt',
-      'application/vnd.openxmlformats-officedocument.presentationml.presentation': 'pptx',
-      'application/zip': 'zip',
-      'application/x-rar-compressed': 'rar',
-      'video/mp4': 'mp4',
-      'audio/mpeg': 'mp3',
-      'image/jpeg': 'jpg',
-      'image/png': 'png',
-      'image/gif': 'gif',
+      "application/pdf": "pdf",
+      "application/msword": "doc",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+        "docx",
+      "application/vnd.ms-excel": "xls",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+        "xlsx",
+      "application/vnd.ms-powerpoint": "ppt",
+      "application/vnd.openxmlformats-officedocument.presentationml.presentation":
+        "pptx",
+      "application/zip": "zip",
+      "application/x-rar-compressed": "rar",
+      "video/mp4": "mp4",
+      "audio/mpeg": "mp3",
+      "image/jpeg": "jpg",
+      "image/png": "png",
+      "image/gif": "gif",
     };
-    
-    return contentType ? typeMap[contentType] || 'file' : 'file';
-  };
 
-  console.log(dataLesson, "---dataLesson");
+    return contentType ? typeMap[contentType] || "file" : "file";
+  };
 
   // Map noteData to display format
   const notes = useMemo(() => {
@@ -302,8 +326,11 @@ export default function ContentTab(props: ContentTabProps) {
       case "overview":
         return (
           <>
-            <p className="text-secondary mb-3"
-               dangerouslySetInnerHTML={{ __html: he.decode(currentLesson?.shortDescription) }}
+            <p
+              className="text-secondary mb-3"
+              dangerouslySetInnerHTML={{
+                __html: he.decode(currentLesson?.shortDescription),
+              }}
             />
             <div className="flex gap-2 items-center mb-3">
               <IconWarning />
@@ -325,7 +352,9 @@ export default function ContentTab(props: ContentTabProps) {
                 </div>
               </div>
               <div>
-                <div className="text-primary font-semibold">800,664</div>
+                <div className="text-primary font-semibold">
+                  {currentLesson.enrollmentCnt}
+                </div>
                 <div className="text-secondary text-xs">Học sinh</div>
               </div>
               <div>
@@ -344,7 +373,13 @@ export default function ContentTab(props: ContentTabProps) {
               </div>
               <div>
                 <div className="text-primary font-semibold">Tất cả</div>
-                <div className="text-secondary text-xs">Độ khó</div>
+                <div className="text-secondary text-xs">
+                  {
+                    DIFFICULTY_LEVEL.find(
+                      (item) => item?.value === currentLesson?.difficulty,
+                    )?.label
+                  }
+                </div>
               </div>
             </div>
             <div className="text-primary font-semibold mb-4">Mô tả</div>
@@ -497,8 +532,12 @@ export default function ContentTab(props: ContentTabProps) {
               <div
                 onClick={() => {
                   // Use helper to determine file extension
-                  const fileExtension = getFileExtension(dataLesson.attachmentUrl);
-                  const cleanTitle = dataLesson?.title?.replace(/[^\w\s-]/g, '') || "Tai_lieu_bai_hoc";
+                  const fileExtension = getFileExtension(
+                    dataLesson.attachmentUrl,
+                  );
+                  const cleanTitle =
+                    dataLesson?.title?.replace(/[^\w\s-]/g, "") ||
+                    "Tai_lieu_bai_hoc";
                   const fileName = `${cleanTitle}.${fileExtension}`;
                   autoDownload(dataLesson.attachmentUrl, fileName);
                 }}

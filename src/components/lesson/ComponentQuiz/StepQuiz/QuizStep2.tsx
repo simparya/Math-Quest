@@ -1,8 +1,4 @@
-import {
-  TickCircle,
-  CloseCircle,
-  ArrowRotateLeft,
-} from "iconsax-react";
+import { TickCircle, CloseCircle, ArrowRotateLeft } from "iconsax-react";
 import React, { useState, useMemo, useEffect } from "react";
 import {
   useCreateAttemptsQuiz,
@@ -114,32 +110,37 @@ interface HistoryTrackingData {
 
 export interface IQuizStepProps {
   changeTab: (tab: string) => void;
-  dataCourse: any
-  dataLesson: LessonData
+  dataCourse: any;
+  dataLesson: LessonData;
   dataTracking: {
     maxScore: number;
     maxScoreAttempt: number;
     totalAttempt: number;
     latestQuizSubmission: {
-      id: string
-    }
-  }
-  attemptId: any
-  setAttemptId: any
+      id: string;
+    };
+  };
+  attemptId: any;
+  setAttemptId: any;
   dataHistoryTracking?: HistoryTrackingData; // Add this prop for history data
 }
 
 // Function to map history data to component state
-const mapHistoryDataToAnswers = (historyData: HistoryTrackingData, sortedQuestions: QuizQuestion[]): AnswerState[] => {
+const mapHistoryDataToAnswers = (
+  historyData: HistoryTrackingData,
+  sortedQuestions: QuizQuestion[],
+): AnswerState[] => {
   return sortedQuestions.map((question) => {
-    const historyQuestion = historyData.questions.find(q => q.questionId === question.id);
-    
+    const historyQuestion = historyData.questions.find(
+      (q) => q.questionId === question.id,
+    );
+
     if (!historyQuestion || !historyQuestion.answer) {
       return {
         selected: null,
         text: "",
         isCorrect: null,
-        score: 0
+        score: 0,
       };
     }
 
@@ -149,39 +150,48 @@ const mapHistoryDataToAnswers = (historyData: HistoryTrackingData, sortedQuestio
         selected: null,
         text: historyQuestion.answer as string,
         isCorrect: null, // Short answer correctness is determined by manual review
-        score: 0 // Score will be calculated based on correctness
+        score: 0, // Score will be calculated based on correctness
       };
     } else {
       // For SINGLE_CHOICE and MULTIPLE_CHOICE
-      const selectedIds = Array.isArray(historyQuestion.answer) 
-        ? historyQuestion.answer 
+      const selectedIds = Array.isArray(historyQuestion.answer)
+        ? historyQuestion.answer
         : [historyQuestion.answer as string];
-      
+
       const correctOptionIds = historyQuestion.options
-        .filter(opt => opt.isCorrect)
-        .map(opt => opt.optionId);
-      
+        .filter((opt) => opt.isCorrect)
+        .map((opt) => opt.optionId);
+
       // Check if answer is correct
       let isCorrect = false;
       if (question.type === "SINGLE_CHOICE") {
-        isCorrect = selectedIds.length === 1 && correctOptionIds.includes(selectedIds[0]);
+        isCorrect =
+          selectedIds.length === 1 && correctOptionIds.includes(selectedIds[0]);
       } else if (question.type === "MULTIPLE_CHOICE") {
-        isCorrect = selectedIds.length === correctOptionIds.length &&
-          selectedIds.every(id => correctOptionIds.includes(id)) &&
-          correctOptionIds.every(id => selectedIds.includes(id));
+        isCorrect =
+          selectedIds.length === correctOptionIds.length &&
+          selectedIds.every((id) => correctOptionIds.includes(id)) &&
+          correctOptionIds.every((id) => selectedIds.includes(id));
       }
-      
+
       return {
         selected: selectedIds,
         text: "",
         isCorrect,
-        score: isCorrect ? (question.point || 0) : 0
+        score: isCorrect ? question.point || 0 : 0,
       };
     }
   });
 };
 
-export default function QuizStep2({dataLesson, dataTracking, dataCourse, attemptId, changeTab, setAttemptId}: IQuizStepProps) {
+export default function QuizStep2({
+  dataLesson,
+  dataTracking,
+  dataCourse,
+  attemptId,
+  changeTab,
+  setAttemptId,
+}: IQuizStepProps) {
   // Sort questions by order
   const sortedQuestions = useMemo(() => {
     if (!dataLesson?.questions) return [];
@@ -193,15 +203,19 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
   const [answers, setAnswers] = useState<AnswerState[]>([]);
   const [quizResult, setQuizResult] = useState<QuizSubmitResponse | null>(null);
   const setQuizStarted = useQuizStore((state) => state.setQuizStarted);
-  const { data: dataHistoryTrackingFetch } = useHistoryTrackingQuiz(dataCourse?.id as string, dataLesson?.id as string, dataTracking?.latestQuizSubmission?.id as string);
-  
+  const { data: dataHistoryTrackingFetch } = useHistoryTrackingQuiz(
+    dataCourse?.id as string,
+    dataLesson?.id as string,
+    dataTracking?.latestQuizSubmission?.id as string,
+  );
+
   // Use provided history data or fetched data
   const currentHistoryData = dataHistoryTrackingFetch;
   const isHistoryMode = !attemptId && dataHistoryTrackingFetch;
   const [quizState, setQuizState] = useState<QuizState>("init");
 
   console.log(attemptId, "---attemptId");
-  console.log(dataHistoryTrackingFetch, "---dataHistoryTrackingFetch");  
+  console.log(dataHistoryTrackingFetch, "---dataHistoryTrackingFetch");
   console.log(isHistoryMode, "---isHistoryMode");
 
   // Update quizState when history data is loaded
@@ -213,34 +227,42 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
     }
   }, [isHistoryMode, attemptId]);
 
-
-  const submitQuiz = useSubmitQuiz(dataCourse?.id as string, dataLesson?.id as string, attemptId as string);
+  const submitQuiz = useSubmitQuiz(
+    dataCourse?.id as string,
+    dataLesson?.id as string,
+    attemptId as string,
+  );
   const createLessonQuiz = useCreateAttemptsQuiz(
     dataCourse?.id as string,
     dataLesson?.id || "",
   );
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   // Initialize answers when questions change or history data is available
   useEffect(() => {
     if (isHistoryMode && currentHistoryData) {
       // Map history data to answers state
-      const mappedAnswers = mapHistoryDataToAnswers(currentHistoryData, sortedQuestions);
+      const mappedAnswers = mapHistoryDataToAnswers(
+        currentHistoryData,
+        sortedQuestions,
+      );
       setAnswers(mappedAnswers);
     } else {
       // Initialize empty answers for new quiz
       setAnswers(
-        sortedQuestions.map(() => ({ 
-          selected: null, 
-          text: "", 
+        sortedQuestions.map(() => ({
+          selected: null,
+          text: "",
           isCorrect: null,
-          score: 0
-        }))
+          score: 0,
+        })),
       );
     }
   }, [sortedQuestions, isHistoryMode, currentHistoryData]);
 
-  const timeLimit = dataLesson?.duration ? `${dataLesson.duration} phút` : "Không giới hạn";
+  const timeLimit = dataLesson?.duration
+    ? `${dataLesson.duration} phút`
+    : "Không giới hạn";
 
   // Calculate score - use history data, BE data, or frontend calculation
   const totalScore = useMemo(() => {
@@ -253,8 +275,11 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
     return answers.reduce((sum, answer) => sum + answer.score, 0);
   }, [isHistoryMode, currentHistoryData, quizResult, answers]);
 
-  const maxPossibleScore = sortedQuestions.reduce((sum, question) => sum + (question.point || 0), 0);
-  
+  const maxPossibleScore = sortedQuestions.reduce(
+    (sum, question) => sum + (question.point || 0),
+    0,
+  );
+
   const passed = useMemo(() => {
     if (isHistoryMode && currentHistoryData) {
       return currentHistoryData.attempt.isPassed;
@@ -262,48 +287,55 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
     if (quizResult) {
       return quizResult.attempt.isPassed;
     }
-    return (totalScore / maxPossibleScore) * 100 >= (dataLesson?.passingScore || 80);
-  }, [isHistoryMode, currentHistoryData, quizResult, totalScore, maxPossibleScore, dataLesson?.passingScore]);
+    return (
+      (totalScore / maxPossibleScore) * 100 >= (dataLesson?.passingScore || 80)
+    );
+  }, [
+    isHistoryMode,
+    currentHistoryData,
+    quizResult,
+    totalScore,
+    maxPossibleScore,
+    dataLesson?.passingScore,
+  ]);
 
   // Handle answer selection for multiple choice and single choice
   const handleSelect = (qIdx: number, optionId: string) => {
     if (quizState === "submitted" || quizState === "history") return;
-    
+
     const question = sortedQuestions[qIdx];
-    
+
     setAnswers((prev) =>
       prev.map((a, idx) => {
         if (idx !== qIdx) return a;
-        
+
         if (question.type === "SINGLE_CHOICE") {
           return {
             ...a,
-            selected: [optionId]
+            selected: [optionId],
           };
         } else if (question.type === "MULTIPLE_CHOICE") {
           const currentSelected = a.selected || [];
           const isAlreadySelected = currentSelected.includes(optionId);
-          
+
           return {
             ...a,
             selected: isAlreadySelected
-              ? currentSelected.filter(id => id !== optionId)
-              : [...currentSelected, optionId]
+              ? currentSelected.filter((id) => id !== optionId)
+              : [...currentSelected, optionId],
           };
         }
         return a;
-      })
+      }),
     );
   };
 
   // Handle text input for short answer questions
   const handleTextChange = (qIdx: number, value: string) => {
     if (quizState === "submitted" || quizState === "history") return;
-    
+
     setAnswers((prev) =>
-      prev.map((a, idx) => 
-        idx === qIdx ? { ...a, text: value } : a
-      )
+      prev.map((a, idx) => (idx === qIdx ? { ...a, text: value } : a)),
     );
   };
 
@@ -316,9 +348,9 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
         return {
           questionId: question.id,
           selectedOptionIds: answer.selected || [],
-          textResponse: answer.text || ""
+          textResponse: answer.text || "",
         };
-      })
+      }),
     };
 
     submitQuiz.mutate(dataSubmit, {
@@ -326,22 +358,24 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
         console.log(data);
         // Store the result from BE
         setQuizResult(data);
-        
+
         // Update answers state with results from BE
         setAnswers((prev) =>
           prev.map((answer, idx) => {
             const questionResult = data.answers.find(
-              result => result.questionId === sortedQuestions[idx].id
+              (result) => result.questionId === sortedQuestions[idx].id,
             );
             return {
               ...answer,
               isCorrect: questionResult?.isCorrect || false,
-              score: questionResult?.isCorrect ? (sortedQuestions[idx].point || 0) : 0
+              score: questionResult?.isCorrect
+                ? sortedQuestions[idx].point || 0
+                : 0,
             };
-          })
+          }),
         );
         setQuizState("submitted");
-      }
+      },
     });
   };
 
@@ -349,19 +383,19 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
   const handleRetry = () => {
     createLessonQuiz.mutate(undefined, {
       onSuccess: (data) => {
-        setAttemptId(data.id)
+        setAttemptId(data.id);
         setAnswers(
           sortedQuestions.map(() => ({
             selected: null,
             text: "",
             isCorrect: null,
-            score: 0
+            score: 0,
           })),
         );
         setQuizResult(null);
         setQuizState("init");
-      }
-    })
+      },
+    });
   };
 
   // Check if quiz can be submitted
@@ -369,7 +403,7 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
     const answer = answers[idx];
     if (!answer) return false;
     if (!question.isRequiredAnswer) return true;
-    
+
     if (question.type === "SHORT_ANSWER") {
       return answer.text.trim() !== "";
     } else {
@@ -383,17 +417,39 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
   }
 
   // Score styling - include history mode
-  const scoreColor = (quizState === "submitted" || quizState === "history") ? (passed ? "green" : "red") : "gray";
-  const scoreBg = scoreColor === "green" ? "bg-green-50" : scoreColor === "red" ? "bg-red-50" : "bg-gray-50";
-  const scoreText = scoreColor === "green" ? "text-green-600" : scoreColor === "red" ? "text-red-600" : "text-gray-600";
-  const scoreBorder = scoreColor === "green" ? "border-green-200" : scoreColor === "red" ? "border-red-200" : "border-gray-200";
+  const scoreColor =
+    quizState === "submitted" || quizState === "history"
+      ? passed
+        ? "green"
+        : "red"
+      : "gray";
+  const scoreBg =
+    scoreColor === "green"
+      ? "bg-green-50"
+      : scoreColor === "red"
+        ? "bg-red-50"
+        : "bg-gray-50";
+  const scoreText =
+    scoreColor === "green"
+      ? "text-green-600"
+      : scoreColor === "red"
+        ? "text-red-600"
+        : "text-gray-600";
+  const scoreBorder =
+    scoreColor === "green"
+      ? "border-green-200"
+      : scoreColor === "red"
+        ? "border-red-200"
+        : "border-gray-200";
 
   const handleContinue = () => {
     setQuizStarted(false);
-    queryClient.invalidateQueries({ queryKey: ["courseId", dataCourse?.id, dataLesson?.id] })
+    queryClient.invalidateQueries({
+      queryKey: ["courseId", dataCourse?.id, dataLesson?.id],
+    });
     changeTab("quizStep1");
     setAttemptId(null);
-  }
+  };
 
   return (
     <div className="flex flex-col items-center py-10 overflow-hidden">
@@ -407,12 +463,12 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
                 {sortedQuestions.length}
               </span>
             </span>
-            <span>
-              Số lần thử:{" "}
-              <span className="font-semibold text-black">
-                {dataTracking?.totalAttempt}/{dataLesson?.maxAttempts || 1}
-              </span>
-            </span>
+            {/*<span>*/}
+            {/*  Số lần thử:{" "}*/}
+            {/*  <span className="font-semibold text-black">*/}
+            {/*    {dataTracking?.totalAttempt}/{dataLesson?.maxAttempts || 1}*/}
+            {/*  </span>*/}
+            {/*</span>*/}
           </div>
           <div className="text-sm text-gray-700 flex items-center gap-1">
             Thời gian:{" "}
@@ -500,10 +556,11 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
                   <span className="font-medium text-base text-gray-900 max-w-[80%]">
                     {question.content && (
                       <div
-                        dangerouslySetInnerHTML={{ __html: he.decode(question.content) }}
+                        dangerouslySetInnerHTML={{
+                          __html: he.decode(question.content),
+                        }}
                       />
                     )}
-
                   </span>
                   <div className="text-sm text-gray-500 ml-auto w-max">
                     ({question.point} điểm)
@@ -514,7 +571,9 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
                 {question.description && (
                   <div className="text-sm text-gray-600 ml-6 mb-3">
                     <div
-                      dangerouslySetInnerHTML={{ __html: he.decode(question.description) }}
+                      dangerouslySetInnerHTML={{
+                        __html: he.decode(question.description),
+                      }}
                     />
                   </div>
                 )}
@@ -620,9 +679,9 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
                 {(quizState === "submitted" || quizState === "history") && (
                   <div className="mt-2 flex items-start gap-2 text-sm">
                     {answers[idx].isCorrect === true ? (
-                      <TickCircle size={18} className="mt-0.5 text-green-500" />
+                      <TickCircle size={18} color="green" className="mt-0.5 text-green-500" />
                     ) : answers[idx].isCorrect === false ? (
-                      <CloseCircle size={18} className="mt-0.5 text-red-500" />
+                      <CloseCircle size={18} color="red" className="mt-0.5 text-red-500" />
                     ) : (
                       <div className="w-4 h-4 mt-0.5 rounded-full border-2 border-gray-400 bg-gray-100"></div>
                     )}
@@ -634,32 +693,38 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
                             ? "text-red-700"
                             : "text-gray-600"
                       }
-                    >
-                      {answers[idx].isCorrect === null
-                        ? "Câu hỏi chưa được trả lời"
-                        : quizState === "history"
-                          ? // For history mode, show basic explanation based on correctness
-                            answers[idx].isCorrect
-                            ? question.correctExplanation || "Câu trả lời đúng"
-                            : question.incorrectHint || "Câu trả lời sai"
-                          : quizResult && quizResult.answers.length > 0
-                            ? // Use explanation from BE response for submitted quiz
-                              (() => {
-                                const questionResult = quizResult.answers.find(
-                                  (result) => result.questionId === question.id,
-                                );
-                                return questionResult?.explanations &&
-                                  questionResult.explanations.length > 0
-                                  ? questionResult.explanations.join(", ")
-                                  : answers[idx].isCorrect
-                                    ? question.correctExplanation
-                                    : question.incorrectHint;
-                              })()
-                            : // Fallback to frontend data
-                              answers[idx].isCorrect
-                              ? question.correctExplanation
-                              : question.incorrectHint}
-                    </div>
+                      dangerouslySetInnerHTML={{
+                        __html: he.decode(
+                          (answers[idx].isCorrect === null
+                            ? "Câu hỏi chưa được trả lời"
+                            : quizState === "history"
+                              ? // For history mode, show basic explanation based on correctness
+                                answers[idx].isCorrect
+                                ? question.correctExplanation ||
+                                  "Câu trả lời đúng"
+                                : question.incorrectHint || "Câu trả lời sai"
+                              : quizResult && quizResult.answers.length > 0
+                                ? // Use explanation from BE response for submitted quiz
+                                  (() => {
+                                    const questionResult =
+                                      quizResult.answers.find(
+                                        (result) =>
+                                          result.questionId === question.id,
+                                      );
+                                    return questionResult?.explanations &&
+                                      questionResult.explanations.length > 0
+                                      ? questionResult.explanations.join(", ")
+                                      : answers[idx].isCorrect
+                                        ? question.correctExplanation
+                                        : question.incorrectHint;
+                                  })()
+                                : // Fallback to frontend data
+                                  answers[idx].isCorrect
+                                  ? question.correctExplanation
+                                  : question.incorrectHint) ?? "",
+                        ),
+                      }}
+                    ></div>
                   </div>
                 )}
               </div>

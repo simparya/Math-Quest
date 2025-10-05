@@ -264,13 +264,13 @@ function Navbar() {
             {/* Buttons */}
             <div className="flex space-x-6 items-center">
               <div className="flex items-center gap-4">
-                <Image
-                  src="/vietnam.svg"
-                  alt="Logo"
-                  className="m-2 lg:block hidden"
-                  width={28}
-                  height={20}
-                />
+                {/*<Image*/}
+                {/*  src="/vietnam.svg"*/}
+                {/*  alt="Logo"*/}
+                {/*  className="m-2 lg:block hidden"*/}
+                {/*  width={28}*/}
+                {/*  height={20}*/}
+                {/*/>*/}
 
                 <div className="flex gap-2 items-center">
                   <Button
