@@ -50,16 +50,16 @@ function TestScoresPage() {
           >
             Điểm kiểm tra
           </button>
-          <button
-            className={`pb-3 px-1 border-b-2 font-medium text-sm ${
-              activeTab === "submission"
-                ? "border-black text-black"
-                : "border-transparent text-gray-500 hover:text-gray-700"
-            }`}
-            onClick={() => setActiveTab("submission")}
-          >
-            Bài tập
-          </button>
+          {/*<button*/}
+          {/*  className={`pb-3 px-1 border-b-2 font-medium text-sm ${*/}
+          {/*    activeTab === "submission"*/}
+          {/*      ? "border-black text-black"*/}
+          {/*      : "border-transparent text-gray-500 hover:text-gray-700"*/}
+          {/*  }`}*/}
+          {/*  onClick={() => setActiveTab("submission")}*/}
+          {/*>*/}
+          {/*  Bài tập*/}
+          {/*</button>*/}
         </div>
       </div>
       {activeTab === "attempts" ? (
