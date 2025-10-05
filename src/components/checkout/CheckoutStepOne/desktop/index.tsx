@@ -13,6 +13,7 @@ import {
   useUpdateCartItem,
 } from "@/hooks/queries/cart/useCartApi";
 import { useCreateOrder } from "@/hooks/queries/order/useOrder";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface ICheckoutStepOneDesktopProps {
   setStep: Dispatch<SetStateAction<number>>;
@@ -28,6 +29,7 @@ export default function CheckoutStepOneDesktop({
   const updateCart = useUpdateCartItem()
   const router = useRouter();
   const [selectedVoucher] = useState<string | null>(null);
+  const queryClient = useQueryClient()
 
   const deleteItem = useRemoveCartItem();
   const orderCart = useCreateOrder();
@@ -67,6 +69,7 @@ export default function CheckoutStepOneDesktop({
           );
           setStep(1);
           setVoucher("");
+          queryClient.invalidateQueries({queryKey: ['orders']})
         },
         onError: (error) => {
           console.error("Error creating order:", error);
