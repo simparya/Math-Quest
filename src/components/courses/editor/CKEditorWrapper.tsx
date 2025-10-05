@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/text-area";
 import React, { useEffect, useRef, useState } from "react";
+import './index.css'
 import ThisCustomUploadAdapterPlugin from "@/components/courses/editor/UploadImageAdaptor";
 
 interface CKEditorWrapperProps {
@@ -183,33 +184,40 @@ const CKEditorWrapper: React.FC<CKEditorWrapperProps> = ({
             "bold",
             "italic",
             "link",
-            "bulletedList",
-            "numberedList",
-            "|",
-            "outdent",
-            "indent",
-            "|",
+            // "bulletedList",
+            // "numberedList",
+            // "|",
+            // "outdent",
+            // "indent",
+            // "|",
             "blockQuote",
             "undo",
             "redo",
           ],
+          link: {
+            // Thiết lập hành vi cho link
+            addTargetToExternalLinks: true, // target="_blank" + rel="noopener noreferrer"
+          },
           shouldNotGroupWhenFull: true,
           codeBlock: {
             languages: [
-              { language: 'plaintext', label: 'Plain text' },
-              { language: 'javascript', label: 'JavaScript' },
-              { language: 'typescript', label: 'TypeScript' },
-              { language: 'python', label: 'Python' },
-              { language: 'java', label: 'Java' },
-              { language: 'cpp', label: 'C++' },
-            ]
+              { language: "plaintext", label: "Plain text" },
+              { language: "javascript", label: "JavaScript" },
+              { language: "typescript", label: "TypeScript" },
+              { language: "python", label: "Python" },
+              { language: "java", label: "Java" },
+              { language: "cpp", label: "C++" },
+            ],
           },
           placeholder: placeholder,
           extraPlugins: [ThisCustomUploadAdapterPlugin],
         }}
         onReady={(editor: any) => {
           console.log("Editor is ready!", editor.ui.componentFactory);
-          console.log("Has codeBlock?", editor.ui.componentFactory.has("codeBlock")); // true
+          console.log(
+            "Has codeBlock?",
+            editor.ui.componentFactory.has("codeBlock"),
+          ); // true
           editorRef.current = editor;
         }}
         onChange={(event: any, editor: { getData: () => string }) => {
