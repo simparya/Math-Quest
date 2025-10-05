@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useQuizStore } from "@/store/slices/lesson.slice";
 
 interface ItemResultProps {
   status?: "overview" | "submit-active" | "submit-not-active";
@@ -13,9 +12,8 @@ interface ItemResultProps {
 }
 
 export default function ItemResult(props: ItemResultProps) {
-  const { dataTracking, changeTab } = props;
+  const { dataTracking } = props;
   const [status, setStatus] = useState<string>("overview");
-  const setQuizStarted = useQuizStore((state) => state.setQuizStarted);
 
   useEffect(() => {
     if (dataTracking) {
@@ -58,18 +56,18 @@ export default function ItemResult(props: ItemResultProps) {
             </div>
           </div>
         </div>
-        {dataTracking?.totalAttempt && dataTracking.totalAttempt > 0 && (
-          <div
-            onClick={() => {
-              setQuizStarted(true)
-              changeTab("quizStep2");
-            }}
-            role="presentation"
-            className="cursor-pointer border border-gray-200 h-max px-4 py-2 rounded-xl font-semibold text-sm"
-          >
-            Xem lại bài
-          </div>
-        )}
+        {/*{dataTracking?.totalAttempt && dataTracking.totalAttempt > 0 && (*/}
+        {/*  <div*/}
+        {/*    onClick={() => {*/}
+        {/*      setQuizStarted(true)*/}
+        {/*      changeTab("quizStep2");*/}
+        {/*    }}*/}
+        {/*    role="presentation"*/}
+        {/*    className="cursor-pointer border border-gray-200 h-max px-4 py-2 rounded-xl font-semibold text-sm"*/}
+        {/*  >*/}
+        {/*    Xem lại bài*/}
+        {/*  </div>*/}
+        {/*)}*/}
       </div>
     </div>
   );

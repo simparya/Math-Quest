@@ -22,7 +22,7 @@ export const useLogin = () => {
           setAuth(pis.data as any, data?.accessToken);
           if (pis.data.isEmailVerified) {
             toast.success("Đăng nhập thành công!");
-            router.push("/dashboard");
+            router.push("/");
           } else {
             getOtp({email: pis.data.email});
           }
@@ -47,7 +47,7 @@ export const useLoginGoogleMain = () => {
           setAuth(pis.data as any, data?.accessToken);
           if (pis.data.isEmailVerified) {
             toast.success("Đăng nhập thành công!");
-            router.push("/dashboard");
+            router.push("/");
           } else {
             getOtp({email: pis.data.email});
           }
