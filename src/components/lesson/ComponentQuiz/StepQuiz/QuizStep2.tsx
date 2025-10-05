@@ -3,7 +3,7 @@ import {
   CloseCircle,
   ArrowRotateLeft,
 } from "iconsax-react";
-import { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import {
   useCreateAttemptsQuiz,
   useHistoryTrackingQuiz,
@@ -12,6 +12,7 @@ import {
 import { useQuizStore } from "@/store/slices/lesson.slice";
 import { ArrowRight } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
+import he from "he";
 
 interface QuizOption {
   id: string;
@@ -28,7 +29,7 @@ interface QuizQuestion {
   type: "MULTIPLE_CHOICE" | "SINGLE_CHOICE" | "SHORT_ANSWER";
   order: number;
   status: string;
-  points: number;
+  point: number;
   description?: string;
   correctExplanation?: string;
   incorrectHint?: string;
@@ -174,7 +175,7 @@ const mapHistoryDataToAnswers = (historyData: HistoryTrackingData, sortedQuestio
         selected: selectedIds,
         text: "",
         isCorrect,
-        score: isCorrect ? (question.points || 0) : 0
+        score: isCorrect ? (question.point || 0) : 0
       };
     }
   });
@@ -252,7 +253,7 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
     return answers.reduce((sum, answer) => sum + answer.score, 0);
   }, [isHistoryMode, currentHistoryData, quizResult, answers]);
 
-  const maxPossibleScore = sortedQuestions.reduce((sum, question) => sum + (question.points || 0), 0);
+  const maxPossibleScore = sortedQuestions.reduce((sum, question) => sum + (question.point || 0), 0);
   
   const passed = useMemo(() => {
     if (isHistoryMode && currentHistoryData) {
@@ -335,7 +336,7 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
             return {
               ...answer,
               isCorrect: questionResult?.isCorrect || false,
-              score: questionResult?.isCorrect ? (sortedQuestions[idx].points || 0) : 0
+              score: questionResult?.isCorrect ? (sortedQuestions[idx].point || 0) : 0
             };
           })
         );
@@ -497,17 +498,24 @@ export default function QuizStep2({dataLesson, dataTracking, dataCourse, attempt
                     {idx + 1}.
                   </span>
                   <span className="font-medium text-base text-gray-900 max-w-[80%]">
-                    {question.content}
+                    {question.content && (
+                      <div
+                        dangerouslySetInnerHTML={{ __html: he.decode(question.content) }}
+                      />
+                    )}
+
                   </span>
                   <div className="text-sm text-gray-500 ml-auto w-max">
-                    ({question.points} điểm)
+                    ({question.point} điểm)
                   </div>
                 </div>
 
                 {/* Description */}
                 {question.description && (
                   <div className="text-sm text-gray-600 ml-6 mb-3">
-                    {question.description}
+                    <div
+                      dangerouslySetInnerHTML={{ __html: he.decode(question.description) }}
+                    />
                   </div>
                 )}
 

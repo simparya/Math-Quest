@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { useQuizStore } from "@/store/slices/lesson.slice";
 import { useCreateAttemptsQuiz } from "@/hooks/queries/tracking/useTracking";
 import { ArrowRotateLeft } from "iconsax-react";
+import { useMemo } from "react";
 
 interface ItemQuizProps {
   changeTab: (tab: string) => void;
@@ -42,6 +43,14 @@ export default function ItemQuiz({
     }
   };
 
+  const sortedQuestions = useMemo(() => {
+    if (!data?.questions) return [];
+    return [...data.questions].sort((a, b) => a.order - b.order);
+  }, [data?.questions]);
+
+  const maxPossibleScore = sortedQuestions.reduce((sum, question) => sum + (question.point || 0), 0);
+
+
   return (
     <div className="w-full p-6 bg-white rounded-2xl shadow-md border border-gray-100 flex-shrink-0">
       <div className="flex justify-between flex-shrink-0">
@@ -49,9 +58,7 @@ export default function ItemQuiz({
           <div className="text-lg font-semibold">{data?.title}</div>
           <div className="text-sm font-normal text-secondary">
             Bạn cần ít nhất{" "}
-            {type === "PRACTICE"
-              ? data?.passingScore
-              : ((data?.passingScore / data?.maxScore) * 100).toFixed(0)}
+            {data?.passingScore}
             % điểm để vượt qua.
           </div>
           <div className="flex items-center gap-8 mt-4">
@@ -60,7 +67,7 @@ export default function ItemQuiz({
                 Điểm tối đa
               </div>
               <div className="text-sm font-normal text-gray-500">
-                {type === "PRACTICE" ? 100 : data?.maxScore} điểm
+                {type === "PRACTICE" ? 100 : maxPossibleScore} điểm
               </div>
             </div>
             <div>

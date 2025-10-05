@@ -34,7 +34,6 @@ export default function ItemQuizTracking({ changeTab, type, data, dataCourse, se
       changeTab("stepsExercise2");
     }
   }
-  console.log(dataTracking);
 
   return (
     <div className="w-full p-6 bg-white rounded-2xl shadow-md border border-gray-100 flex-shrink-0">
@@ -43,9 +42,7 @@ export default function ItemQuizTracking({ changeTab, type, data, dataCourse, se
           <div className="text-lg font-semibold">{data?.title}</div>
           <div className="text-sm font-normal text-secondary">
             Bạn cần ít nhất{" "}
-            {type === "PRACTICE"
-              ? data?.passingScore
-              : ((data?.passingScore / data?.maxScore) * 100).toFixed(0)}
+            {data?.passingScore}
             % điểm để vượt qua.
           </div>
           <div className="flex items-center gap-8 mt-4">

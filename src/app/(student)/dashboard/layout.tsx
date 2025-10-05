@@ -89,17 +89,17 @@ export default function DashboardLayout({
       {/* Colorful Banner/Header */}
       <div className="bg-gradient-to-r from-[#E6FAF2] to-[#FFF6E7] w-full h-[300px] relative"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-[160px] relative z-10">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 -mt-[160px] relative z-10">
         {/* Profile Info Section */}
         <div className="relative">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/dashboard/banner-profile.png"
             alt="profile banner"
-            className="h-full w-max"
+            className="h-[310px] w-full object-cover rounded-xl"
           />
-          <div className="absolute bottom-10 left-10 text-center flex items-end justify-between right-20">
-            <div className="flex items-center gap-4">
+          <div className="absolute bottom-10 md:left-10 left-4 text-center flex items-end justify-between md:right-20">
+            <div className="flex md:flex-row flex-col md:items-center  gap-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={
