@@ -32,9 +32,10 @@ export const useCourses = (filters?: CourseFilters) => {
 
 export const useCoursesCMS = (filters?: CourseFilters) => {
   return useQuery({
-    queryKey: courseKeys.list(filters),
+    queryKey: [courseKeys.list(filters), 'useCoursesCMS'],
     queryFn: () => courseAPI.getCoursesCMS(filters),
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    refetchOnMount: 'always',
+    // staleTime: 5 * 60 * 1000, // 5 minutes
   });
 };
 

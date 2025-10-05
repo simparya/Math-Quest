@@ -297,7 +297,7 @@ export function LessonClient() {
   return (
     <div className="flex relative">
       <div
-        className="fixed bottom-10 right-4 z-50"
+        className="fixed bottom-10 right-20 z-50"
         onClick={() => setIsAIHelperOpen(true)}
       >
         <Image

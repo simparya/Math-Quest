@@ -239,8 +239,6 @@ export default function ContentTab(props: ContentTabProps) {
     return contentType ? typeMap[contentType] || "file" : "file";
   };
 
-  console.log(dataLesson, "---dataLesson");
-
   // Map noteData to display format
   const notes = useMemo(() => {
     if (!noteData || !Array.isArray(noteData)) return [];
@@ -322,8 +320,6 @@ export default function ContentTab(props: ContentTabProps) {
     setEditingId(null);
     setEditingContent("");
   };
-
-  console.log("currentLesson--", currentLesson);
 
   const renderContentTab = (value: string) => {
     switch (value) {

@@ -328,24 +328,24 @@ export default function CourseBuilderSection() {
                         />
                         Bài kiểm tra
                       </Button>
-                      <Button
-                        onClick={() => {
-                          setIsOpenModalCreateAssignmentCode(true);
-                          setModuleSelected(chapter);
-                          setLessonSelected(null);
-                        }}
-                        className="border-primary-main/48"
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                      >
-                        <Add
-                          size={20}
-                          color="#2F57EF"
-                          className="w-4 h-4 mr-1"
-                        />
-                        Bài tập
-                      </Button>
+                      {/*<Button*/}
+                      {/*  onClick={() => {*/}
+                      {/*    setIsOpenModalCreateAssignmentCode(true);*/}
+                      {/*    setModuleSelected(chapter);*/}
+                      {/*    setLessonSelected(null);*/}
+                      {/*  }}*/}
+                      {/*  className="border-primary-main/48"*/}
+                      {/*  type="button"*/}
+                      {/*  variant="outline"*/}
+                      {/*  size="sm"*/}
+                      {/*>*/}
+                      {/*  <Add*/}
+                      {/*    size={20}*/}
+                      {/*    color="#2F57EF"*/}
+                      {/*    className="w-4 h-4 mr-1"*/}
+                      {/*  />*/}
+                      {/*  Bài tập*/}
+                      {/*</Button>*/}
                     </div>
                     {/*<Button*/}
                     {/*  className="border-primary-main/48"*/}

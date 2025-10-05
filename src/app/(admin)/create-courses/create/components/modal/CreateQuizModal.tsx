@@ -45,6 +45,7 @@ import {
 } from "@/hooks/queries/course/useLessonCourse";
 import { useCreateCourseContext } from "@/context/CreateCourseProvider";
 import CKEditorWrapper from "@/components/courses/editor/CKEditorWrapper";
+import _ from "lodash";
 
 interface CreateQuizModalProps {
   isOpen: boolean;
@@ -227,12 +228,11 @@ export const CreateQuizModal = ({
   };
 
   const handleSubmitCreateQuiz = (value: QuestionFormData) => {
-    if (editIndex) {
-      setQuestions((prev) => {
-        const updatedQuestions = [...prev];
-        updatedQuestions[editIndex] = value;
-        return updatedQuestions;
-      });
+
+    if (editIndex || editIndex === 0) {
+      const updatedQuestions = _.clone(questions);
+      updatedQuestions[editIndex] = value;
+      setQuestions(updatedQuestions);
       setEditIndex(null);
       return;
     }
