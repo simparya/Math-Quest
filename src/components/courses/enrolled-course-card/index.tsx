@@ -33,9 +33,16 @@ function EnrolledCourseCard({
 }: EnrolledCourseCardProps) {
   const router = useRouter();
   const { data: courseDetail } = useCourseBySlug(slug);
-  const { data: moduleData, isLoading, error } = useModule(courseDetail?.id || "");
+  const {
+    data: moduleData,
+    isLoading,
+  } = useModule(courseDetail?.id || "");
 
   const handleLearn = () => {
+    if (isLoading) {
+      toast.error("Đang tải bài học");
+      return;
+    }
     if (moduleData?.data && moduleData?.data?.length > 0) {
       router.push(
         `/lesson?course=${slug}&module=${moduleData?.data?.[0]?.id}&lesson=${moduleData?.data?.[0]?.lessons?.[0]?.id}`,
@@ -44,11 +51,6 @@ function EnrolledCourseCard({
       toast.error("Hiện chưa có bài học nào!");
     }
   };
-
-  if(isLoading || error) {
-    return null;
-  }
-
 
   return (
     <div

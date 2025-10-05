@@ -353,16 +353,16 @@ export function LessonClient() {
               {courseDetail?.title}
             </h1>
           </div>
-          <div className="flex items-center gap-6 mt-2 md:mt-0">
-            <div className="font-bold cursor-pointer flex items-center gap-1">
-              <ArrowLeft2 size="20" color="#212B36" />
-              Trước
-            </div>
-            <div className="font-bold cursor-pointer flex items-center gap-1">
-              Tiếp theo
-              <ArrowRight2 size="20" color="#212B36" />
-            </div>
-          </div>
+          {/*<div className="flex items-center gap-6 mt-2 md:mt-0">*/}
+          {/*  <div className="font-bold cursor-pointer flex items-center gap-1">*/}
+          {/*    <ArrowLeft2 size="20" color="#212B36" />*/}
+          {/*    Trước*/}
+          {/*  </div>*/}
+          {/*  <div className="font-bold cursor-pointer flex items-center gap-1">*/}
+          {/*    Tiếp theo*/}
+          {/*    <ArrowRight2 size="20" color="#212B36" />*/}
+          {/*  </div>*/}
+          {/*</div>*/}
         </div>
 
         {initValue?.practiceType === "coding" ? (

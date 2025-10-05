@@ -15,14 +15,15 @@ export const useGetCart = (enabled: boolean = true) => {
 
 export const useRefetchCart = () => {
   const queryClient = useQueryClient()
-  const {setListCart} = useCartStore()
+  const {setListCart, setCartId} = useCartStore()
 
   const refetchCart = async () => {
     try {
-      const result: {items: CartItem[]} = await queryClient.fetchQuery({
+      const result: {items: CartItem[], id: string} = await queryClient.fetchQuery({
         queryKey: ["cart"]
       })
       setListCart(result?.items || [])
+      setCartId(result?.id)
     } catch (err) {
       console.log("err---", err)
     }
