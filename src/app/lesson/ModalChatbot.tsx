@@ -180,7 +180,7 @@ export default function AIHelperModal({
                 <div
                   className={`${
                     item.isMe
-                      ? "bg-primary-main text-white"
+                      ? "bg-primary-main text-[#FFFFFF]"
                       : "bg-[#F3F4F6] text-black"
                   } max-w-[70%] p-3 rounded-xl whitespace-pre-wrap break-words`}
                 >

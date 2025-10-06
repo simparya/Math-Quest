@@ -20,19 +20,19 @@ function AboutPage() {
           className="w-full lg:h-auto h-[400px] object-cover"
         />
         <div className="absolute md:max-w-3xl max-w-sm lg:max-w-5xl xl:max-w-7xl mx-auto w-full inset-0 flex flex-col items-center justify-center">
-          <div className="w-full lg:w-3/4 flex flex-col items-center justify-center text-center px-4 text-white">
+          <div className="w-full lg:w-3/4 flex flex-col items-center justify-center text-center px-4 text-[#FFFFFF]">
             <div className="text-secondary-main text-center font-bold text-base lg:text-xl">
               Tầm nhìn của chúng tôi
             </div>
-            <div className="text-white text-lg lg:text-3xl font-bold text-center pt-4">
+            <div className="text-[#FFFFFF] text-lg lg:text-3xl font-bold text-center pt-4">
               Chúng tôi hình dung một thế giới mà bất kỳ ai, ở bất kỳ đâu cũng có
               khả năng thay đổi cuộc sống của mình thông qua việc học.
             </div>
             <Button
               variant="default"
-              className="mt-8 text-center  bg-primary-main h-10 shadow-md hover:shadow-xl hover:shadow-primary-main/20 transition-shadow duration-300 text-white px-4 py-1.5 rounded-[10px]"
+              className="mt-8 text-center  bg-primary-main h-10 shadow-md hover:shadow-xl hover:shadow-primary-main/20 transition-shadow duration-300 text-[#FFFFFF] px-4 py-1.5 rounded-[10px]"
             >
-              <span className="mr-2 text-white">Xem thêm về chúng tôi</span>
+              <span className="mr-2 text-[#FFFFFF]">Xem thêm về chúng tôi</span>
               <ArrowRight size="24" color="white" />
             </Button>
           </div>
@@ -91,9 +91,9 @@ function AboutPage() {
               ))}
               <Button
                 variant="default"
-                className="text-center w-fit bg-primary-main h-12 shadow-md hover:shadow-xl hover:shadow-primary-main/20 transition-shadow duration-300 text-white px-4 py-1.5 rounded-[10px]"
+                className="text-center w-fit bg-primary-main h-12 shadow-md hover:shadow-xl hover:shadow-primary-main/20 transition-shadow duration-300 text-[#FFFFFF] px-4 py-1.5 rounded-[10px]"
               >
-                <span className="mr-2 text-white font-bold">
+                <span className="mr-2 text-[#FFFFFF] font-bold">
                   Học ngay hôm nay
                 </span>
                 <ArrowRight size="24" color="white" />
@@ -118,9 +118,9 @@ function AboutPage() {
             </div>
             <Button
               variant="default"
-              className="text-center w-fit mt-8 bg-primary-main h-12 shadow-md hover:shadow-xl hover:shadow-primary-main/20 transition-shadow duration-300 text-white px-4 py-1.5 rounded-[10px]"
+              className="text-center w-fit mt-8 bg-primary-main h-12 shadow-md hover:shadow-xl hover:shadow-primary-main/20 transition-shadow duration-300 text-[#FFFFFF] px-4 py-1.5 rounded-[10px]"
             >
-              <span className="mr-2 text-white font-bold">
+              <span className="mr-2 text-[#FFFFFF] font-bold">
                 Học ngay hôm nay
               </span>
               <ArrowRight size="24" color="white" />

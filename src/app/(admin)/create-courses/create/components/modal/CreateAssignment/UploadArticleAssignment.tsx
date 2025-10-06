@@ -322,7 +322,7 @@ export const UploadArticleAssignment = ({
               <Button
                 type="submit"
                 size="sm"
-                className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm"
+                className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-[#FFFFFF] text-xs sm:text-sm"
               >
                 Thêm bài tập
               </Button>

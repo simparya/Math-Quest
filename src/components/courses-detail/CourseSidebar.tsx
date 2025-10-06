@@ -19,6 +19,7 @@ interface CourseSidebarProps {
     certification?: boolean;
     totalCompletedLessons?: number;
     language?: string;
+    isFree?: boolean;
   };
   onCheckoutCourse: () => void;
   handlePushToCart: () => void;
@@ -34,6 +35,8 @@ export const CourseSidebar: React.FC<CourseSidebarProps> = ({
   handleLearn,
 }) => {
   const [showMoreCardProduct, setShowMoreCardProduct] = useState(false);
+
+  console.log("courseDetail00asdas", courseDetail);
 
   return (
     <div className="lg:w-1/4 block md:fixed right-[5%] top-[10%] h-full">
@@ -66,8 +69,8 @@ export const CourseSidebar: React.FC<CourseSidebarProps> = ({
             {courseDetail.enrollmentCnt} học viên
           </div>
         </div>
-        {courseDetail.discountedPrice === 0 &&
-        courseDetail.regularPrice === 0 ? (
+        {(courseDetail.discountedPrice === 0 &&
+        courseDetail.regularPrice === 0) || courseDetail.isFree ? (
           <div className="text-2xl font-bold text-[#2F57EF] mb-6">Miễn phí</div>
         ) : (
           <div className="flex items-center mb-6">

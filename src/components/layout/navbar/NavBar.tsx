@@ -167,16 +167,16 @@ function Navbar() {
               onClick={navigateToFlashSale}
               className="cursor-pointer flex-row flex gap-1 items-center"
             >
-              <span className="text-white lg:text-lg text-base font-semibold py-1 px-2.5 bg-tertiary-main rounded-[10px]">
+              <span className="text-[#FFFFFF] lg:text-lg text-base font-semibold py-1 px-2.5 bg-tertiary-main rounded-[10px]">
                 Hot
               </span>
-              <span className="lg:text-base text-white text-xs pl-4">
+              <span className="lg:text-base text-[#FFFFFF] text-xs pl-4">
                 Nhanh tay nhận ưu đãi đến{" "}
                 <span className="text-secondary-main"> 20%</span>
               </span>
             </div>
             <div className="flex gap-2 items-center pl-6">
-              <span className="text-sm font-semibold text-white">
+              <span className="text-sm font-semibold text-[#FFFFFF]">
                 KẾT THÚC TRONG
               </span>
               <div className="h-8 w-10 flex items-center justify-center bg-zinc-800 rounded-lg p-1.5 text-xl text-tertiary-light font-semibold">
@@ -229,8 +229,8 @@ function Navbar() {
 
               <DropdownMenu>
                 <DropdownMenuTrigger className="hidden lg:block focus-visible:outline-none">
-                  <div className="flex gap-2 items-center cursor-pointer">
-                    <div>
+                  <div className="flex gap-2 items-center cursor-pointer bg-[#919EAB14] p-1.5 rounded-md">
+                    <div className="bg-white px-1.5 py-1 rounded-md">
                       {selectedCategory ? selectedCategory.title : "Khám phá"}
                     </div>
                     <ArrowDown2 size={16} color="#27272A" />
@@ -327,9 +327,9 @@ function Navbar() {
                     </Button>
                     <Button
                       variant="default"
-                      className="bg-primary-main h-10  shadow-md hover:shadow-xl hover:shadow-primary-main/20 transition-shadow duration-300 text-white px-4 py-1.5 rounded-[10px]"
+                      className="bg-primary-main h-10  shadow-md hover:shadow-xl hover:shadow-primary-main/20 transition-shadow duration-300 text-[#FFFFFF] px-4 py-1.5 rounded-[10px]"
                     >
-                      <Link href={Routes.login} className="text-white">
+                      <Link href={Routes.login} className="text-[#FFFFFF]">
                         Bắt đầu miễn phí
                       </Link>
                     </Button>

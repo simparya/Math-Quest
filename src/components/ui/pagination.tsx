@@ -64,7 +64,7 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) 
               onClick={() => onPageChange(page as number)}
               className={
                 currentPage === page
-                  ? "bg-gray-900 text-white hover:bg-gray-800"
+                  ? "bg-gray-900 text-[#FFFFFF] hover:bg-gray-800"
                   : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
               }
             >

@@ -84,8 +84,8 @@ function NotificationPage() {
             <div className="font-semibold text-[16px] text-[#222]">Tạo thông báo</div>
             <div className="text-xs text-[#637381] mt-1">Thông báo cho tất cả học sinh</div>
           </div>
-          <Button className="mt-4 md:mt-0 bg-[#212B36] hover:bg-[#454F5B] font-semibold text-[14px] h-9 px-6 py-2 rounded-lg text-white">
-            <span className="text-white">
+          <Button className="mt-4 md:mt-0 bg-[#212B36] hover:bg-[#454F5B] font-semibold text-[14px] h-9 px-6 py-2 rounded-lg text-[#FFFFFF]">
+            <span className="text-[#FFFFFF]">
               Thêm thông báo mới
             </span>
           </Button>

@@ -1,6 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { studentAPI } from "@/api/endpoints/student.api";
 
+export type PaginatedResponse<T> = {
+  data: T[];
+  meta?: {
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+    hasNext?: boolean;
+    hasPrev?: boolean;
+  };
+};
+
 export const useStudent = (studentId: string, enabled?: boolean) => {
   return useQuery({
     queryKey: ["studentId", studentId],

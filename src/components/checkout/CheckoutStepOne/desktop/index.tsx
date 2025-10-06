@@ -127,7 +127,7 @@ export default function CheckoutStepOneDesktop({
                 <tr className="bg-gray-100 text-left text-sm rounded-xl boxShadow">
                   <th className="py-3 px-4 text-secondary">Sản phẩm</th>
                   <th className="py-3 px-4 text-secondary">Giá</th>
-                  <th className="py-3 px-4 text-secondary">Số lượng</th>
+                  <th className="py-3 px-4 text-secondary">Thời hạn(năm)</th>
                   <th className="py-3 px-4 text-secondary">Tổng</th>
                   <th className="py-3 px-4 text-secondary text-right"></th>
                 </tr>
@@ -235,7 +235,7 @@ export default function CheckoutStepOneDesktop({
           </div>
           <div className="flex flex-col mt-[16px]">
             <Button
-              className="text-white px-4 py-2 rounded-lg"
+              className="text-[#FFFFFF] px-4 py-2 rounded-lg"
               onClick={handleOrder}
             >
 
@@ -251,7 +251,7 @@ export default function CheckoutStepOneDesktop({
               <Input className="h-10 flex-1" placeholder="Mã khuyến mại" />
               <Button
                 variant="default"
-                className="h-10 px-4 rounded-xl text-white"
+                className="h-10 px-4 rounded-xl text-[#FFFFFF]"
               >
                 Áp dụng
               </Button>

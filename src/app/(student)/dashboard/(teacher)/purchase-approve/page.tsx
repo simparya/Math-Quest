@@ -82,7 +82,7 @@ function PurchaseApprovePage() {
     <div className="bg-white shadow h-max p-6 rounded-2xl">
       <h2 className="text-2xl font-semibold mb-6">Phê duyệt đơn hàng</h2>
 
-      {isLoading && (
+      {(isLoading || apprevedCart.isPending || rejectOrder.isPending) && (
         <div className="flex items-center justify-center py-10">
           <Loader2 className="animate-spin text-gray-400" />
           <span className="ml-2 text-gray-500">Đang tải đơn hàng...</span>

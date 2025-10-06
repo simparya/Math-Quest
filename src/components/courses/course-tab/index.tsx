@@ -93,7 +93,7 @@ export function CourseTab({ courses = [], isLoading = false, error = null, onCou
             onClick={() => handleTabClick(tab)}
             className={`cursor-pointer relative flex flex-col items-center justify-center min-w-[120px] px-8 py-4 rounded-full transition-all ${
               getActiveTabId() === tab.id
-                ? "bg-[#2F57EF] text-white"
+                ? "bg-[#2F57EF] text-[#FFFFFF]"
                 : "bg-white text-[#637381] border border-gray-200 hover:bg-gray-50"
             }`}
           >
@@ -101,7 +101,7 @@ export function CourseTab({ courses = [], isLoading = false, error = null, onCou
             {/*  {tab.numberLesson}*/}
             {/*</span>*/}
             <span
-              className={`text-sm font-medium ${getActiveTabId() === tab.id ? "text-white" : "text-gray-700"}`}
+              className={`text-sm font-medium ${getActiveTabId() === tab.id ? "text-[#FFFFFF]" : "text-gray-700"}`}
             >
               {tab.name}
             </span>

@@ -190,7 +190,7 @@ export default function CoursePricingSection({
           </Button>
           <Button
             type="submit"
-            className="px-8 bg-[#212B36] hover:bg-blue-700 text-white"
+            className="px-8 bg-[#212B36] hover:bg-blue-700 text-[#FFFFFF]"
           >
             Tiếp tục
           </Button>

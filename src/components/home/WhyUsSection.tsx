@@ -51,11 +51,11 @@ export function WhyUsSection() {
             height={400}
             className="object-cover"
           />
-          <div className="absolute inset-0 p-8 text-white flex flex-col justify-between">
-            <h3 className="text-4xl font-bold leading-12 text-white">
+          <div className="absolute inset-0 p-8 text-[#FFFFFF] flex flex-col justify-between">
+            <h3 className="text-4xl font-bold leading-12 text-[#FFFFFF]">
               Giảng viên <br /> giàu kinh <br /> nghiệm
             </h3>
-            <Button onClick={navigateToTeacher} className="h-9 text-white w-fit bg-white/12 hover:bg-white/20 rounded-[10px]">
+            <Button onClick={navigateToTeacher} className="h-9 text-[#FFFFFF] w-fit bg-white/12 hover:bg-white/20 rounded-[10px]">
               Xem ngay <ArrowRight size={20} color="white" />
             </Button>
           </div>
@@ -68,14 +68,14 @@ export function WhyUsSection() {
             fill
             className="object-cover w-full h-full rounded-2xl"
           />
-          <div className="absolute inset-0 p-8 text-white flex flex-col justify-between">
-            <h3 className="text-4xl font-bold leading-12 text-white">
+          <div className="absolute inset-0 p-8 text-[#FFFFFF] flex flex-col justify-between">
+            <h3 className="text-4xl font-bold leading-12 text-[#FFFFFF]">
               Các Lớp Học Linh Hoạt
             </h3>
-            <div className="mt-2 lg:flex-1 text-white">
+            <div className="mt-2 lg:flex-1 text-[#FFFFFF]">
               Giáo dục trực tuyến đã trở nên phổ biến và quan trọng hơn trong những năm gần đây, đặc biệt là với những tiến bộ về công nghệ và khả năng tiếp cận Internet ngày càng cao.
             </div>
-            <Button className="h-9 mt-5 text-white w-fit bg-white/12 hover:bg-white/20">
+            <Button className="h-9 mt-5 text-[#FFFFFF] w-fit bg-white/12 hover:bg-white/20">
               Xem ngay <ArrowRight size={20} color="white" />
             </Button>
           </div>
