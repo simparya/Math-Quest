@@ -10,10 +10,16 @@ import { Send2 } from "iconsax-react";
 import { Textarea } from "@/components/ui/textarea";
 import { useEffect, useRef, useState } from "react";
 import { useSendMessageChatbot } from "@/hooks/queries/chatbot/useChatbot";
-import MathDisplay from "@/hooks/queries/chatbot/MathDisplay";
 import _ from "lodash";
-
+import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import remarkGfm from "remark-gfm";
+import "katex/dist/katex.min.css";
 // Drop-in component
+
+const remarkPlugins = [remarkMath, remarkGfm];
+const rehypePlugins = [[rehypeKatex, { strict: false }]] as any;
 // Usage: <AIHelperModal /> anywhere in your app
 export default function AIHelperModal({
   open,
@@ -86,16 +92,45 @@ export default function AIHelperModal({
     );
     setValue("");
   }
+
   const renderMessage = (message: any) => {
     console.log("message---", message);
+    console.log("message?.answer---", message?.answer);
     if (_.isString(message)) {
       return message;
     }
+    const value: any = {};
+    try {
+      const data = JSON.parse(message.answer);
+      console.log("JSON.parse data", data);
+      value["answer"] = data?.answer;
+    } catch (error) {
+      console.log("error--", error);
+      value["answer"] = message?.answer;
+    }
+
+    console.log("value---", value);
+
     return (
       <>
-        <MathDisplay latexString={message?.answer} />
-        <MathDisplay latexString={message?.solution} />
-        <MathDisplay latexString={message?.suggestion} />
+        <ReactMarkdown
+          remarkPlugins={remarkPlugins}
+          rehypePlugins={rehypePlugins}
+        >
+          {value?.answer}
+        </ReactMarkdown>
+        <ReactMarkdown
+          remarkPlugins={remarkPlugins}
+          rehypePlugins={rehypePlugins}
+        >
+          {message?.solution}
+        </ReactMarkdown>
+        <ReactMarkdown
+          remarkPlugins={remarkPlugins}
+          rehypePlugins={rehypePlugins}
+        >
+          {message?.suggestion}
+        </ReactMarkdown>
       </>
     );
   };
