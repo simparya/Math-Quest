@@ -18,7 +18,7 @@ import {
   videoIntroSchema,
 } from "@/app/(admin)/create-courses/create/schemas";
 import { Button } from "@/components/ui/button";
-import { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useUploadFile } from "@/hooks/queries/course/useUploadFile";
 import Image from "next/image";
@@ -228,19 +228,23 @@ export default function VideoIntroSection({
                             </Button>
                           </div>
                         )}
-                        <input
-                          type="file"
-                          accept="image/*"
-                          ref={inputRef}
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) {
-                              handleUploadFile(file, field);
-                            }
-                          }}
-                          className="hidden"
-                          id="thumbnail-upload"
-                        />
+                        {uploadFile.isPending ? (
+                          <div>Loading...</div>
+                        ) : (
+                          <input
+                            type="file"
+                            accept="image/*"
+                            ref={inputRef}
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (file) {
+                                handleUploadFile(file, field);
+                              }
+                            }}
+                            className="hidden"
+                            id="thumbnail-upload"
+                          />
+                        )}
                       </div>
                     </FormControl>
                     <p className="text-xs text-gray-500">
@@ -274,7 +278,8 @@ export default function VideoIntroSection({
           </Button>
           <Button
             type="submit"
-            className="px-8 bg-[#212B36] hover:bg-blue-700 text-white"
+            disabled={uploadFile.isPending}
+            className="px-8 bg-[#212B36] hover:bg-blue-700 text-[#FFFFFF]"
           >
             Tiếp tục
           </Button>

@@ -168,7 +168,7 @@ function CategoryPage() {
             </div>
           </div>
           <Button 
-            className="mt-4 md:mt-0 bg-[#212B36] hover:bg-[#454F5B] font-semibold text-[14px] h-9 px-6 py-2 rounded-lg text-white"
+            className="mt-4 md:mt-0 bg-[#212B36] hover:bg-[#454F5B] font-semibold text-[14px] h-9 px-6 py-2 rounded-lg text-[#FFFFFF]"
             onClick={handleOpenCreateModal}
           >
             <span className="text-white">Thêm danh mục mới</span>

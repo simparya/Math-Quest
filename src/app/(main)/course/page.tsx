@@ -470,7 +470,7 @@ function CoursePage() {
                           onClick={() => setCurrentPage(page)}
                           className={`px-4 py-2 border border-gray-200 rounded-lg ${
                             page === currentPage
-                              ? "bg-[#2F57EF] text-white"
+                              ? "bg-[#2F57EF] text-[#FFFFFF]"
                               : "hover:bg-gray-50"
                           }`}
                         >

@@ -19,6 +19,7 @@ interface CourseSidebarProps {
     certification?: boolean;
     totalCompletedLessons?: number;
     language?: string;
+    isFree?: boolean;
   };
   onCheckoutCourse: () => void;
   handlePushToCart: () => void;
@@ -66,9 +67,9 @@ export const CourseSidebar: React.FC<CourseSidebarProps> = ({
             {courseDetail.enrollmentCnt} học viên
           </div>
         </div>
-        {courseDetail.discountedPrice === 0 &&
-        courseDetail.regularPrice === 0 ? (
-          <div className="text-2xl font-bold text-[#48DB94] mb-6">Miễn phí</div>
+        {(courseDetail.discountedPrice === 0 &&
+        courseDetail.regularPrice === 0) || courseDetail.isFree ? (
+          <div className="text-2xl font-bold text-[#2F57EF] mb-6">Miễn phí</div>
         ) : (
           <div className="flex items-center mb-6">
             <div className="text-2xl font-bold text-[#48DB94]">

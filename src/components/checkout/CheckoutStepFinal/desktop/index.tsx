@@ -140,7 +140,7 @@ export default function CheckoutStepFinalDesktop({ cartData }: ICheckoutStep) {
         </div>
         <Button
           onClick={handleNavigateToHome}
-          className="text-white px-4 py-2 rounded-lg"
+          className="text-[#FFFFFF] px-4 py-2 rounded-lg"
         >
           Tiếp tục mua sắm
         </Button>

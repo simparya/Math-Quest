@@ -62,7 +62,7 @@ export default function PromotionDialog({setSelectedVoucher, selectedVoucher, op
               className="w-full p-2.5 pr-24 border border-zinc-300 rounded-md"
               onChange={handleSearchChange}
             />
-            <button className="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1.5 text-white bg-green-600 rounded-md text-sm">
+            <button className="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1.5 text-[#FFFFFF] bg-green-600 rounded-md text-sm">
               Áp dụng
             </button>
           </div>
@@ -85,7 +85,7 @@ export default function PromotionDialog({setSelectedVoucher, selectedVoucher, op
               Hủy
             </button>
             <button
-              className="cursor-pointer font-semibold flex-1 py-3 bg-[#CD9B69] text-white rounded-md text-center"
+              className="cursor-pointer font-semibold flex-1 py-3 bg-[#CD9B69] text-[#FFFFFF] rounded-md text-center"
               onClick={handleApply}
             >
               Áp dụng

@@ -563,7 +563,7 @@ function SettingsPage() {
                 <Button
                   type="submit"
                   disabled={isUpdatingUser || isLoadingUser}
-                  className="bg-gray-800 hover:bg-gray-700 text-white px-6"
+                  className="bg-gray-800 hover:bg-gray-700 text-[#FFFFFF] px-6"
                 >
                   {isUpdatingUser ? (
                     <>
@@ -720,7 +720,7 @@ function SettingsPage() {
                 <Button
                   type="submit"
                   disabled={isPasswordUpdating}
-                  className="bg-gray-800 hover:bg-gray-700 text-white px-6"
+                  className="bg-gray-800 hover:bg-gray-700 text-[#FFFFFF] px-6"
                 >
                   {isPasswordUpdating ? (
                     <>

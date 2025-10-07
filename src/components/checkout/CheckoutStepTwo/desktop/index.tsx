@@ -112,7 +112,7 @@ export default function CheckoutStepTwoDesktop({
           </div>
           <div className="flex flex-col mt-[16px]">
             <Button
-              className="text-white px-4 py-2 rounded-lg"
+              className="text-[#FFFFFF] px-4 py-2 rounded-lg"
               onClick={handleSubmit}
             >
               Đã chuyển khoản

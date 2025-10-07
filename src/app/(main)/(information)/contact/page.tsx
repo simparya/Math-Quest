@@ -149,7 +149,7 @@ function ContactPage() {
               />
             </div>
             <Button className="h-12" type="submit">
-              <span className="font-bold text-white">
+              <span className="font-bold text-[#FFFFFF]">
                 Nhận ngay
               </span>
               <ArrowRight size={24} color="white"/>

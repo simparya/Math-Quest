@@ -111,7 +111,7 @@ function EnrolledCourseCard({
               variant="default"
               size="sm"
               onClick={handleLearn}
-              className="bg-gray-800 hover:bg-gray-700 text-white"
+              className="bg-gray-800 hover:bg-gray-700 text-[#FFFFFF]"
             >
               Tiếp tục
             </Button>

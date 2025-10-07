@@ -11,7 +11,7 @@ export default function NewsletterSection() {
   }
 
   return (
-    <section className="relative bg-primary-main bg-blend-overlay bg-cover bg-center text-white py-20 px-4">
+    <section className="relative bg-primary-main bg-blend-overlay bg-cover bg-center text-[#FFFFFF] py-20 px-4">
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -21,13 +21,13 @@ export default function NewsletterSection() {
         }}
       ></div>
 
-      <div className="relative z-20 md:max-w-3xl text-white max-w-sm lg:max-w-5xl xl:max-w-7xl mx-auto w-full text-center">
-        <div className="text-lg text-white mb-2 font-bold">Nhận bản tin cập nhật</div>
-        <div className="text-3xl leading-10 lg:text-5xl font-bold mb-2 text-white lg:leading-16">
+      <div className="relative z-20 md:max-w-3xl text-[#FFFFFF] max-w-sm lg:max-w-5xl xl:max-w-7xl mx-auto w-full text-center">
+        <div className="text-lg text-[#FFFFFF] mb-2 font-bold">Nhận bản tin cập nhật</div>
+        <div className="text-3xl leading-10 lg:text-5xl font-bold mb-2 text-[#FFFFFF] lg:leading-16">
           Đăng ký nhận bản tin<br />
           của chúng tôi
         </div>
-        <p className="text-white mb-8">
+        <p className="text-[#FFFFFF] mb-8">
           Nhận ưu đãi độc quyền và thông tin mới nhất mỗi tuần!
         </p>
 
@@ -47,21 +47,21 @@ export default function NewsletterSection() {
           </Button>
         </div>
 
-        <p className="text-white mt-4 font-bold">
+        <p className="text-[#FFFFFF] mt-4 font-bold">
           Không quảng cáo, Không thử nghiệm, Không cam kết
         </p>
 
         <div className="flex flex-col lg:flex-row justify-center gap-12 mt-12 text-center items-center lg:items-stretch h-full">
           <div>
-            <div className="text-white text-5xl font-bold">100+</div>
-            <div className="text-white font-semibold text-xl my-2">Được đào tạo thành công</div>
-            <div className="text-base text-white">Học viên hoàn thành</div>
+            <div className="text-[#FFFFFF] text-5xl font-bold">100+</div>
+            <div className="text-[#FFFFFF] font-semibold text-xl my-2">Được đào tạo thành công</div>
+            <div className="text-base text-[#FFFFFF]">Học viên hoàn thành</div>
           </div>
           <div className="h-[1px] w-2/3 lg:w-[1px] lg:self-stretch bg-white/32"></div>
-          <div className="text-white">
-            <div className="text-white text-5xl font-bold">60K+</div>
-            <div className="text-white font-semibold text-xl my-2">Học viên được ứng nhận</div>
-            <div className="text-white text-base ">Khóa học online</div>
+          <div className="text-[#FFFFFF]">
+            <div className="text-[#FFFFFF] text-5xl font-bold">60K+</div>
+            <div className="text-[#FFFFFF] font-semibold text-xl my-2">Học viên được ứng nhận</div>
+            <div className="text-[#FFFFFF] text-base ">Khóa học online</div>
           </div>
         </div>
       </div>

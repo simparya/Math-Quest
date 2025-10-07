@@ -130,7 +130,7 @@ export const FaqModal = ({ isOpen, onClose, initData }: FaqModalProps) => {
               >
                 Hủy
               </Button>
-              <Button type="submit" className="text-white">
+              <Button type="submit" className="text-[#FFFFFF]">
                 {initData?.id ? "Chỉnh sửa" : "Thêm FAQ"}
               </Button>
             </DialogFooter>

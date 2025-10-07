@@ -114,12 +114,12 @@ export const CreateQuizModal = ({
   const settingsForm = useForm<SettingsFormData>({
     resolver: zodResolver(settingsSchema),
     defaultValues: {
-      duration: undefined,
+      duration: 60,
       durationUnit: "second",
       isViewTimeLimit: false,
       feedbackMode: "default",
-      passingScore: undefined,
-      maxAttempts: undefined,
+      passingScore: 50,
+      maxAttempts: 10,
       autoStart: false,
       showQuestionCount: false,
       questionLayout: "random",
@@ -145,12 +145,12 @@ export const CreateQuizModal = ({
     } else {
       form.reset();
       settingsForm.reset({
-        duration: undefined,
+        duration: 60,
         durationUnit: "second",
         isViewTimeLimit: false,
         feedbackMode: "default",
-        passingScore: undefined,
-        maxAttempts: undefined,
+        passingScore: 50,
+        maxAttempts: 10,
         autoStart: false,
         showQuestionCount: false,
         questionLayout: "random",

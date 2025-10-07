@@ -10,10 +10,16 @@ import { Send2 } from "iconsax-react";
 import { Textarea } from "@/components/ui/textarea";
 import { useEffect, useRef, useState } from "react";
 import { useSendMessageChatbot } from "@/hooks/queries/chatbot/useChatbot";
-import MathDisplay from "@/hooks/queries/chatbot/MathDisplay";
 import _ from "lodash";
-
+import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import remarkGfm from "remark-gfm";
+import "katex/dist/katex.min.css";
 // Drop-in component
+
+const remarkPlugins = [remarkMath, remarkGfm];
+const rehypePlugins = [[rehypeKatex, { strict: false }]] as any;
 // Usage: <AIHelperModal /> anywhere in your app
 export default function AIHelperModal({
   open,
@@ -86,16 +92,56 @@ export default function AIHelperModal({
     );
     setValue("");
   }
+
+  useEffect(() => {
+    if (messageContainerRef.current) {
+      messageContainerRef.current.scrollTo({
+        top: messageContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  }, [listMessage]);
+
   const renderMessage = (message: any) => {
-    console.log("message---", message);
     if (_.isString(message)) {
       return message;
     }
+    const valueMessage: any = {};
+    try {
+      const data = JSON.parse(message.answer);
+      console.log("JSON.parse data", data);
+      valueMessage["answer"] = data?.answer;
+    } catch (error) {
+      console.log("error--", error);
+      valueMessage["answer"] = message?.answer;
+    }
+
+    console.log("value---", valueMessage);
+
     return (
       <>
-        <MathDisplay latexString={message?.answer} />
-        <MathDisplay latexString={message?.solution} />
-        <MathDisplay latexString={message?.suggestion} />
+        <ReactMarkdown
+          remarkPlugins={remarkPlugins}
+          rehypePlugins={rehypePlugins}
+        >
+          {valueMessage?.answer}
+        </ReactMarkdown>
+        {message?.solution && (
+          <ReactMarkdown
+            remarkPlugins={remarkPlugins}
+            rehypePlugins={rehypePlugins}
+          >
+            {message?.solution}
+          </ReactMarkdown>
+        )}
+        {message?.suggestion && (
+          <ReactMarkdown
+            remarkPlugins={remarkPlugins}
+            rehypePlugins={rehypePlugins}
+          >
+            {message?.suggestion}
+          </ReactMarkdown>
+        )}
       </>
     );
   };
@@ -145,7 +191,7 @@ export default function AIHelperModal({
                 <div
                   className={`${
                     item.isMe
-                      ? "bg-primary-main text-white"
+                      ? "bg-primary-main text-[#FFFFFF]"
                       : "bg-[#F3F4F6] text-black"
                   } max-w-[70%] p-3 rounded-xl whitespace-pre-wrap break-words`}
                 >
