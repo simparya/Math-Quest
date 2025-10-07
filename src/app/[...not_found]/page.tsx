@@ -22,7 +22,7 @@ export default function Custom404() {
         <Image src="/images/404.png" alt="404" width={400} height={400} />
         <Button onClick={handleGoBack} className="">
           <ArrowLeft size={20} color="white" />
-          <span className="text-sm font-semibold text-white">Về trang chủ</span>
+          <span className="text-sm font-semibold text-[#FFFFFF]">Về trang chủ</span>
         </Button>
       </div>
     </div>

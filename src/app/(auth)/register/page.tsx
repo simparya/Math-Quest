@@ -249,7 +249,7 @@ function RegisterPage() {
               <Button
                 type="submit"
                 disabled={isPending || isPendingGoogle}
-                className="font-semibold text-white bg-[#2F57EF] hover:bg-[#254bdc] disabled:bg-gray-400 disabled:cursor-not-allowed rounded-xl w-full h-11 sm:h-12 text-sm sm:text-base transition-colors mt-6"
+                className="font-semibold text-[#FFFFFF] bg-[#2F57EF] hover:bg-[#254bdc] disabled:bg-gray-400 disabled:cursor-not-allowed rounded-xl w-full h-11 sm:h-12 text-sm sm:text-base transition-colors mt-6"
               >
                 {isPending ? (
                   <>

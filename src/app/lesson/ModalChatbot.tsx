@@ -93,23 +93,30 @@ export default function AIHelperModal({
     setValue("");
   }
 
+  useEffect(() => {
+    if (messageContainerRef.current) {
+      messageContainerRef.current.scrollTo({
+        top: messageContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  }, [listMessage]);
+
   const renderMessage = (message: any) => {
-    console.log("message---", message);
-    console.log("message?.answer---", message?.answer);
     if (_.isString(message)) {
       return message;
     }
-    const value: any = {};
+    const valueMessage: any = {};
     try {
       const data = JSON.parse(message.answer);
       console.log("JSON.parse data", data);
-      value["answer"] = data?.answer;
+      valueMessage["answer"] = data?.answer;
     } catch (error) {
       console.log("error--", error);
-      value["answer"] = message?.answer;
+      valueMessage["answer"] = message?.answer;
     }
 
-    console.log("value---", value);
+    console.log("value---", valueMessage);
 
     return (
       <>
@@ -117,20 +124,24 @@ export default function AIHelperModal({
           remarkPlugins={remarkPlugins}
           rehypePlugins={rehypePlugins}
         >
-          {value?.answer}
+          {valueMessage?.answer}
         </ReactMarkdown>
-        <ReactMarkdown
-          remarkPlugins={remarkPlugins}
-          rehypePlugins={rehypePlugins}
-        >
-          {message?.solution}
-        </ReactMarkdown>
-        <ReactMarkdown
-          remarkPlugins={remarkPlugins}
-          rehypePlugins={rehypePlugins}
-        >
-          {message?.suggestion}
-        </ReactMarkdown>
+        {message?.solution && (
+          <ReactMarkdown
+            remarkPlugins={remarkPlugins}
+            rehypePlugins={rehypePlugins}
+          >
+            {message?.solution}
+          </ReactMarkdown>
+        )}
+        {message?.suggestion && (
+          <ReactMarkdown
+            remarkPlugins={remarkPlugins}
+            rehypePlugins={rehypePlugins}
+          >
+            {message?.suggestion}
+          </ReactMarkdown>
+        )}
       </>
     );
   };
@@ -180,7 +191,7 @@ export default function AIHelperModal({
                 <div
                   className={`${
                     item.isMe
-                      ? "bg-primary-main text-white"
+                      ? "bg-primary-main text-[#FFFFFF]"
                       : "bg-[#F3F4F6] text-black"
                   } max-w-[70%] p-3 rounded-xl whitespace-pre-wrap break-words`}
                 >

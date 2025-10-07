@@ -253,8 +253,8 @@ function CreateCourse() {
                   <div
                     className={`flex items-center justify-center w-8 h-8 flex-shrink-0 rounded-full border-2 ${
                       currentStep >= step.id
-                        ? "bg-blue-600 border-blue-600 text-white"
-                        : "border-gray-400 bg-gray-400 text-white"
+                        ? "bg-blue-600 border-blue-600 text-[#FFFFFF]"
+                        : "border-gray-400 bg-gray-400 text-[#FFFFFF]"
                     }`}
                   >
                     {currentStep > step.id ? (

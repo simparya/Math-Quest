@@ -7,7 +7,7 @@ import { Information } from "@/config/information";
 function Footer() {
   return (
     <footer className="footer bg-white border-[1px] border-[#919EAB3D]">
-      <div className="md:max-w-3xl max-w-sm lg:max-w-5xl xl:max-w-7xl mx-auto pt-16 pb-8 px-6 text-white">
+      <div className="md:max-w-3xl max-w-sm lg:max-w-5xl xl:max-w-7xl mx-auto pt-16 pb-8 px-6 text-[#FFFFFF]">
         <div className="grid lg:grid-cols-6 gap-2 grid-cols-1 md:grid-cols-3 gap-y-6">
           <div className="col-span-1 md:col-span-3 lg:max-w-2/3">
             <Image

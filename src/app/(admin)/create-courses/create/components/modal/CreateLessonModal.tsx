@@ -347,19 +347,23 @@ export const CreateLessonModal = ({
                           </Button>
                         </div>
                       )}
-                      <input
-                        type="file"
-                        accept="image/*"
-                        ref={thumbnailInputRef}
-                        onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          if (file) {
-                            handleUploadFile(file, field);
-                          }
-                        }}
-                        className="hidden"
-                        id="thumbnail-upload"
-                      />
+                      {uploadFile.isPending ? (
+                        <div>Loading...</div>
+                      ) : (
+                        <input
+                          type="file"
+                          accept="image/*"
+                          ref={thumbnailInputRef}
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              handleUploadFile(file, field);
+                            }
+                          }}
+                          className="hidden"
+                          id="thumbnail-upload"
+                        />
+                      )}
                     </div>
                   </FormControl>
                   <p className="text-xs text-gray-500">
@@ -546,7 +550,8 @@ export const CreateLessonModal = ({
               <Button
                 type="submit"
                 size="sm"
-                className="bg-blue-600 hover:bg-blue-700 text-white"
+                disabled={uploadFile.isPending}
+                className="bg-blue-600 hover:bg-blue-700 text-[#FFFFFF]"
               >
                 Thêm chủ đề
               </Button>

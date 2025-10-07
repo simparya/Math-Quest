@@ -187,25 +187,25 @@ export default function CourseBuilderSection() {
                   >
                     <Edit size={16} color="#637381" />
                   </Button>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    title={
-                      chapter?.status === "PUBLISHED" ? "Archive" : "Pulished"
-                    }
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handlePublishModule(chapter);
-                    }}
-                    size="icon"
-                    className="h-8 w-8"
-                  >
-                    {chapter?.status === "PUBLISHED" ? (
-                      <Import size={16} color="#637381" className="h-4 w-4" />
-                    ) : (
-                      <Upload size={16} color="#637381" className="h-4 w-4" />
-                    )}{" "}
-                  </Button>
+                  {/*<Button*/}
+                  {/*  type="button"*/}
+                  {/*  variant="ghost"*/}
+                  {/*  title={*/}
+                  {/*    chapter?.status === "PUBLISHED" ? "Archive" : "Pulished"*/}
+                  {/*  }*/}
+                  {/*  onClick={(e) => {*/}
+                  {/*    e.stopPropagation();*/}
+                  {/*    handlePublishModule(chapter);*/}
+                  {/*  }}*/}
+                  {/*  size="icon"*/}
+                  {/*  className="h-8 w-8"*/}
+                  {/*>*/}
+                  {/*  {chapter?.status === "PUBLISHED" ? (*/}
+                  {/*    <Import size={16} color="#637381" className="h-4 w-4" />*/}
+                  {/*  ) : (*/}
+                  {/*    <Upload size={16} color="#637381" className="h-4 w-4" />*/}
+                  {/*  )}{" "}*/}
+                  {/*</Button>*/}
                   <ChevronDown
                     className={`w-4 h-4 text-gray-600 transition-transform duration-200 ${
                       chapter.isExpanded ? "rotate-180" : ""

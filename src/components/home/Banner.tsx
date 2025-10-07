@@ -50,7 +50,7 @@ export function Banner() {
                 onClick={handleNavigateToLogin}
                 style={{ padding: "11px 22px" }}
                 variant="default"
-                className="bg-primary-main h-12 w-fit shadow-md hover:shadow-xl font-bold hover:shadow-primary-main/20 transition-shadow duration-300 text-white px-4 py-1.5 rounded-[10px]"
+                className="bg-primary-main h-12 w-fit shadow-md hover:shadow-xl font-bold hover:shadow-primary-main/20 transition-shadow duration-300 text-[#FFFFFF] px-4 py-1.5 rounded-[10px]"
               >
                 Tham gia miễn phí <ArrowRight size="16" color="white" />
               </Button>

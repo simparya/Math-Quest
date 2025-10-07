@@ -60,7 +60,7 @@ const LessonSidebar: React.FC<LessonSidebarProps> = ({
     <div className="w-[350px] bg-white border-r border-gray-200 overflow-y-auto">
       <div className="p-4">
         <div className="flex gap-4 justify-between items-center mb-4">
-          <div role="presentation" onClick={() => router.back()} className="bg-primary-main w-max flex items-center gap-2 px-4 py-2 rounded-full cursor-pointer hover:bg-primary-light transition-colors duration-300 text-white font-semibold text-sm">
+          <div role="presentation" onClick={() => router.back()} className="bg-primary-main w-max flex items-center gap-2 px-4 py-2 rounded-full cursor-pointer hover:bg-primary-light transition-colors duration-300 text-[#FFFFFF] font-semibold text-sm">
             <ArrowLeft2 size="20" color="#FFFFFF"/>
             Thoát
           </div>
@@ -160,7 +160,7 @@ const LessonSidebar: React.FC<LessonSidebarProps> = ({
                           >
                             {lesson?.isCompleted && (
                               <svg
-                                className="w-3 h-3 text-white"
+                                className="w-3 h-3 text-[#FFFFFF]"
                                 fill="white"
                                 viewBox="0 0 20 20"
                               >

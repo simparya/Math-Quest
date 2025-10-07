@@ -288,31 +288,31 @@ export default function CourseDetailPage() {
             {/* Tabs */}
             <div className="sm:sticky top-[64px] lg:top-[72px] z-40 flex flex-wrap gap-2 mb-8 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 py-4">
               <button
-                className={`px-8 py-3 font-medium rounded-full ${activeTab === "overview" ? "bg-[#2F57EF] text-white" : "bg-[#F4F6F8] text-gray-500 hover:bg-gray-200"}`}
+                className={`px-8 py-3 font-medium rounded-full ${activeTab === "overview" ? "bg-[#2F57EF] text-[#FFFFFF]" : "bg-[#F4F6F8] text-gray-500 hover:bg-gray-200"}`}
                 onClick={() => scrollToSection("overview")}
               >
                 Tổng quan
               </button>
               <button
-                className={`px-8 py-3 font-medium rounded-full ${activeTab === "content" ? "bg-[#2F57EF] text-white" : "bg-[#F4F6F8] text-gray-500 hover:bg-gray-200"}`}
+                className={`px-8 py-3 font-medium rounded-full ${activeTab === "content" ? "bg-[#2F57EF] text-[#FFFFFF]" : "bg-[#F4F6F8] text-gray-500 hover:bg-gray-200"}`}
                 onClick={() => scrollToSection("content")}
               >
                 Nội dung
               </button>
               <button
-                className={`px-8 py-3 font-medium rounded-full ${activeTab === "details" ? "bg-[#2F57EF] text-white" : "bg-[#F4F6F8] text-gray-500 hover:bg-gray-200"}`}
+                className={`px-8 py-3 font-medium rounded-full ${activeTab === "details" ? "bg-[#2F57EF] text-[#FFFFFF]" : "bg-[#F4F6F8] text-gray-500 hover:bg-gray-200"}`}
                 onClick={() => scrollToSection("details")}
               >
                 Chi tiết
               </button>
               <button
-                className={`px-8 py-3 font-medium rounded-full ${activeTab === "instructor" ? "bg-[#2F57EF] text-white" : "bg-[#F4F6F8] text-gray-500 hover:bg-gray-200"}`}
+                className={`px-8 py-3 font-medium rounded-full ${activeTab === "instructor" ? "bg-[#2F57EF] text-[#FFFFFF]" : "bg-[#F4F6F8] text-gray-500 hover:bg-gray-200"}`}
                 onClick={() => scrollToSection("instructor")}
               >
                 Người hướng dẫn
               </button>
               <button
-                className={`px-8 py-3 font-medium rounded-full ${activeTab === "reviews" ? "bg-[#2F57EF] text-white" : "bg-[#F4F6F8] text-gray-500 hover:bg-gray-200"}`}
+                className={`px-8 py-3 font-medium rounded-full ${activeTab === "reviews" ? "bg-[#2F57EF] text-[#FFFFFF]" : "bg-[#F4F6F8] text-gray-500 hover:bg-gray-200"}`}
                 onClick={() => scrollToSection("reviews")}
               >
                 Đánh giá

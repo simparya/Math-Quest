@@ -57,7 +57,7 @@ export const questionSchema = z
     description: z.string().optional(),
     options: z.array(answerSchema).optional(),
     correctExplanation: z.string().optional(),
-    answer: z.string().optional(),
+    answer: z.any(),
     incorrectHint: z.string().optional(),
   })
   .superRefine((data, ctx) => {
@@ -137,7 +137,10 @@ export default function QuizQuestionModal({
 
   useEffect(() => {
     if (defaultValues) {
-      form.reset(defaultValues)
+      form.reset({
+        ...defaultValues,
+        point: defaultValues.point?.toString(),
+      })
     } else {
       form.reset({
         content: "",
@@ -454,7 +457,7 @@ export default function QuizQuestionModal({
                 </Button>
                 <Button
                   type="submit"
-                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                  className="bg-blue-600 hover:bg-blue-700 text-[#FFFFFF]"
                 >
                   Lưu & Tiếp tục
                 </Button>

@@ -112,7 +112,7 @@ export default function DashboardLayout({
                 className="rounded-full border-4 border-white h-[120px] w-[120px]"
               />
               <div className="flex flex-col items-start">
-                <h1 className="text-2xl font-bold mt-4 text-white">
+                <h1 className="text-2xl font-bold mt-4 text-[#FFFFFF]">
                   {user?.fullName}
                 </h1>
                 {isTeacher ? (
@@ -121,10 +121,10 @@ export default function DashboardLayout({
                       (learnerProfileData as InstructorProfile)?.data
                         ?.ratingAverage,
                     )}
-                    <div className="flex items-center gap-2 text-white">
-                      <div className="flex items-center mt-2 gap-2 text-white">
+                    <div className="flex items-center gap-2 text-[#FFFFFF]">
+                      <div className="flex items-center mt-2 gap-2 text-[#FFFFFF]">
                         <IconBookWhite />
-                        <span className="text-sm text-white">
+                        <span className="text-sm text-[#FFFFFF]">
                           {
                             (learnerProfileData as InstructorProfile)?.data
                               ?.totalCourses
@@ -132,9 +132,9 @@ export default function DashboardLayout({
                           Khóa học
                         </span>
                       </div>
-                      <div className="flex items-center mt-2 gap-2 text-white">
+                      <div className="flex items-center mt-2 gap-2 text-[#FFFFFF]">
                         <Profile2User size={20} color="white" />
-                        <span className="text-sm text-white">
+                        <span className="text-sm text-[#FFFFFF]">
                           {
                             (learnerProfileData as InstructorProfile)?.data
                               ?.totalStudents
@@ -145,9 +145,9 @@ export default function DashboardLayout({
                     </div>
                   </>
                 ) : (
-                  <div className="flex items-center mt-2 gap-2 text-white">
+                  <div className="flex items-center mt-2 gap-2 text-[#FFFFFF]">
                     <IconBookWhite />
-                    <span className="text-sm text-white">
+                    <span className="text-sm text-[#FFFFFF]">
                       {isTeacher
                         ? (learnerProfileData as InstructorProfile)?.data
                             ?.totalCourses
@@ -160,8 +160,8 @@ export default function DashboardLayout({
               </div>
             </div>
             {isTeacher && (
-              <Button className="text-white">
-                <Link href="/create-courses" className="text-white">Tạo khoá học mới</Link>
+              <Button className="text-[#FFFFFF]">
+                <Link href="/create-courses" className="text-[#FFFFFF]">Tạo khoá học mới</Link>
               </Button>
             )}
           </div>

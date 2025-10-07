@@ -39,19 +39,20 @@ interface Step1FormProps {
 export default function Step1Form({ onNext, initialData }: Step1FormProps) {
   const { data: categories } = useCategory();
 
-  console.log("categories---", categories);
-
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Memoize defaultValues để tránh tạo object mới mỗi lần render
-  const defaultValues: any = useMemo(() => ({
-    title: initialData?.title || "",
-    categoryId: initialData?.categoryId || "",
-    slug: initialData?.slug || "",
-    shortDescription: initialData?.shortDescription || "",
-    thumbnail: initialData?.thumbnail || "",
-    overview: initialData?.overview || [],
-  }), [initialData]);
+  const defaultValues: any = useMemo(
+    () => ({
+      title: initialData?.title || "",
+      categoryId: initialData?.categoryId || "",
+      slug: initialData?.slug || "",
+      shortDescription: initialData?.shortDescription || "",
+      thumbnail: initialData?.thumbnail || "",
+      overview: initialData?.overview || [],
+    }),
+    [initialData],
+  );
 
   const form = useForm<Step1FormData>({
     resolver: zodResolver(step1Schema),
@@ -63,7 +64,7 @@ export default function Step1Form({ onNext, initialData }: Step1FormProps) {
     if (!initialData) return;
 
     const currentValues: any = form.getValues();
-    const needsUpdate = Object.keys(defaultValues).some(key => {
+    const needsUpdate = Object.keys(defaultValues).some((key) => {
       return currentValues[key] !== defaultValues[key];
     });
 
@@ -294,19 +295,23 @@ export default function Step1Form({ onNext, initialData }: Step1FormProps) {
                         </Button>
                       </div>
                     )}
-                    <input
-                      type="file"
-                      accept="image/*"
-                      ref={inputRef}
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        if (file) {
-                          handleUploadFile(file, field);
-                        }
-                      }}
-                      className="hidden"
-                      id="thumbnail-upload"
-                    />
+                    {uploadFile.isPending ? (
+                      <div>Loading...</div>
+                    ) : (
+                      <input
+                        type="file"
+                        accept="image/*"
+                        ref={inputRef}
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            handleUploadFile(file, field);
+                          }
+                        }}
+                        className="hidden"
+                        id="thumbnail-upload"
+                      />
+                    )}
                   </div>
                 </FormControl>
                 <p className="text-xs text-gray-500">
@@ -331,7 +336,8 @@ export default function Step1Form({ onNext, initialData }: Step1FormProps) {
             </Button>
             <Button
               type="submit"
-              className="px-8 bg-[#212B36] hover:bg-blue-700 text-white"
+              disabled={uploadFile.isPending}
+              className="px-8 bg-[#212B36] hover:bg-blue-700 text-[#FFFFFF]"
             >
               Tiếp tục
             </Button>

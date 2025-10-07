@@ -560,11 +560,15 @@ export default function ContentTab(props: ContentTabProps) {
     }
   };
 
+  if (dataLesson?.type === "QUIZ") {
+    return null
+  }
+
   return (
     <div className="p-4 md:p-6 bg-white">
-      <Tabs defaultValue="overview" className="w-full">
+      <Tabs defaultValue="notes" className="w-full">
         <TabsList className="mb-2">
-          <TabsTrigger value="overview">Tổng quan</TabsTrigger>
+          {/*<TabsTrigger value="overview">Tổng quan</TabsTrigger>*/}
           {dataLesson?.type === "VIDEO" && (
             <TabsTrigger value="notes">Ghi chú</TabsTrigger>
           )}
@@ -572,15 +576,15 @@ export default function ContentTab(props: ContentTabProps) {
             <TabsTrigger value="download">Tải xuống</TabsTrigger>
           )}
         </TabsList>
-        <TabsContent
-          value="overview"
-          className="mt-4 md:mt-6 text-sm md:text-base"
-        >
-          <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">
-            {courseTitle}
-          </h2>
-          {renderContentTab("overview")}
-        </TabsContent>
+        {/*<TabsContent*/}
+        {/*  value="overview"*/}
+        {/*  className="mt-4 md:mt-6 text-sm md:text-base"*/}
+        {/*>*/}
+        {/*  <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">*/}
+        {/*    {courseTitle}*/}
+        {/*  </h2>*/}
+        {/*  {renderContentTab("overview")}*/}
+        {/*</TabsContent>*/}
         <TabsContent
           value="notes"
           className="mt-4 md:mt-6 text-sm md:text-base"
