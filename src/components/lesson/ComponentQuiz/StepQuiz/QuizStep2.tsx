@@ -657,7 +657,9 @@ export default function QuizStep2({
                 {question.type === "SHORT_ANSWER" && (
                   <div className="mt-2">
                     <textarea
-                      className="w-full min-h-[48px] rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-base text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-400 resize-none"
+                      className={`
+                      w-full min-h-[48px] rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-base text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-400 resize-none
+                      ${quizState === "submitted" ? (answers[idx].isCorrect ? "border-green-500" : "border-red-500") : ""}`}
                       placeholder="Nhập câu trả lời"
                       value={answers[idx].text}
                       disabled={
@@ -679,9 +681,17 @@ export default function QuizStep2({
                 {(quizState === "submitted" || quizState === "history") && (
                   <div className="mt-2 flex items-start gap-2 text-sm">
                     {answers[idx].isCorrect === true ? (
-                      <TickCircle size={18} color="green" className="mt-0.5 text-green-500" />
+                      <TickCircle
+                        size={18}
+                        color="green"
+                        className="mt-0.5 text-green-500"
+                      />
                     ) : answers[idx].isCorrect === false ? (
-                      <CloseCircle size={18} color="red" className="mt-0.5 text-red-500" />
+                      <CloseCircle
+                        size={18}
+                        color="red"
+                        className="mt-0.5 text-red-500"
+                      />
                     ) : (
                       <div className="w-4 h-4 mt-0.5 rounded-full border-2 border-gray-400 bg-gray-100"></div>
                     )}
@@ -738,7 +748,7 @@ export default function QuizStep2({
             <div className="flex justify-end mt-10">
               <button
                 onClick={handleSubmit}
-                disabled={!canSubmit}
+                disabled={!canSubmit || submitQuiz.isPending}
                 className="flex items-center gap-2 px-8 py-3 rounded-lg bg-gray-900 text-white font-semibold shadow hover:bg-gray-800 transition disabled:opacity-60"
               >
                 Nộp bài
