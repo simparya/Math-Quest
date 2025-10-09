@@ -162,7 +162,7 @@ export default function AIHelperModal({
             <DialogTitle className="text-base text-left py-6 border-b-[1px] border-[#919EAB3D]">
               Trợ lý AI
             </DialogTitle>
-            <DialogDescription className="mt-4">
+            <DialogDescription className="mt-4 hidden lg:block">
               <div className="text-left font-bold">
                 Bạn có thắc mắc gì về khóa học này không?
               </div>
@@ -178,8 +178,16 @@ export default function AIHelperModal({
         {/* Suggested questions */}
         <div
           ref={messageContainerRef}
-          className="px-5 py-4 space-y-3 h-[60vh] overflow-y-auto"
+          className="px-5 py-4 space-y-3 h-[30vh] lg:h-[60vh] overflow-y-auto"
         >
+          <DialogDescription className="mt-4 block lg:hidden">
+            <div className="text-left font-bold">
+              Bạn có thắc mắc gì về khóa học này không?
+            </div>
+            <div className="text-left text-sm text-primary-main">
+              Trợ lý AI của chúng tôi có thể mách lối.
+            </div>
+          </DialogDescription>
           {listMessage.map((item: any, index: number) => (
             <div key={index}>
               <div
