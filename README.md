@@ -6,7 +6,7 @@ First, run the development server:1
 
 ```bash
 npm run dev1
-# or
+# ora
 yarn dev
 # orq
 pnpm dev1
