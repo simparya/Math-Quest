@@ -5,7 +5,7 @@ build214
 First, run the development server:1
 
 ```bash
-npm run dev1
+npm run dev1a
 # ora
 yarn dev
 # orq
