@@ -178,7 +178,7 @@ export default function AIHelperModal({
         {/* Suggested questions */}
         <div
           ref={messageContainerRef}
-          className="px-5 py-4 space-y-3 h-[60vh] overflow-y-auto"
+          className="px-5 py-4 space-y-3 h-[20vh] lg:h-[60vh] overflow-y-auto"
         >
           {listMessage.map((item: any, index: number) => (
             <div key={index}>
