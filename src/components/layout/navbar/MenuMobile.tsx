@@ -3,11 +3,12 @@
 import {
   Drawer,
   DrawerContent,
-  DrawerFooter, DrawerTitle,
+  DrawerFooter,
+  DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { ArrowLeft2, ArrowRight2, HambergerMenu } from "iconsax-react";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Routes } from "@/lib/routes/routes";
@@ -140,7 +141,17 @@ export const MenuMobile = () => {
       label: "Cài đặt",
       // href: Routes.course,
       onClick: () => {
-        // handleRoute(Routes.course);
+        handleRoute("/dashboard/settings");
+      },
+    },
+  ];
+
+  const listMenuNotLogin = [
+    {
+      label: "Tổng quan",
+      href: Routes.home,
+      onClick: () => {
+        handleRoute(Routes.home);
       },
     },
   ];
@@ -160,10 +171,8 @@ export const MenuMobile = () => {
           color="#637381"
         />
       </DrawerTrigger>
-      <DrawerContent  className="w-[300px] bg-white justify-between">
-        <DrawerTitle className="sr-only">
-          menu
-        </DrawerTitle>
+      <DrawerContent className="w-[300px] bg-white justify-between">
+        <DrawerTitle className="sr-only">menu</DrawerTitle>
         <div className="cursor-pointer p-4 w-full">
           <Image
             src="/images/logo.png"
@@ -208,7 +217,8 @@ export const MenuMobile = () => {
             {isAuthenticated && (
               <Button
                 onClick={navigateToProfile}
-                className="bg-[#919EAB]/8 h-[60px] px-2.5 gap-3 w-full justify-between items-center rounded-[10px]">
+                className="bg-[#919EAB]/8 h-[60px] px-2.5 gap-3 w-full justify-between items-center rounded-[10px]"
+              >
                 <Image
                   src={"/images/banner-sign-in.png"} // Đường dẫn đến avatar
                   alt="Avatar"
@@ -230,19 +240,21 @@ export const MenuMobile = () => {
               </Button>
             )}
             <div className="mt-6 flex flex-col gap-2">
-              {listMenu.map((item, index) => (
-                <Button
-                  key={index}
-                  className={clsx(
-                    "bg-transparent px-3 h-11 w-full justify-start rounded-[10px] shadow-none text-sm font-medium text-secondary",
-                    pathname === item.href &&
-                      "text-primary-main bg-primary-main/8",
-                  )}
-                  onClick={item.onClick}
-                >
-                  {item.label}
-                </Button>
-              ))}
+              {(isAuthenticated ? listMenu : listMenuNotLogin).map(
+                (item, index) => (
+                  <Button
+                    key={index}
+                    className={clsx(
+                      "bg-transparent px-3 h-11 w-full justify-start rounded-[10px] shadow-none text-sm font-medium text-secondary",
+                      pathname === item.href &&
+                        "text-primary-main bg-primary-main/8",
+                    )}
+                    onClick={item.onClick}
+                  >
+                    {item.label}
+                  </Button>
+                ),
+              )}
             </div>
           </div>
         )}
