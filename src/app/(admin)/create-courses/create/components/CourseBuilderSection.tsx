@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Add, Edit, HambergerMenu, Trash } from "iconsax-react";
+import { Add, Edit, HambergerMenu } from "iconsax-react";
 import { ChevronDown, Import, Upload } from "lucide-react";
 import { useEffect, useState } from "react";
 import AddChapterModal from "./modal/AddChapterModal";
@@ -273,18 +273,6 @@ export default function CourseBuilderSection() {
                                 className="h-4 w-4"
                               />
                             )}
-                          </Button>
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8 text-red-600 hover:text-red-700"
-                          >
-                            <Trash
-                              size={16}
-                              color="#637381"
-                              className="h-4 w-4"
-                            />
                           </Button>
                         </div>
                       </div>
