@@ -50,6 +50,7 @@ export interface Course {
   difficulty: string;
   label?: string;
   totalLesson: number;
+  totalLessons?: number;
   owner: {
     id: string;
     email: string;
