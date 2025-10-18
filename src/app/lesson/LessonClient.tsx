@@ -1,25 +1,24 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import VideoPlayer from "@/components/ui/video-player";
+import AIHelperModal from "@/app/lesson/ModalChatbot";
 import LessonSidebar from "@/components/courses/lesson-sidebar";
-import { ArrowLeft2, ArrowRight2 } from "iconsax-react";
-import IconToggleSidebar from "../../../public/icons/lessson/IconToggleSidebar";
-import IconToggleSidebarActive from "../../../public/icons/lessson/IconToggleSidebarActive";
-import DocumentLesson from "@/components/lesson/DocumentLesson";
-import QuizLesson from "@/components/lesson/QuizLesson";
-import ExerciseLesson from "@/components/lesson/ExerciseLesson";
-import { useQuizStore } from "@/store/slices/lesson.slice";
 import ContentTab from "@/components/lesson/ContentTab";
+import DocumentLesson from "@/components/lesson/DocumentLesson";
+import ExerciseLesson from "@/components/lesson/ExerciseLesson";
+import QuizLesson from "@/components/lesson/QuizLesson";
 import StudyCode, { defaultJavaExercise } from "@/components/lesson/StudyCode";
-import { useSearchParams } from "next/navigation";
+import VideoPlayer from "@/components/ui/video-player";
 import {
   useCourseBySlug,
   useModuleForUser,
 } from "@/hooks/queries/course/useCourses";
 import { useGetLessonById } from "@/hooks/queries/course/useLessonCourse";
+import { useQuizStore } from "@/store/slices/lesson.slice";
 import Image from "next/image";
-import AIHelperModal from "@/app/lesson/ModalChatbot";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import IconToggleSidebar from "../../../public/icons/lessson/IconToggleSidebar";
+import IconToggleSidebarActive from "../../../public/icons/lessson/IconToggleSidebarActive";
 
 // Interface compatible with LessonSidebar
 interface SidebarLesson {
@@ -74,6 +73,7 @@ export function LessonClient() {
     null,
   );
   const [isAIHelperOpen, setIsAIHelperOpen] = useState(false);
+  const [showChatbotTooltip, setShowChatbotTooltip] = useState(false);
 
   // Map lesson type from BE to frontend
   const mapLessonType = (type: string) => {
@@ -213,6 +213,21 @@ export function LessonClient() {
     };
   }, []);
 
+  // Show chatbot tooltip on page load
+  useEffect(() => {
+    // Delay showing tooltip to ensure page is fully loaded
+    const timer = setTimeout(() => {
+      setShowChatbotTooltip(true);
+    }, 2000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Hide tooltip
+  const hideChatbotTooltip = () => {
+    setShowChatbotTooltip(false);
+  };
+
   const toggleSection = (sectionId: string) => {
     setSections(
       sections.map((section) =>
@@ -296,17 +311,62 @@ export function LessonClient() {
 
   return (
     <div className="flex relative">
-      <div
-        className="fixed bottom-10 right-20 z-50"
-        onClick={() => setIsAIHelperOpen(true)}
-      >
-        <Image
-          src="/chatbot.svg"
-          alt="Logo"
-          className="m-2"
-          width={88}
-          height={88}
-        />
+      {/* Chatbot Icon with Tooltip */}
+      <div className="fixed bottom-10 right-20 z-50">
+        <div
+          className="relative cursor-pointer"
+          onClick={() => {
+            setIsAIHelperOpen(true);
+            hideChatbotTooltip();
+          }}
+        >
+          <Image
+            src="/chatbot.svg"
+            alt="AI Assistant"
+            className="m-2 hover:scale-105 transition-transform duration-200"
+            width={88}
+            height={88}
+          />
+          
+          {/* Tooltip */}
+          {showChatbotTooltip && (
+            <div className="absolute bottom-full right-0 mb-3 w-72 p-4 bg-white rounded-xl shadow-2xl border border-gray-200 animate-fade-in">
+              <div className="relative">
+                {/* Arrow pointing down to chatbot icon */}
+                <div className="absolute top-full right-12 w-0 h-0 border-l-6 border-r-6 border-t-6 border-transparent border-t-white"></div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center">
+                      <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-bold text-gray-900 text-sm mb-2">
+                      🤖 AI Assistant
+                    </h4>
+                    <p className="text-xs text-gray-700 leading-relaxed mb-3">
+                      Hãy sử dụng AI Assistant để hỏi đáp về bài học, giải đáp thắc mắc và nhận hỗ trợ học tập!
+                    </p>
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      hideChatbotTooltip();
+                    }}
+                    className="flex-shrink-0 text-gray-400 hover:text-gray-600 transition-colors p-1 hover:bg-gray-100 rounded-full"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Left Sidebar - luôn hiện ở desktop, toggle ở mobile */}
