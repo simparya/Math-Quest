@@ -17,9 +17,6 @@ import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import "katex/dist/katex.min.css";
 // Drop-in component
-
-const remarkPlugins = [remarkMath, remarkGfm];
-const rehypePlugins = [[rehypeKatex, { strict: false }]] as any;
 // Usage: <AIHelperModal /> anywhere in your app
 export default function AIHelperModal({
   open,
@@ -121,23 +118,23 @@ export default function AIHelperModal({
     return (
       <>
         <ReactMarkdown
-          remarkPlugins={remarkPlugins}
-          rehypePlugins={rehypePlugins}
+          remarkPlugins={[remarkGfm, remarkMath]}
+          rehypePlugins={[rehypeKatex]}
         >
           {valueMessage?.answer}
         </ReactMarkdown>
         {message?.solution && (
           <ReactMarkdown
-            remarkPlugins={remarkPlugins}
-            rehypePlugins={rehypePlugins}
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeKatex]}
           >
             {message?.solution}
           </ReactMarkdown>
         )}
         {message?.suggestion && (
           <ReactMarkdown
-            remarkPlugins={remarkPlugins}
-            rehypePlugins={rehypePlugins}
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeKatex]}
           >
             {message?.suggestion}
           </ReactMarkdown>

@@ -7,6 +7,7 @@ import QueryProvider from "@/context/QueryBuilder";
 import { AuthProvider } from "@/context/AuthProvider";
 import { Toaster } from "react-hot-toast";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import 'katex/dist/katex.min.css'
 
 export const metadata: Metadata = {
   title: "E-learning",
