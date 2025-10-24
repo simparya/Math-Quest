@@ -75,7 +75,9 @@ function MyCoursePage() {
                         category={course.category.title}
                         courseName={course.title}
                         instructor={`Giảng viên: ${course?.owner.fullName}`}
-                        lessonCount={course.totalLesson}
+                        lessonCount={
+                          course?.totalLesson || course?.totalLessons || 0
+                        }
                         badge={course.label}
                         studentCount={course.enrollmentCnt}
                         currentPrice={
