@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import VideoPlayer from "@/components/ui/video-player";
 import LessonSidebar from "@/components/courses/lesson-sidebar";
-import { ArrowLeft2, ArrowRight2 } from "iconsax-react";
 import IconToggleSidebar from "../../../public/icons/lessson/IconToggleSidebar";
 import IconToggleSidebarActive from "../../../public/icons/lessson/IconToggleSidebarActive";
 import DocumentLesson from "@/components/lesson/DocumentLesson";
@@ -223,7 +222,6 @@ export function LessonClient() {
     );
   };
 
-
   const selectLesson = (lesson: SidebarLesson) => {
     // Find the extended lesson data
     const extendedLesson = lessonsData.find((l) => l.id === lesson.id);
@@ -267,12 +265,7 @@ export function LessonClient() {
   const renderLessonBody = (type: string) => {
     switch (type) {
       case "video":
-        return (
-          <VideoPlayer
-            src={initValue?.videoUrl || "/videos/lesson.mp4"}
-            poster="/images/lesson-thumbnail.jpg"
-          />
-        );
+        return <VideoPlayer src={initValue?.videoUrl} />;
       case "doc":
         return <DocumentLesson data={initValue} />;
       case "quiz":

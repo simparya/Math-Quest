@@ -16,8 +16,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
 import "katex/dist/katex.min.css";
-// Drop-in component
-// Usage: <AIHelperModal /> anywhere in your app
+
 export default function AIHelperModal({
   open,
   setOpen,
