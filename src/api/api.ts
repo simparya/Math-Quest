@@ -1,12 +1,13 @@
 // src/api/axios.ts
-import axios from "axios";
 import { useAuthStore } from "@/store/slices/auth.slice";
+import axios from "axios";
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
+  timeout: 90000, // 90 seconds
 });
 
 // Request interceptor

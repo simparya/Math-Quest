@@ -1,13 +1,13 @@
+import apiChatbot from "@/api/apiChatbot";
 import axios from "axios";
 import { NextResponse } from "next/server";
-import apiChatbot from "@/api/apiChatbot";
 
 const base = process.env.NEXT_PUBLIC_CHATBOT_API_URL!;
 export const chatbotAPI = {
   sendMessageSuggest: async (form: FormData) => {
     try {
       const res = await axios.post("/api/chatbot/suggest", form, {
-        timeout: 30000,
+        timeout: 90000,
       });
 
       return res.data.data;
@@ -22,7 +22,7 @@ export const chatbotAPI = {
   sendMessageBasic: async (formData: FormData) => {
     try {
       const res = await axios.post("/api/chatbot/basic", formData, {
-        timeout: 30000,
+        timeout: 90000,
       });
 
       return res.data.data;
@@ -54,6 +54,7 @@ export const chatbotAPI = {
   getChatDetail: async (chatId: string) => {
     const res = await fetch(`${base}/chats/${chatId}`, {
       method: "GET",
+      signal: AbortSignal.timeout(90000), // 90 seconds
     });
     const text = await res.text();
     try {
@@ -66,6 +67,7 @@ export const chatbotAPI = {
   getChatMessages: async (chatId: string) => {
     const res = await fetch(`${base}/chats/${chatId}/messages`, {
       method: "GET",
+      signal: AbortSignal.timeout(90000), // 90 seconds
     });
     const text = await res.text();
     try {
