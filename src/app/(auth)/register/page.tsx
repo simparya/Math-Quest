@@ -1,12 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { bannerSignIn, logoGoogle, logoMini } from "@/contants/images";
-import { useRegister } from "@/hooks/queries/auth/useRegister";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -15,13 +9,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Loader2, Eye, EyeOff } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/store/slices/auth.slice";
-import { useGoogleLogin } from "@react-oauth/google";
+import { bannerSignIn, logoGoogle, logoMini } from "@/contants/images";
 import { useLoginGoogleMain } from "@/hooks/queries/auth/useLogin";
+import { useRegister } from "@/hooks/queries/auth/useRegister";
 import { Routes } from "@/lib/routes/routes";
+import { useAuthStore } from "@/store/slices/auth.slice";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useGoogleLogin } from "@react-oauth/google";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 // Schema validation for Register
 const registerSchema = z.object({
@@ -232,13 +232,13 @@ function RegisterPage() {
               <div className="text-center text-[#637381] text-xs sm:text-sm mt-4 space-y-1">
                 <div>Bằng cách đăng ký, tôi đồng ý với</div>
                 <div className="flex justify-center items-center gap-1 flex-wrap">
-                  <span className="underline cursor-pointer hover:text-blue-600 transition-colors">
+                  <a href={Routes.termOfUse} className="underline cursor-pointer hover:text-blue-600 transition-colors">
                     Điều khoản dịch vụ
-                  </span>
+                  </a>
                   <span className="text-[#637381]">và</span>
-                  <span className="underline cursor-pointer hover:text-blue-600 transition-colors">
+                  <a href={Routes.policy} className="underline cursor-pointer hover:text-blue-600 transition-colors">
                     Chính sách bảo mật
-                  </span>
+                  </a>
                 </div>
               </div>
 
