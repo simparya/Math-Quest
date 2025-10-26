@@ -1,7 +1,7 @@
 "use client";
-import { createContext, ReactNode, useContext, useState } from "react";
 import { CourseDetail } from "@/api/types/course.type";
 import { IModule } from "@/hooks/queries/course/useModuleCourse";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 // ✅ Define AuthContext Interface
 interface CreateCourseContextType {

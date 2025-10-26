@@ -1,19 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Card } from "@/components/ui/card";
-import { Check, ChevronRight } from "lucide-react";
+import { CourseDetail } from "@/api/types/course.type";
 import Step1Form from "@/app/(admin)/create-courses/create/Step1Form";
-import { fullCourseFormData } from "@/app/(admin)/create-courses/create/schemas";
-import CourseInfoSection from "./create/components/CourseInfoSection";
 import {
   CourseBuilderSection,
   CoursePricingSection,
   CourseSettingsSection,
   VideoIntroSection,
 } from "@/app/(admin)/create-courses/create/components";
-import { useCreateCourse } from "@/hooks/queries/course";
-import { Trash } from "iconsax-react";
+import CourseFAQ from "@/app/(admin)/create-courses/create/components/CourseFAQ";
+import { fullCourseFormData } from "@/app/(admin)/create-courses/create/schemas";
+import { Card } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -22,20 +19,23 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ListStatusCourse } from "@/contants/course";
-import {
-  EStatusCourse,
-  useStatusCourse,
-} from "@/hooks/queries/course/useStatusCourse";
-import { CourseDetail } from "@/api/types/course.type";
 import { useCreateCourseContext } from "@/context/CreateCourseProvider";
-import CourseFAQ from "@/app/(admin)/create-courses/create/components/CourseFAQ";
+import { useCreateCourse } from "@/hooks/queries/course";
 import {
   courseKeys,
   useCourseCMSBySlug,
 } from "@/hooks/queries/course/useCourses";
 import { useUpdateCourse } from "@/hooks/queries/course/useCreateCourse";
-import { useSearchParams } from "next/navigation";
+import {
+  EStatusCourse,
+  useStatusCourse,
+} from "@/hooks/queries/course/useStatusCourse";
 import { useQueryClient } from "@tanstack/react-query";
+import { Trash } from "iconsax-react";
+import { Check, ChevronRight } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import CourseInfoSection from "./create/components/CourseInfoSection";
 
 const STEP_SUBMIT_CREATE_COURSE = 5;
 

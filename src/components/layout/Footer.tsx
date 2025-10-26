@@ -1,9 +1,8 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { Routes } from "@/lib/routes/routes";
 import { Input } from "antd";
 import { Facebook, Instagram } from "iconsax-react";
+import Image from "next/image";
+import Link from "next/link";
 
 function Footer() {
   return (
@@ -19,7 +18,7 @@ function Footer() {
                 height={40}
               />
               <div className="flex gap-3">
-                <Link href="#" className="flex items-center justify-center">
+                <Link href="" className="flex items-center justify-center">
                   <Facebook size="24" color="#212B36" variant="Bold" />
                 </Link>
                 <Link href="#" className="flex items-center justify-center">
@@ -73,7 +72,7 @@ function Footer() {
                   Giới thiệu
                 </Link>
                 <Link
-                  href={Routes.home}
+                  href={Routes.checkout}
                   className="cursor-pointer hover:text-primary-main hover:underline text-zinc-400"
                 >
                   Giỏ hàng
@@ -121,7 +120,7 @@ function Footer() {
               href={Routes.termOfUse}
               className="hover:text-primary-main hover:underline"
             >
-              Điều khoản & Điền kiện
+              Điều khoản & Điền kiện 
             </Link>
             <Link
               href={Routes.policy}
