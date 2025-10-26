@@ -6,6 +6,7 @@ const apiChatbot = axios.create({
     headers: {
         "Content-Type": "application/json",
     },
+    timeout: 90000, // 90 seconds
 });
 
 // Request interceptor

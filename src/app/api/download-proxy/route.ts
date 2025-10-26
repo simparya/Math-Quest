@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
     const response = await fetch(url, {
       method: 'GET',
       headers,
+      signal: AbortSignal.timeout(90000), // 90 seconds
     });
 
     if (!response.ok) {

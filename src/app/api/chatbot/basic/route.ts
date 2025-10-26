@@ -10,6 +10,7 @@ export async function POST(req: Request) {
     const res = await fetch(`${base}/math/basic`, {
       method: 'POST',
       body: form,
+      signal: AbortSignal.timeout(90000), // 90 seconds
     });
 
     const text = await res.text();
